@@ -1,8 +1,10 @@
 package com.marmot.intrepid.naturalhealer;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements
+        MapFragment.OnFragmentInteractionListener,
+        InventoryFragment.OnFragmentInteractionListener,
+        GrimoireFragment.OnFragmentInteractionListener,
+        QuestBookFragment.OnFragmentInteractionListener,
+        ShopFragment.OnFragmentInteractionListener,
+        InfoFragment.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //NOTE:  Checks first item in the navigation drawer initially
+        navigationView.setCheckedItem(R.id.nav_map);
+
+        //NOTE:  Open fragment1 initially.
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new MapFragment());
+        ft.commit();
     }
 
     @Override
@@ -61,6 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -77,25 +95,45 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //NOTE: creating fragment object
+        android.support.v4.app.Fragment fragment = null;
+        Class fragmentClass = null;
+
         if (id == R.id.nav_map) {
-            // Handle the camera action
+            fragmentClass = MapFragment.class;
         } else if (id == R.id.nav_inventory) {
-
+            fragmentClass = InventoryFragment.class;
         } else if (id == R.id.nav_grimoire) {
-
+            fragmentClass = GrimoireFragment.class;
         } else if (id == R.id.nav_questBook) {
-
+            fragmentClass = QuestBookFragment.class;
         } else if (id == R.id.nav_shop) {
-
+            fragmentClass = ShopFragment.class;
         } else if (id == R.id.nav_info) {
-
+            fragmentClass = InfoFragment.class;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        try {
+            fragment = (android.support.v4.app.Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, fragment).commit();
+
+        //NOTE:  Closing the drawer after selecting
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout); //Ya you can also globalize this variable :P
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(String s) {
+        // NOTE:  Code to replace the toolbar title based current visible fragment
+        getSupportActionBar().setTitle(s);
     }
 }
