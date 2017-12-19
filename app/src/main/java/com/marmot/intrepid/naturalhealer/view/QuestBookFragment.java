@@ -4,8 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
 
@@ -27,6 +31,7 @@ public class QuestBookFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String[] quests;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,6 +80,86 @@ public class QuestBookFragment extends Fragment {
         // Here we will can create click listners etc for all the gui elements on the fragment.
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
+
+        final ListView mainList = (ListView) view.findViewById(R.id.mainList);
+        final ListView dailyList = (ListView) view.findViewById(R.id.dailyList);
+        final ListView eventList = (ListView) view.findViewById(R.id.eventList);
+
+        final Button mainButton = (Button) view.findViewById(R.id.main);
+        final Button dailyButton = (Button) view.findViewById(R.id.daily);
+        final Button eventButton = (Button) view.findViewById(R.id.event);
+
+        mainButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    if (mainButton.isPressed()) {
+                        mainButton.setPressed(false);
+                        mainList.setAdapter(null);
+                    } else {
+                        dailyButton.setPressed(false);
+                        eventButton.setPressed(false);
+                        mainButton.setPressed(true);
+
+                        quests = new String[]{"Main Quest 1", "Main Quest 2", "Main Quest 3", "Main Quest 4"};
+
+                        dailyList.setAdapter(null);
+                        eventList.setAdapter(null);
+                        mainList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                    }
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        dailyButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    if (dailyButton.isPressed()) {
+                        dailyButton.setPressed(false);
+                        dailyList.setAdapter(null);
+                    } else {
+                        dailyButton.setPressed(true);
+                        eventButton.setPressed(false);
+                        mainButton.setPressed(false);
+
+                        quests = new String[]{"Daily Quest 1", "Daily Quest 2", "Daily Quest 3", "Daily Quest 4", "Daily Quest 5", "Daily Quest 6", "Daily Quest 7", "Daily Quest 8", "Daily Quest 9", "Daily Quest 10"};
+
+                        mainList.setAdapter(null);
+                        eventList.setAdapter(null);
+                        dailyList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                    }
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        eventButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    if (eventButton.isPressed()) {
+                        eventButton.setPressed(false);
+                        eventList.setAdapter(null);
+                    } else {
+                        dailyButton.setPressed(false);
+                        eventButton.setPressed(true);
+                        mainButton.setPressed(false);
+
+                        quests = new String[]{"Event Quest 1", "Event Quest 2", "Event Quest 3", "Event Quest 4", "Event Quest 5", "Event Quest 6"};
+
+                        mainList.setAdapter(null);
+                        dailyList.setAdapter(null);
+                        eventList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                    }
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
 
         return view;
     }
