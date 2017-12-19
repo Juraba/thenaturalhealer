@@ -1,4 +1,4 @@
-package village_quest;
+package com.marmot.intrepid.naturalhealer.model;
 
 /**
  * Created by Camille K on 19/12/2017.

@@ -1,4 +1,4 @@
-package player;
+package com.marmot.intrepid.naturalhealer.model;
 
 
 public class Item {
