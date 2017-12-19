@@ -17,32 +17,41 @@
             android:layout_gravity="top"
             android:src="@drawable/banniere" />
 
-        <TextView
-            android:id="@+id/infoTitle"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="\nGAME INFORMATIONS" />
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp">
 
-        <TextView
-            android:id="@+id/infoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="\n\n
-    This game has been created by a team of 3 gorgeous people that are very very very passionate.\n\n
-    Camille KESSAB, Julien RABAULT and Justine FERRON are really happy to have you playing their new game !\n\n" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/infoEnd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:gravity="right"
-            android:text="Enjoy your game !" />
+                <TextView
+                    android:id="@+id/infoTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nGAME INFORMATIONS" />
+
+                <TextView
+                    android:id="@+id/infoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\n\n\n
+            This game has been created by a team of 3 gorgeous people that are very very very passionate.\n\n\n
+            Camille KESSAB, Julien RABAULT and Justine FERRON are really happy to have you playing their new game !\n\n\n" />
+
+                <TextView
+                    android:id="@+id/infoEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Enjoy your game !" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 

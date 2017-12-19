@@ -2,50 +2,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="10dp"
     tools:context="com.marmot.intrepid.naturalhealer.view.ShopFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="false"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonHerbs"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="false"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="HERBS" />
 
-            <Button
-                android:id="@+id/buttonHerbs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="HERBS" />
+        <Button
+            android:id="@+id/buttonRecipies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RECIPIES" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonRecipies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="RECIPIES" />
 
-        </LinearLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </GridLayout>
-
         </ScrollView>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="horizontal">
@@ -73,7 +78,16 @@
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="25,000 $" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:text="BUY" />
 
     </LinearLayout>
 
