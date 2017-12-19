@@ -1,4 +1,4 @@
-package grimoire;
+package com.marmot.intrepid.naturalhealer.model.grimoire;
 
 /**
  * Created by Camille K on 19/12/2017.

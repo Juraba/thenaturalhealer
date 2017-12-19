@@ -1,8 +1,7 @@
-package player;
+package com.marmot.intrepid.naturalhealer.model.player;
 
 import java.util.ArrayList;
-
-import village_quest.Quest;
+import com.marmot.intrepid.naturalhealer.model.village_quest.Quest;
 
 public class Player {
     private String nickname;

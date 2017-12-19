@@ -1,4 +1,4 @@
-package player;
+package com.marmot.intrepid.naturalhealer.model.player;
 
 /**
  * Created by Camille K on 19/12/2017.
