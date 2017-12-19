@@ -2,12 +2,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.marmot.intrepid.naturalhealer.GrimoireFragment">
+    tools:context="com.marmot.intrepid.naturalhealer.view.GrimoireFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Grimoire layout" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="false"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonHerbs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HERBS" />
+
+            <Button
+                android:id="@+id/buttonRecipies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RECIPIES" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></ListView>
+
+    </LinearLayout>
 
 </FrameLayout>

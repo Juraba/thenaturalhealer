@@ -1,12 +1,13 @@
-package com.marmot.intrepid.naturalhealer;
+package com.marmot.intrepid.naturalhealer.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.marmot.intrepid.naturalhealer.R;
 
 
 /**
@@ -68,7 +69,7 @@ public class InfoFragment extends Fragment {
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("Fragment Information");
+            mListener.onFragmentInteraction("INFORMATIONS");
         }
 
         // Here we will can create click listners etc for all the gui elements on the fragment.

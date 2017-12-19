@@ -1,23 +1,26 @@
-package com.marmot.intrepid.naturalhealer;
+package com.marmot.intrepid.naturalhealer.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.marmot.intrepid.naturalhealer.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link QuestBookFragment.OnFragmentInteractionListener} interface
+ * {@link MapFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link QuestBookFragment#newInstance} factory method to
+ * Use the {@link MapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QuestBookFragment extends Fragment {
+public class MapFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +32,7 @@ public class QuestBookFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public QuestBookFragment() {
+    public MapFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +42,11 @@ public class QuestBookFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment QuestBookFragment.
+     * @return A new instance of fragment MapFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static QuestBookFragment newInstance(String param1, String param2) {
-        QuestBookFragment fragment = new QuestBookFragment();
+    public static MapFragment newInstance(String param1, String param2) {
+        MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,17 +66,26 @@ public class QuestBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_quest_book, container, false);
+        View view= inflater.inflate(R.layout.fragment_map, container, false);
 
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("Fragment Quest Book");
+            mListener.onFragmentInteraction("THE NATURAL HEALER");
         }
 
         // Here we will can create click listners etc for all the gui elements on the fragment.
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         return view;
     }

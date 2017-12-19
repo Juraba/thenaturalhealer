@@ -1,12 +1,17 @@
-package com.marmot.intrepid.naturalhealer;
+package com.marmot.intrepid.naturalhealer.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+
+import com.marmot.intrepid.naturalhealer.R;
 
 
 /**
@@ -26,6 +31,7 @@ public class GrimoireFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public String[] categories;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,17 +69,51 @@ public class GrimoireFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_grimoire, container, false);
+        View view = inflater.inflate(R.layout.fragment_grimoire, container, false);
 
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("Fragment Grimoire");
+            mListener.onFragmentInteraction("GRIMOIRE");
         }
 
         // Here we will can create click listners etc for all the gui elements on the fragment.
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
+
+        final ListView list = (ListView) view.findViewById(R.id.listCategories);
+
+        categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
+        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+
+        final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
+        final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
+
+        herbs.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    recipies.setPressed(false);
+                    herbs.setPressed(true);
+                    categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
+                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        recipies.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    herbs.setPressed(false);
+                    recipies.setPressed(true);
+                    categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
+                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
 
         return view;
     }
