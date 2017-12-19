@@ -4,18 +4,13 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
  * Created by PC-Justine on 19/12/2017.
  */
 
-public enum Rank {
-    RECRUIT("Recruit", "Recrue"),
-    JUNIOR("Junior", "Débutant"),
-    APPRENTICE("Apprentice", "Apprenti"),
-    VETERAN("Veteran", "Vétéran"),
-    MASTER("Master", "Maître"),
-    GODLIKE("Godlike", "Divin");
+public enum HerbEnum {
+    COMMON("Common", "Aromatiques");
 
     private String en = "";
     private String fr = "";
 
-    Rank(String en, String fr){
+    HerbEnum(String en, String fr){
         this.en = en;
         this.fr = fr;
     }

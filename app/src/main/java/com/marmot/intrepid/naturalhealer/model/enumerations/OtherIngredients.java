@@ -4,13 +4,17 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
  * Created by PC-Justine on 19/12/2017.
  */
 
-public enum Recipe {
-    COMMON("Common", "Aromatiques");
+public enum OtherIngredients {
+    WATER("Water", "Eau"),
+    HONEY("Honey", "Miel"),
+    MILK("Milk", "Lait"),
+    RHUM("Rhum", "Rhum"),
+    LEMON("Lemon", "Citron");
 
     private String en = "";
     private String fr = "";
 
-    Recipe(String en, String fr){
+    OtherIngredients(String en, String fr){
         this.en = en;
         this.fr = fr;
     }
