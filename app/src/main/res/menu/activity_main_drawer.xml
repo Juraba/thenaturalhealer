@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Carte" />
+            android:title="Map" />
         <item
             android:id="@+id/nav_inventory"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Inventaire" />
+            android:title="Inventory" />
         <item
             android:id="@+id/nav_grimoire"
             android:icon="@drawable/ic_menu_slideshow"
@@ -19,11 +19,11 @@
         <item
             android:id="@+id/nav_questBook"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Livre des quêtes" />
+            android:title="Quests Book" />
         <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Boutique" />
+            android:title="Shop" />
 
         <item
             android:id="@+id/nav_info"
