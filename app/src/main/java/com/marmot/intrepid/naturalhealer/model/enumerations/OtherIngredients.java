@@ -5,7 +5,6 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
  */
 
 public enum OtherIngredients {
-    WATER("Water", "Eau"),
     HONEY("Honey", "Miel"),
     MILK("Milk", "Lait"),
     RHUM("Rhum", "Rhum"),

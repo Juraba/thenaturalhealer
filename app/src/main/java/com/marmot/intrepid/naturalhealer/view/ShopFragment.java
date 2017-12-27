@@ -85,6 +85,7 @@ public class ShopFragment extends Fragment {
 
         final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
         final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
+        final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
 
         herbs.setPressed(true);
 
@@ -93,6 +94,7 @@ public class ShopFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     recipies.setPressed(false);
+                    other.setPressed(false);
                     herbs.setPressed(true);
                     //categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
                     //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
@@ -106,7 +108,22 @@ public class ShopFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     herbs.setPressed(false);
+                    other.setPressed(false);
                     recipies.setPressed(true);
+                    //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
+                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                }
+                return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        other.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    herbs.setPressed(false);
+                    recipies.setPressed(false);
+                    other.setPressed(true);
                     //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
                     //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
                 }
