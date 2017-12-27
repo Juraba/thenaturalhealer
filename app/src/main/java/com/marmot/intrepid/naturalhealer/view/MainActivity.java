@@ -15,7 +15,7 @@ import com.marmot.intrepid.naturalhealer.R;
 
 public class MainActivity extends AppCompatActivity
         implements
-        MapFragment.OnFragmentInteractionListener,
+        MainFragment.OnFragmentInteractionListener,
         InventoryFragment.OnFragmentInteractionListener,
         GrimoireFragment.OnFragmentInteractionListener,
         QuestBookFragment.OnFragmentInteractionListener,
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         //NOTE:  Open fragment1 initially.
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFrame, new MapFragment());
+        ft.replace(R.id.mainFrame, new MainFragment());
         ft.commit();
     }
 
@@ -74,9 +74,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity
         Class fragmentClass = null;
 
         if (id == R.id.nav_map) {
-            fragmentClass = MapFragment.class;
+            fragmentClass = MainFragment.class;
         } else if (id == R.id.nav_inventory) {
             fragmentClass = InventoryFragment.class;
         } else if (id == R.id.nav_grimoire) {

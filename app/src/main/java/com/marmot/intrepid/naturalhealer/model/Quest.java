@@ -1,33 +1,35 @@
-
 package com.marmot.intrepid.naturalhealer.model;
 
-/**
- * Created by Camille K on 19/12/2017.
- */
-
 public class Quest {
-    private String description;
+    private String description, type;
     private int[] requirements;
     private float[] goals;
-    private int rewardMoney;
-    private int rewardXp;
-    private boolean cancelable;
-    private boolean done;
-    private String type;
+    private int rewardMoney, rewardXp;
+    private boolean cancelable, done;
 
-    public Quest(String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, boolean done, String type){
+    public Quest(String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, String type){
         this.description = description;
         this.requirements = requirements;
         this.goals = goals;
         this.rewardMoney = rewardMoney;
         this.rewardXp = rewardXp;
         this.cancelable = cancelable;
-        this.done = done;
+        this.done = false;
         this.type = type;
     }
 
-    //TODO : écrire methodes
+    public String getDescription() {return this.description;}
+
+    public String getType() {return this.type;}
+
+    public int getRewardMoney() {return this.rewardMoney;}
+
+    public int getRewardXp() {return this.rewardXp;}
+
     public boolean isDone(){return this.done;}
+
+    public boolean isCancelable(){return this.cancelable;}
+
     public void fill(int[] requirements){}
-    public void cancel(){}
+
 }

@@ -1,15 +1,7 @@
 package com.marmot.intrepid.naturalhealer.model;
 
-/**
- * Created by Camille K on 19/12/2017.
- */
-
 public class Herb extends Item {
-    private String race;
-    private String rarity;
-    private String history;
-    private String combination;
-    private String type;
+    private String race, rarity, history, combination, type;
     private boolean available;
 
     public Herb(String name, String desc, String properties, double price, Rank rank, String race, String rarity, String history, String combination, String type){
@@ -19,36 +11,25 @@ public class Herb extends Item {
         this.history = history;
         this.combination = combination;
         this.type = type;
+        this.available = false;
     }
 
-    public String getRace() {
-        return race;
-    }
+    public String getRace() {return this.race;}
 
-    public String getRarity() {
-        return rarity;
-    }
+    public String getRarity() {return this.rarity;}
 
-    public String getHistory() {
-        return history;
-    }
+    public String getHistory() {return this.history;}
 
-    public String getCombination() {
-        return combination;
-    }
+    public String getCombination() {return this.combination;}
 
-    public String getType() {
-        return type;
-    }
+    public String getType() {return type;}
+
+    public boolean isAvailable(){return available;}
 
     public void setAvailable(){
         if(!this.available){
             this.available = true;
         }
-    }
-
-    public boolean isAvailable(){
-        return available;
     }
 
 }

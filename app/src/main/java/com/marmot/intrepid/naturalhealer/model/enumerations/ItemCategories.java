@@ -6,7 +6,8 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
 
 public enum ItemCategories {
     HERBS("Herbs", "Plantes"),
-    RECIPES("Recipies", "Recettes");
+    RECIPES("Recipies", "Recettes"),
+    OTHER("Other", "Autres");
 
     private String en = "";
     private String fr = "";

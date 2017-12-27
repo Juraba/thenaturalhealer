@@ -2,10 +2,6 @@ package com.marmot.intrepid.naturalhealer.model;
 
 import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 
-/**
- * Created by Camille K on 19/12/2017.
- */
-
 public class Rank {
     private RankEnum name;
     private int goal;
@@ -28,4 +24,8 @@ public class Rank {
                 break;
         }
     }
+
+    public int getGoal() {return this.goal;}
+
+    public RankEnum getName() {return this.name;}
 }

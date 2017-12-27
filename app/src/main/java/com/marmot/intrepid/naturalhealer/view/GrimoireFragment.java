@@ -89,6 +89,8 @@ public class GrimoireFragment extends Fragment {
         final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
         final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
 
+        herbs.setPressed(true);
+
         herbs.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){

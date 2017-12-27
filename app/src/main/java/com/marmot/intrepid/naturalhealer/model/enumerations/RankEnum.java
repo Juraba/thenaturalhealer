@@ -1,9 +1,5 @@
 package com.marmot.intrepid.naturalhealer.model.enumerations;
 
-/**
- * Created by PC-Justine on 19/12/2017.
- */
-
 public enum RankEnum {
     RECRUIT("Recruit", "Recrue"),
     JUNIOR("Junior", "Débutant"),

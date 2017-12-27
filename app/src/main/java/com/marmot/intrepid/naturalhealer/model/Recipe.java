@@ -1,12 +1,7 @@
 package com.marmot.intrepid.naturalhealer.model;
 
-/**
- * Created by Camille K on 19/12/2017.
- */
-
 public class Recipe extends Item {
-    private String difficulty;
-    private String protocol;
+    private String difficulty, protocol;
     private String[] symptoms;
     private boolean discovered, available;
 
@@ -19,26 +14,20 @@ public class Recipe extends Item {
         this.available = false;
     }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
+    public String getDifficulty() {return this.difficulty;}
 
-    public  String getProtocol() {
-        return protocol;
-    }
+    public  String getProtocol() {return this.protocol;}
 
-    public String[] getSymptoms() {
-        return symptoms;
-    }
+    public String[] getSymptoms() {return this.symptoms;}
+
+    public boolean isDiscovered(){return this.discovered;}
+
+    public boolean isAvailable() {return this.available;}
 
     public void setDiscover(){
         if(!this.discovered){
             this.discovered = true;
         }
-    }
-
-    public boolean isDiscovered(){
-        return discovered;
     }
 
     public void setAvailable(){
@@ -47,7 +36,4 @@ public class Recipe extends Item {
         }
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
 }

@@ -21,16 +21,36 @@ public class Player {
         this.quests = new HashMap<String, Quest>();
     }
 
+    public String getNickname() {return this.nickname;}
+
+    public int getXp() {return this.xp;}
+
+    public double getPurse() {return this.purse;}
+
+    public Rank getRank() {return this.rank;}
+
+    public HashMap<Item, Integer> getInventory() {return this.inventory;}
+
+    public HashMap<String, Quest> getQuests() {return this.quests;}
+
     public void acceptQuest(Quest quest, String villagerName){
         this.quests.put(villagerName, quest);
     }
 
     public void cancelQuest(Quest quest){
-        this.quests.remove(quest);
+        if (quest.isCancelable()) {
+            this.quests.remove(quest);
+        } else {
+            //Mettre un mécanisme qui ne retire pas la quête mais sort un toast qui dit qu'on peut pas supprimer la quête
+        }
     }
 
-    public void brew(ArrayList<Item> ingredients){
-
+    public void removeQuest(Quest quest) {
+        if (quest.isDone()) {
+            this.quests.remove(quest);
+        } else {
+            //Ne remove pas la quête, pas de toast
+        }
     }
 
     public void addItems(Item item, int number){
@@ -72,4 +92,9 @@ public class Player {
     public void explore(){
 
     }
+
+    public void brew(ArrayList<Item> ingredients){
+
+    }
+
 }
