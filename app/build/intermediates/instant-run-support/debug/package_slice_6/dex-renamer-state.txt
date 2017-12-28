@@ -1,0 +1,4 @@
+#Fri Dec 15 14:58:13 CET 2017
+base.0=C\:\\Users\\PC-Justine\\Documents\\Travail\\Personnel\\Projets\\thenaturalhealer\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
+path.0=classes.dex
+renamed.0=classes.dex
