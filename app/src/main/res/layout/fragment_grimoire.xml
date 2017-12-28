@@ -6,7 +6,7 @@
     android:paddingLeft="10dp"
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
-    tools:context="com.marmot.intrepid.naturalhealer.view.GrimoireFragment">
+    tools:context="com.marmot.intrepid.naturalhealer.control.GrimoireFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

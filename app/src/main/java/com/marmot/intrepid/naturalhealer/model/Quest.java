@@ -1,13 +1,17 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
+
 public class Quest {
-    private String description, type;
+    private String name, description;
+    private QuestType type;
     private int[] requirements;
     private float[] goals;
     private int rewardMoney, rewardXp;
     private boolean cancelable, done;
 
-    public Quest(String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, String type){
+    public Quest(String name, String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, QuestType type){
+        this.name = name;
         this.description = description;
         this.requirements = requirements;
         this.goals = goals;
@@ -18,9 +22,11 @@ public class Quest {
         this.type = type;
     }
 
+    public String getName() {return this.name;}
+
     public String getDescription() {return this.description;}
 
-    public String getType() {return this.type;}
+    public QuestType getType() {return this.type;}
 
     public int getRewardMoney() {return this.rewardMoney;}
 

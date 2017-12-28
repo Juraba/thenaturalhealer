@@ -1,4 +1,4 @@
-package com.marmot.intrepid.naturalhealer.view;
+package com.marmot.intrepid.naturalhealer.control;
 
 import android.content.Context;
 import android.os.Bundle;

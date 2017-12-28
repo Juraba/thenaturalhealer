@@ -1,15 +1,11 @@
-package com.marmot.intrepid.naturalhealer.view;
+package com.marmot.intrepid.naturalhealer.control;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
 
@@ -17,12 +13,12 @@ import com.marmot.intrepid.naturalhealer.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ShopFragment.OnFragmentInteractionListener} interface
+ * {@link InfoFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ShopFragment#newInstance} factory method to
+ * Use the {@link InfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShopFragment extends Fragment {
+public class InfoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,7 +30,7 @@ public class ShopFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ShopFragment() {
+    public InfoFragment() {
         // Required empty public constructor
     }
 
@@ -44,11 +40,11 @@ public class ShopFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ShopFragment.
+     * @return A new instance of fragment InfoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ShopFragment newInstance(String param1, String param2) {
-        ShopFragment fragment = new ShopFragment();
+    public static InfoFragment newInstance(String param1, String param2) {
+        InfoFragment fragment = new InfoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,68 +64,17 @@ public class ShopFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shop, container, false);
+        View view= inflater.inflate(R.layout.fragment_info, container, false);
+
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("SHOP");
+            mListener.onFragmentInteraction("INFORMATIONS");
         }
 
         // Here we will can create click listners etc for all the gui elements on the fragment.
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
-
-        final ListView list = (ListView) view.findViewById(R.id.listCategories);
-
-        //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
-
-        final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
-        final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
-        final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
-
-        herbs.setPressed(true);
-
-        herbs.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    recipies.setPressed(false);
-                    other.setPressed(false);
-                    herbs.setPressed(true);
-                    //categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
-
-        recipies.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    herbs.setPressed(false);
-                    other.setPressed(false);
-                    recipies.setPressed(true);
-                    //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
-
-        other.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    herbs.setPressed(false);
-                    recipies.setPressed(false);
-                    other.setPressed(true);
-                    //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
 
         return view;
     }
