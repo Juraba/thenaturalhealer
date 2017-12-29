@@ -1,19 +1,23 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
     private String nickname;
+    private Bitmap pic;
     private int xp;
     private double purse;
     private Rank rank;
     private HashMap<Item, Integer> inventory;
     private HashMap<String, Quest> quests;
 
-    public Player(Rank rank, String nickname, int exp, double purse){
+    public Player(String nickname, Bitmap pic, Rank rank, int exp, double purse){
         this.nickname = nickname;
+        this.pic = pic;
         this.xp = exp;
         this.purse = purse;
         this.rank = rank;
@@ -22,6 +26,8 @@ public class Player {
     }
 
     public String getNickname() {return this.nickname;}
+
+    public Bitmap getPic() {return this.pic;}
 
     public int getXp() {return this.xp;}
 

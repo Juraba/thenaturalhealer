@@ -1,15 +1,18 @@
 package com.marmot.intrepid.naturalhealer.control;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
 
@@ -113,6 +116,14 @@ public class QuestBookFragment extends Fragment {
             }
         });
 
+        mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         dailyButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
@@ -137,6 +148,14 @@ public class QuestBookFragment extends Fragment {
             }
         });
 
+        dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         eventButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
@@ -158,6 +177,14 @@ public class QuestBookFragment extends Fragment {
                     }
                 }
                 return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -19,6 +19,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".control.QuestInfoActivity"
+            android:label="@string/title_activity_quest_info"
+            android:parentActivityName=".control.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marmot.intrepid.naturalhealer.control.MainActivity" />
+        </activity>
+        <activity
+            android:name=".control.ItemInfoActivity"
+            android:label="@string/title_activity_item_info"
+            android:parentActivityName=".control.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marmot.intrepid.naturalhealer.control.MainActivity" />
+        </activity>
+
+        <service
+            android:name=".control.GameService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
