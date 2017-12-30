@@ -2,9 +2,13 @@ package com.marmot.intrepid.naturalhealer.model;
 
 import android.graphics.Bitmap;
 
+import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.marmot.intrepid.naturalhealer.service.GameService;
 
 public class Player {
     private String nickname;
@@ -103,4 +107,10 @@ public class Player {
 
     }
 
+    /*
+    public static Player loadPlayer() {
+        Bitmap pic = GameService.getInstance().getPic();
+        return new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
+    }
+    */
 }

@@ -15,6 +15,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Quest;
+import com.marmot.intrepid.naturalhealer.model.Shop;
+import com.marmot.intrepid.naturalhealer.model.Villager;
+import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
+import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.util.ArrayList;
 
 
 /**
@@ -34,7 +41,11 @@ public class QuestBookFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    String[] quests;
+    private GameService game;
+    private ArrayList<String> mainQuestList = new ArrayList<String>();
+    private ArrayList<String> dailyQuestList = new ArrayList<String>();
+    private ArrayList<String> eventQuestList = new ArrayList<String>();
+    private String[] quests;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,6 +85,8 @@ public class QuestBookFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_quest_book, container, false);
 
+        game = GameService.getInstance();
+
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
@@ -92,6 +105,66 @@ public class QuestBookFragment extends Fragment {
         final Button dailyButton = (Button) view.findViewById(R.id.daily);
         final Button eventButton = (Button) view.findViewById(R.id.event);
 
+        game.createVillagers();
+
+        ArrayList<Villager> villagers = game.getVillagers();
+
+        for (int i = 0; i < villagers.size(); i++) {
+            ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
+
+            System.out.println(villagers.get(i).getName());
+
+            for (int j = 0; j < villagerQuests.size(); j++) {
+                if (villagerQuests.get(j).getType() == QuestType.MAIN) {
+                    if (mainQuestList != null) {
+                        boolean check = false;
+                        for (int k = 0; k < mainQuestList.size(); k++) {
+                            if (mainQuestList.get(k) == villagerQuests.get(j).getName()) {
+                                check = true;
+                            }
+                        }
+                        if (!check) {
+                            mainQuestList.add(villagerQuests.get(j).getName());
+                        }
+                    }
+                    else {
+                        mainQuestList.add(villagerQuests.get(j).getName());
+                    }
+                }
+                else if (villagerQuests.get(j).getType() == QuestType.DAILY) {
+                    if (dailyQuestList != null) {
+                        boolean check = false;
+                        for (int k = 0; k < dailyQuestList.size(); k++) {
+                            if (dailyQuestList.get(k) == villagerQuests.get(j).getName()) {
+                                check = true;
+                            }
+                        }
+                        if (!check) {
+                            dailyQuestList.add(villagerQuests.get(j).getName());
+                        }
+                    } else {
+                        dailyQuestList.add(villagerQuests.get(j).getName());
+                    }
+                }
+                else if (villagerQuests.get(j).getType() == QuestType.EVENT) {
+                    if (eventQuestList != null) {
+                        boolean check = false;
+                        for (int k = 0; k < eventQuestList.size(); k++) {
+                            if (eventQuestList.get(k) == villagerQuests.get(j).getName()) {
+                                check = true;
+                            }
+                        }
+                        if (!check) {
+                            eventQuestList.add(villagerQuests.get(j).getName());
+                        }
+                        else {
+                            eventQuestList.add(villagerQuests.get(j).getName());
+                        }
+                    }
+                }
+            }
+        }
+
         mainButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
@@ -105,11 +178,9 @@ public class QuestBookFragment extends Fragment {
                         eventButton.setPressed(false);
                         mainButton.setPressed(true);
 
-                        quests = new String[]{"Main Quest 1", "Main Quest 2", "Main Quest 3", "Main Quest 4"};
-
                         dailyList.setAdapter(null);
                         eventList.setAdapter(null);
-                        mainList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                        mainList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mainQuestList));
                     }
                 }
                 return true;//Return true, so there will be no onClick-event
@@ -137,11 +208,9 @@ public class QuestBookFragment extends Fragment {
                         eventButton.setPressed(false);
                         mainButton.setPressed(false);
 
-                        quests = new String[]{"Daily Quest 1", "Daily Quest 2", "Daily Quest 3", "Daily Quest 4", "Daily Quest 5", "Daily Quest 6", "Daily Quest 7", "Daily Quest 8", "Daily Quest 9", "Daily Quest 10"};
-
                         mainList.setAdapter(null);
                         eventList.setAdapter(null);
-                        dailyList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                        dailyList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, dailyQuestList));
                     }
                 }
                 return true;//Return true, so there will be no onClick-event
@@ -169,11 +238,9 @@ public class QuestBookFragment extends Fragment {
                         eventButton.setPressed(true);
                         mainButton.setPressed(false);
 
-                        quests = new String[]{"Event Quest 1", "Event Quest 2", "Event Quest 3", "Event Quest 4", "Event Quest 5", "Event Quest 6"};
-
                         mainList.setAdapter(null);
                         dailyList.setAdapter(null);
-                        eventList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, quests));
+                        eventList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, eventQuestList));
                     }
                 }
                 return true;//Return true, so there will be no onClick-event

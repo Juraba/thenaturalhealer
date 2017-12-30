@@ -7,6 +7,7 @@ public class Villager {
     private ArrayList<Quest> quests;
 
     public Villager(String name){
+        quests = new ArrayList<Quest>();
         this.name = name;
     }
 

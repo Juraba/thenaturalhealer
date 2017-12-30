@@ -38,10 +38,6 @@
                 android:value="com.marmot.intrepid.naturalhealer.control.MainActivity" />
         </activity>
 
-        <service
-            android:name=".control.GameService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
+import com.marmot.intrepid.naturalhealer.service.GameService;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
-    Player player;
+    //private GameService game = GameService.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,11 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_player);
-        this.player = new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
+        Player player = new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
+        /*
+        game.setPic(pic);
+        Player player = game.getPlayer();
+        */
 
         // ========== END OF THE GAME CREATION ==========
 
