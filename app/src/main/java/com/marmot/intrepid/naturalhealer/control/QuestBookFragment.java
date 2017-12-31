@@ -12,11 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.Quest;
-import com.marmot.intrepid.naturalhealer.model.Shop;
 import com.marmot.intrepid.naturalhealer.model.Villager;
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
 import com.marmot.intrepid.naturalhealer.service.GameService;
@@ -42,10 +40,10 @@ public class QuestBookFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private GameService game;
+    ArrayList<Villager> villagers = new ArrayList<Villager>();
     private ArrayList<String> mainQuestList = new ArrayList<String>();
     private ArrayList<String> dailyQuestList = new ArrayList<String>();
     private ArrayList<String> eventQuestList = new ArrayList<String>();
-    private String[] quests;
 
     private OnFragmentInteractionListener mListener;
 
@@ -83,7 +81,7 @@ public class QuestBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_quest_book, container, false);
+        View view = inflater.inflate(R.layout.fragment_quest_book, container, false);
 
         game = GameService.getInstance();
 
@@ -105,9 +103,7 @@ public class QuestBookFragment extends Fragment {
         final Button dailyButton = (Button) view.findViewById(R.id.daily);
         final Button eventButton = (Button) view.findViewById(R.id.event);
 
-        game.createVillagers();
-
-        ArrayList<Villager> villagers = game.getVillagers();
+        villagers = game.getVillagers();
 
         for (int i = 0; i < villagers.size(); i++) {
             ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
@@ -157,9 +153,9 @@ public class QuestBookFragment extends Fragment {
                         if (!check) {
                             eventQuestList.add(villagerQuests.get(j).getName());
                         }
-                        else {
-                            eventQuestList.add(villagerQuests.get(j).getName());
-                        }
+                    }
+                    else {
+                        eventQuestList.add(villagerQuests.get(j).getName());
                     }
                 }
             }
@@ -188,9 +184,20 @@ public class QuestBookFragment extends Fragment {
         });
 
         mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object obj = mainList.getAdapter().getItem(position);
+                String value = obj.toString();
+                villagers = game.getVillagers();
 
-            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                for (int i = 0; i < villagers.size(); i++) {
+                    ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
+                    for (int j = 0; j < villagerQuests.size(); j++) {
+                        if (value == villagerQuests.get(j).getName()) {
+                            intent.putExtra("quest", villagerQuests.get(j).getName());
+                        }
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -218,9 +225,20 @@ public class QuestBookFragment extends Fragment {
         });
 
         dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object obj = dailyList.getAdapter().getItem(position);
+                String value = obj.toString();
+                villagers = game.getVillagers();
 
-            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                for (int i = 0; i < villagers.size(); i++) {
+                    ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
+                    for (int j = 0; j < villagerQuests.size(); j++) {
+                        if (value == villagerQuests.get(j).getName()) {
+                            intent.putExtra("quest", villagerQuests.get(j).getName());
+                        }
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -248,9 +266,20 @@ public class QuestBookFragment extends Fragment {
         });
 
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object obj = eventList.getAdapter().getItem(position);
+                String value = obj.toString();
+                villagers = game.getVillagers();
 
-            public void onItemClick(AdapterView <?> parentAdapter, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), QuestInfoActivity.class);
+                for (int i = 0; i < villagers.size(); i++) {
+                    ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
+                    for (int j = 0; j < villagerQuests.size(); j++) {
+                        if (value == villagerQuests.get(j).getName()) {
+                            intent.putExtra("quest", villagerQuests.get(j).getName());
+                        }
+                    }
+                }
                 startActivity(intent);
             }
         });

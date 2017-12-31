@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
-    //private GameService game = GameService.getInstance();
+    private GameService game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         // ========== GAME CREATION ==========
+
+        game = GameService.getInstance();
+
+        game.createVillagers();
 
         Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_player);
         Player player = new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
