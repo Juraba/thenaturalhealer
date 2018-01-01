@@ -1,9 +1,6 @@
 package com.marmot.intrepid.naturalhealer.control;
 
-import android.app.Service;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -16,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.marmot.intrepid.naturalhealer.R;
@@ -44,14 +42,31 @@ public class MainActivity extends AppCompatActivity
 
         game = GameService.getInstance();
 
-        game.createVillagers();
+        Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
 
-        Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_player);
-        Player player = new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
-        /*
-        game.setPic(pic);
-        Player player = game.getPlayer();
-        */
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+
+        TextView playerName = (TextView) header.findViewById(R.id.playerName);
+        TextView playerRank = (TextView) header.findViewById(R.id.playerRank);
+        TextView xpText = (TextView) header.findViewById(R.id.xpText);
+
+        ImageView playerPic = (ImageView) header.findViewById(R.id.playerPic);
+
+        ProgressBar xpBar = (ProgressBar) header.findViewById(R.id.xpBar);
+
+        playerName.setText(player.getNickname());
+        playerRank.setText("Rank : " + player.getRank().getName().getEn());
+        xpText.setText(player.getXp() + " / " + player.getRank().getGoal());
+
+        Context context = playerPic.getContext();
+        int id = context.getResources().getIdentifier(player.getPicName(), "mipmap", context.getPackageName());
+        playerPic.setImageResource(id);
+
+        xpBar.setMax(player.getRank().getGoal());
+        xpBar.setProgress(player.getXp());
 
         // ========== END OF THE GAME CREATION ==========
 
@@ -65,20 +80,6 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        View header = navigationView.getHeaderView(0);
-        TextView playerName = (TextView) header.findViewById(R.id.playerName);
-        TextView playerRank = (TextView) header.findViewById(R.id.playerRank);
-        TextView xpText = (TextView) header.findViewById(R.id.xpText);
-        ImageView playerPic = (ImageView) header.findViewById(R.id.playerPic);
-
-        playerName.setText(player.getNickname());
-        playerRank.setText("Rank : " + player.getRank().getName().getEn());
-        xpText.setText(player.getXp() + " / " + player.getRank().getGoal());
-        playerPic.setImageBitmap(player.getPic());
 
         //NOTE:  Checks first item in the navigation drawer initially
         navigationView.setCheckedItem(R.id.nav_map);

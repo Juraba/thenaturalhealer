@@ -114,10 +114,12 @@ public class QuestBookFragment extends Fragment {
                 if (villagerQuests.get(j).getType() == QuestType.MAIN) {
                     if (mainQuestList != null) {
                         boolean check = false;
-                        for (int k = 0; k < mainQuestList.size(); k++) {
+                        int k=0;
+                        while (!check && (k < mainQuestList.size())) {
                             if (mainQuestList.get(k) == villagerQuests.get(j).getName()) {
                                 check = true;
                             }
+                            k++;
                         }
                         if (!check) {
                             mainQuestList.add(villagerQuests.get(j).getName());
@@ -130,10 +132,12 @@ public class QuestBookFragment extends Fragment {
                 else if (villagerQuests.get(j).getType() == QuestType.DAILY) {
                     if (dailyQuestList != null) {
                         boolean check = false;
-                        for (int k = 0; k < dailyQuestList.size(); k++) {
+                        int k=0;
+                        while (!check && (k < dailyQuestList.size())) {
                             if (dailyQuestList.get(k) == villagerQuests.get(j).getName()) {
                                 check = true;
                             }
+                            k++;
                         }
                         if (!check) {
                             dailyQuestList.add(villagerQuests.get(j).getName());
@@ -145,10 +149,12 @@ public class QuestBookFragment extends Fragment {
                 else if (villagerQuests.get(j).getType() == QuestType.EVENT) {
                     if (eventQuestList != null) {
                         boolean check = false;
-                        for (int k = 0; k < eventQuestList.size(); k++) {
+                        int k=0;
+                        while (!check && (k < eventQuestList.size())) {
                             if (eventQuestList.get(k) == villagerQuests.get(j).getName()) {
                                 check = true;
                             }
+                            k++;
                         }
                         if (!check) {
                             eventQuestList.add(villagerQuests.get(j).getName());

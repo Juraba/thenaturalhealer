@@ -12,6 +12,12 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Grimoire;
+import com.marmot.intrepid.naturalhealer.model.Herb;
+import com.marmot.intrepid.naturalhealer.model.Recipe;
+import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.util.ArrayList;
 
 
 /**
@@ -31,7 +37,11 @@ public class GrimoireFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    public String[] categories;
+    private GameService game;
+    private Grimoire grimoire = null;
+    private ArrayList<String> herbList = new ArrayList<String>();
+    private ArrayList<String> recipeList = new ArrayList<String>();
+    private ArrayList<String> otherList = new ArrayList<String>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,6 +81,8 @@ public class GrimoireFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_grimoire, container, false);
 
+        game = GameService.getInstance();
+
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
@@ -81,10 +93,45 @@ public class GrimoireFragment extends Fragment {
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
 
+        grimoire = game.getGrimoire();
+
+        for (int i = 0; i < grimoire.getHerbs().size(); i++) {
+            Herb r = grimoire.getHerbs().get(i);
+            boolean check = false;
+            int j = 0;
+            while (!check && (j < herbList.size())) {
+                if (r.getType().getEn() == herbList.get(j)) {
+                    check = true;
+                }
+                j++;
+            }
+            if (check == false) {
+                herbList.add(r.getType().getEn());
+            }
+        }
+        for (int i = 0; i < grimoire.getRecipes().size(); i++) {
+            Recipe r = grimoire.getRecipes().get(i);
+            for (int j = 0; j < r.getSymptoms().length; j++) {
+                boolean check = false;
+                int k=0;
+                while (!check && (k < recipeList.size())) {
+                    if (r.getSymptoms()[j].getEn() == recipeList.get(k)) {
+                        check = true;
+                    }
+                    k++;
+                }
+                if (check == false) {
+                    recipeList.add(r.getSymptoms()[j].getEn());
+                }
+            }
+        }
+        for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
+            otherList.add(grimoire.getOtherIngredients().get(i).getName());
+        }
+
         final ListView list = (ListView) view.findViewById(R.id.listCategories);
 
-        categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
-        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
 
         final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
         final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
@@ -99,8 +146,7 @@ public class GrimoireFragment extends Fragment {
                     recipies.setPressed(false);
                     other.setPressed(false);
                     herbs.setPressed(true);
-                    categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
                 }
                 return true;//Return true, so there will be no onClick-event
             }
@@ -113,8 +159,7 @@ public class GrimoireFragment extends Fragment {
                     herbs.setPressed(false);
                     other.setPressed(false);
                     recipies.setPressed(true);
-                    categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, recipeList));
                 }
                 return true;//Return true, so there will be no onClick-event
             }
@@ -127,8 +172,7 @@ public class GrimoireFragment extends Fragment {
                     herbs.setPressed(false);
                     recipies.setPressed(false);
                     other.setPressed(true);
-                    categories = new String[]{"Miel", "Rhum", "Lait", "Citron"};
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, otherList));
                 }
                 return true;//Return true, so there will be no onClick-event
             }

@@ -1,15 +1,27 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Herb;
+import com.marmot.intrepid.naturalhealer.model.Item;
+import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -29,6 +41,7 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private GameService game;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,9 +77,12 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_map, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
+
+        game = GameService.getInstance();
 
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
@@ -74,16 +90,42 @@ public class MainFragment extends Fragment {
             mListener.onFragmentInteraction("MAP");
         }
 
-        // Here we will can create click listners etc for all the gui elements on the fragment.
-        // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
-        // btn1.setOnclickListener(...
+        final Snackbar snackbar = Snackbar.make(view, "Time before exploring again : ", Snackbar.LENGTH_INDEFINITE);
+        final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        final CountDownTimer cdt = new CountDownTimer(60000, 1000) {
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+            @SuppressLint("LongLogTag")
+            public void onTick(long millisUntilFinished) {
+                Long time = (millisUntilFinished/1000);
+                snackbar.setText("Time before exploring again : " + time.toString());
+            }
+
+            public void onFinish() {
+                ArrayList<Herb> herbs = new ArrayList<Herb>();
+                HashMap<Item, Integer> rewards = game.getPlayer().explore();
+                Toast.makeText(getContext(), "Now you can explore again ! \n You earned : "/*rewards.toString()*/, Toast.LENGTH_LONG).show();
+                snackbar.dismiss();
+                fab.setVisibility(View.VISIBLE);
+            }
+
+        };
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                cdt.start();
+                fab.setVisibility(View.GONE);
+                snackbar.show();
+                snackbar.setAction("CANCEL", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cdt.cancel();
+                        snackbar.dismiss();
+                        fab.setVisibility(View.VISIBLE);
+                        Toast.makeText(getContext(), "Explore canceled", Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
         });
 

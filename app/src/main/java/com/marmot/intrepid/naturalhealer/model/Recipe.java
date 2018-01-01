@@ -1,11 +1,15 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import com.marmot.intrepid.naturalhealer.model.enumerations.RecipeDifficulty;
+import com.marmot.intrepid.naturalhealer.model.enumerations.Symptoms;
+
 public class Recipe extends Item {
-    private String difficulty, protocol;
-    private String[] symptoms;
+    private String protocol;
+    private RecipeDifficulty difficulty;
+    private Symptoms[] symptoms;
     private boolean discovered, available;
 
-    public Recipe(String name, String desc, String properties, double price, Rank rank, String difficulty, String[] symptoms, String protocol){
+    public Recipe(String name, String desc, String properties, double price, Rank rank, RecipeDifficulty difficulty, Symptoms[] symptoms, String protocol){
         super(name, desc, properties, price, rank);
         this.difficulty = difficulty;
         this.protocol = protocol;
@@ -14,11 +18,11 @@ public class Recipe extends Item {
         this.available = false;
     }
 
-    public String getDifficulty() {return this.difficulty;}
+    public RecipeDifficulty getDifficulty() {return this.difficulty;}
 
     public  String getProtocol() {return this.protocol;}
 
-    public String[] getSymptoms() {return this.symptoms;}
+    public Symptoms[] getSymptoms() {return this.symptoms;}
 
     public boolean isDiscovered(){return this.discovered;}
 

@@ -12,16 +12,16 @@ import com.marmot.intrepid.naturalhealer.service.GameService;
 
 public class Player {
     private String nickname;
-    private Bitmap pic;
+    private String picName;
     private int xp;
     private double purse;
     private Rank rank;
     private HashMap<Item, Integer> inventory;
     private HashMap<String, Quest> quests;
 
-    public Player(String nickname, Bitmap pic, Rank rank, int exp, double purse){
+    public Player(String nickname, String picName, Rank rank, int exp, double purse){
         this.nickname = nickname;
-        this.pic = pic;
+        this.picName = picName;
         this.xp = exp;
         this.purse = purse;
         this.rank = rank;
@@ -31,7 +31,7 @@ public class Player {
 
     public String getNickname() {return this.nickname;}
 
-    public Bitmap getPic() {return this.pic;}
+    public String getPicName() {return this.picName;}
 
     public int getXp() {return this.xp;}
 
@@ -99,18 +99,24 @@ public class Player {
         inventory.remove(item);
     }
 
-    public void explore(){
-
+    public static HashMap<Item, Integer> explore(){
+        ArrayList<Herb> herbs = new ArrayList<Herb>();
+        HashMap<Item, Integer> rewards = new HashMap<>();
+        int rewardNumber = (int) ((Math.random()*5) +1);
+        for(int i=0; i < rewardNumber; i++){
+            int herb = (int) (Math.random()*(herbs.size())); //int herb = (int) (Math.random()(herbs.size()));
+            Integer nbHerb = new Integer((int) (Math.random()*5)+1);
+            rewards.put(herbs.get(herb), nbHerb); //rewards.push(herbs.get(herb), nbHerb);
+        }
+        return rewards;
     }
 
     public void brew(ArrayList<Item> ingredients){
 
     }
 
-    /*
+    //Méthode temporaire
     public static Player loadPlayer() {
-        Bitmap pic = GameService.getInstance().getPic();
-        return new Player("UnPseudoLambda", pic, new Rank(RankEnum.RECRUIT), 0, 500.00);
+        return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
     }
-    */
 }

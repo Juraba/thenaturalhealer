@@ -41,4 +41,43 @@ public abstract class AbstractItemHandler {
     public void display(ArrayList array) {
 
     }
+
+    //Méthodes temporaires
+    public static Grimoire loadGrimoire(ArrayList<Item> items) {
+
+        Grimoire grimoire = new Grimoire();
+
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getClass() == Herb.class) {
+                grimoire.getHerbs().add((Herb) items.get(i));
+            }
+            else if (items.get(i).getClass() == Recipe.class) {
+                grimoire.getRecipes().add((Recipe) items.get(i));
+            }
+            else if (items.get(i).getClass() == OtherIngredients.class) {
+                grimoire.getOtherIngredients().add((OtherIngredients) items.get(i));
+            }
+        }
+
+        return grimoire;
+    }
+
+    public static Shop loadShop(ArrayList<Item> items) {
+
+        Shop shop = new Shop();
+
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getClass() == Herb.class) {
+                shop.getHerbs().add((Herb) items.get(i));
+            }
+            else if (items.get(i).getClass() == Recipe.class) {
+                shop.getRecipes().add((Recipe) items.get(i));
+            }
+            else if (items.get(i).getClass() == OtherIngredients.class) {
+                shop.getOtherIngredients().add((OtherIngredients) items.get(i));
+            }
+        }
+
+        return shop;
+    }
 }
