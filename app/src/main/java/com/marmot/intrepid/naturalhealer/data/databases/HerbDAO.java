@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.marmot.intrepid.naturalhealer.data.DAOBase;
 import com.marmot.intrepid.naturalhealer.model.Herb;
@@ -43,7 +44,7 @@ public class HerbDAO extends DAOBase{
 
 
     public HerbDAO(Context c){
-        super(c);
+        super(c, TABLE_CREATE, TABLE_DROP);
     }
 
     public void ajouter (Herb m){
@@ -59,11 +60,18 @@ public class HerbDAO extends DAOBase{
         values.put(HerbDAO.DESCRIPTION, m.getDescription());
         values.put(HerbDAO.AVAILABLE, m.isAvailable());
         values.put(HerbDAO.TYPE, m.getType().getEn());
+        if(mDb==null){
+            mDb = open();
+        }
         mDb.insert(HerbDAO.TABLE_NAME, null, values);
+
     }
 
 
     public void supprimer(String key, String value){
+        if(mDb==null){
+            mDb = open();
+        }
         mDb.delete(TABLE_NAME, key + " = ", new String[]{String.valueOf(value)});
     }
 
@@ -80,6 +88,9 @@ public class HerbDAO extends DAOBase{
         values.put(HerbDAO.DESCRIPTION, m.getDescription());
         values.put(HerbDAO.TYPE, m.getType().getEn());
         values.put(HerbDAO.AVAILABLE, m.isAvailable());
+        if(mDb==null){
+            mDb = open();
+        }
         mDb.update(TABLE_NAME, values, NAME_HERB + " = ?", new String[]{String.valueOf(m.getName())});
     }
 
