@@ -1,5 +1,7 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import com.marmot.intrepid.naturalhealer.control.MainActivity;
+import com.marmot.intrepid.naturalhealer.data.databases.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
 
