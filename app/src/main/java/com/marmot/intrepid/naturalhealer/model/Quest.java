@@ -36,6 +36,14 @@ public class Quest {
 
     public boolean isCancelable(){return this.cancelable;}
 
+    public int[] getRequirements() {
+        return requirements;
+    }
+
+    public float[] getGoals() {
+        return goals;
+    }
+
     public void fill(int[] requirements){}
 
 }
