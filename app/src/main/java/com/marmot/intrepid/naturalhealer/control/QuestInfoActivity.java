@@ -41,31 +41,31 @@ public class QuestInfoActivity extends AppCompatActivity {
 
                 setTitle("Quest : " + bundle.get("quest").toString());
 
-                ArrayList<Villager> v = game.getVillagers();
-                for (int i = 0; i < v.size(); i++) {
-                    ArrayList<Quest> q = v.get(i).getQuests();
-                    for (int j = 0; j < q.size(); j++) {
-                        if (q.get(j).getName().equals(bundle.get("quest").toString())) {
-                            if (q.get(j).getType() == QuestType.MAIN) {
+                ArrayList<Villager> villagers = game.getVillagers();
+                for (int i = 0; i < villagers.size(); i++) {
+                    ArrayList<Quest> quests = villagers.get(i).getQuests();
+                    for (int j = 0; j < quests.size(); j++) {
+                        if (quests.get(j).getName().equals(bundle.get("quest").toString())) {
+                            if (quests.get(j).getType() == QuestType.MAIN) {
                                 Toast.makeText(getApplicationContext(), "Quête principale", Toast.LENGTH_SHORT).show();
-                                originDemand.setText(v.get(i).getName());
-                                description.setText(q.get(j).getDescription());
+                                originDemand.setText(villagers.get(i).getName());
+                                description.setText(quests.get(j).getDescription());
                                 goals.setText("Nothing for the moment because we did not set a variable with a text for this ahah :D");
-                                rewards.setText("XP : " + q.get(j).getRewardXp() + "\nMoney : " + q.get(j).getRewardMoney());
+                                rewards.setText("XP : " + quests.get(j).getRewardXp() + "\nMoney : " + quests.get(j).getRewardMoney());
                             }
-                            else if (q.get(j).getType() == QuestType.DAILY) {
+                            else if (quests.get(j).getType() == QuestType.DAILY) {
                                 Toast.makeText(getApplicationContext(), "Quête journalière", Toast.LENGTH_SHORT).show();
-                                originDemand.setText(v.get(i).getName());
-                                description.setText(q.get(j).getDescription());
+                                originDemand.setText(villagers.get(i).getName());
+                                description.setText(quests.get(j).getDescription());
                                 goals.setText("Nothing for the moment because we did not set a variable with a text for this ahah :D");
-                                rewards.setText("XP : " + q.get(j).getRewardXp() + "\nMoney : " + q.get(j).getRewardMoney());
+                                rewards.setText("XP : " + quests.get(j).getRewardXp() + "\nMoney : " + quests.get(j).getRewardMoney());
                             }
-                            else if (q.get(j).getType() == QuestType.EVENT) {
+                            else if (quests.get(j).getType() == QuestType.EVENT) {
                                 Toast.makeText(getApplicationContext(), "Quête évènementielle", Toast.LENGTH_SHORT).show();
-                                originDemand.setText(v.get(i).getName());
-                                description.setText(q.get(j).getDescription());
+                                originDemand.setText(villagers.get(i).getName());
+                                description.setText(quests.get(j).getDescription());
                                 goals.setText("Nothing for the moment because we did not set a variable with a text for this ahah :D");
-                                rewards.setText("XP : " + q.get(j).getRewardXp() + "\nMoney : " + q.get(j).getRewardMoney());
+                                rewards.setText("XP : " + quests.get(j).getRewardXp() + "\nMoney : " + quests.get(j).getRewardMoney());
                             }
                         }
                     }
