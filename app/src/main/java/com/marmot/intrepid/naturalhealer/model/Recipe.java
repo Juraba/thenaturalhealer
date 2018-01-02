@@ -9,8 +9,8 @@ public class Recipe extends Item {
     private Symptoms[] symptoms;
     private boolean discovered, available;
 
-    public Recipe(String name, String desc, String properties, double price, Rank rank, RecipeDifficulty difficulty, Symptoms[] symptoms, String protocol){
-        super(name, desc, properties, price, rank);
+    public Recipe(String name, String picName, String desc, String properties, double price, Rank rank, RecipeDifficulty difficulty, Symptoms[] symptoms, String protocol){
+        super(name, picName, desc, properties, price, rank);
         this.difficulty = difficulty;
         this.protocol = protocol;
         this.symptoms = symptoms;

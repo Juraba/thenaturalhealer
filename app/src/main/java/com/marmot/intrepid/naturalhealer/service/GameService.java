@@ -28,6 +28,14 @@ public class GameService {
     private Grimoire grimoire = Grimoire.loadGrimoire(items);
     private Shop shop = Shop.loadShop(items);
 
+    public void fillInventory() {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getClass() != OtherIngredients.class) {
+                int randomNum = 1 + (int)(Math.random() * 25);
+                player.addItems(items.get(i), randomNum);
+            }
+        }
+    }
 
     public ArrayList<Villager> getVillagers() {
         return villagers;

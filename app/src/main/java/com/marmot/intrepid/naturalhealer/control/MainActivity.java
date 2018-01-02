@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
+        game.fillInventory();
 
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
 

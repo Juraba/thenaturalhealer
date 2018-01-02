@@ -7,10 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * Created by Camille K on 02/01/2018.
- */
-
 public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String TABLE_CREATE = null;
     public static final String TABLE_DROP = null;

@@ -1,7 +1,5 @@
 package com.marmot.intrepid.naturalhealer.model;
 
-import com.marmot.intrepid.naturalhealer.control.MainActivity;
-import com.marmot.intrepid.naturalhealer.data.databases.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
 
@@ -11,8 +9,8 @@ public class  Herb extends Item {
     private HerbType type;
     private boolean available;
 
-    public Herb(String name, String desc, String properties, double price, Rank rank, String race, HerbRarity rarity, String history, String combination, HerbType type){
-        super(name, desc, properties, price, rank);
+    public Herb(String name, String picName, String desc, String properties, double price, Rank rank, String race, HerbRarity rarity, String history, String combination, HerbType type){
+        super(name, picName, desc, properties, price, rank);
         this.race = race;
         this.rarity = rarity;
         this.history = history;

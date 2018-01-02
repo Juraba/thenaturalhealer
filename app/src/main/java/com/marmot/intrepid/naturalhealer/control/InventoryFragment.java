@@ -3,11 +3,30 @@ package com.marmot.intrepid.naturalhealer.control;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Item;
+import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -27,6 +46,9 @@ public class InventoryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private GameService game;
+    private Player player;
+    private HashMap<Item, Integer> inventory = new HashMap<Item, Integer>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +86,9 @@ public class InventoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_inventory, container, false);
+        View view = inflater.inflate(R.layout.fragment_inventory, container, false);
+
+        game = GameService.getInstance();
 
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
@@ -76,7 +100,75 @@ public class InventoryFragment extends Fragment {
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
 
+        player = game.getPlayer();
+        inventory = game.getPlayer().getInventory();
+
+        GridView itemList = (GridView) view.findViewById(R.id.inventory);
+
+        Button sort = (Button) view.findViewById(R.id.sort);
+        Button brew = (Button) view.findViewById(R.id.brew);
+
+        TextView capacity = (TextView) view.findViewById(R.id.capacity);
+        TextView money = (TextView) view.findViewById(R.id.money);
+
+
+        View gridview = inflater.inflate(R.layout.gridview_layout, container, false);
+        TextView itemNumber = (TextView) gridview.findViewById(R.id.itemNumber);
+        ImageView itemIcon = (ImageView) gridview.findViewById(R.id.itemIcon);
+
+        int[] pictures = new int[]{};
+        String[] numbers = new  String[]{};
+
+        int cpt = 0;
+        Context context = itemIcon.getContext();
+        for (Item key : inventory.keySet()) {
+            pictures[cpt] = context.getResources().getIdentifier(key.getPicName(), "mipmap", context.getPackageName());
+            numbers[cpt] = inventory.get(key).toString();
+            cpt++;
+        }
+
+        // Each row in the list stores country name, currency and flag
+        List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+        for(int i = 0; i < inventory.size() ; i++){
+            HashMap<String, String> tmp = new HashMap<String,String>();
+            tmp.put("img", Integer.toString(pictures[i]));
+            tmp.put("number", numbers[i]);
+            list.add(tmp);
+        }
+
+        // Keys used in Hashmap
+        String[] from = { "img","number"};
+        // Ids of views in listview_layout
+        int[] to = {R.id.itemIcon, R.id.itemNumber};
+
+        // Instantiating an adapter to store each items
+        // R.layout.listview_layout defines the layout of each item
+        //SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.gridview_layout, from, to);
+        GridAdapter adapter = new GridAdapter(getContext(), numbers, pictures);
+        // Setting an adapter containing images to the gridview
+        itemList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        /*
+        Context context = playerPic.getContext();
+        int id = context.getResources().getIdentifier(player.getPicName(), "mipmap", context.getPackageName());
+        playerPic.setImageResource(id);
+
+        inventory.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_gallery_item, itemIconList));
+        */
+
+        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
+                Toast.makeText(getContext(), "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

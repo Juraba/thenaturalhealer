@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Camille K on 02/01/2018.
- */
-
 public abstract class DAOBase extends SQLiteOpenHelper{
 
     String tableCreate, tableDrop;
@@ -25,7 +21,6 @@ public abstract class DAOBase extends SQLiteOpenHelper{
         this.tableCreate =  tableCreate;
         this.tableDrop = tableDrop;
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db){
