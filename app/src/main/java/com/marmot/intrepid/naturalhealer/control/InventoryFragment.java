@@ -116,13 +116,12 @@ public class InventoryFragment extends Fragment {
         TextView itemNumber = (TextView) gridview.findViewById(R.id.itemNumber);
         ImageView itemIcon = (ImageView) gridview.findViewById(R.id.itemIcon);
 
-        int[] pictures = new int[]{};
+        String[] pictures = new String[]{};
         String[] numbers = new  String[]{};
 
         int cpt = 0;
-        Context context = itemIcon.getContext();
         for (Item key : inventory.keySet()) {
-            pictures[cpt] = context.getResources().getIdentifier(key.getPicName(), "mipmap", context.getPackageName());
+            pictures[cpt] = key.getPicName();
             numbers[cpt] = inventory.get(key).toString();
             cpt++;
         }
@@ -131,7 +130,7 @@ public class InventoryFragment extends Fragment {
         List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
         for(int i = 0; i < inventory.size() ; i++){
             HashMap<String, String> tmp = new HashMap<String,String>();
-            tmp.put("img", Integer.toString(pictures[i]));
+            tmp.put("img", pictures[i]);
             tmp.put("number", numbers[i]);
             list.add(tmp);
         }

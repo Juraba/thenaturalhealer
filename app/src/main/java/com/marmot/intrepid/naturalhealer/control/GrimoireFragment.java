@@ -139,6 +139,7 @@ public class GrimoireFragment extends Fragment {
             }
         }
 
+        /*
         herbs = new HerbDAO(getContext());
 
         Herb h1 = new Herb("Thym", "ic_herb_thyme", "Description", "Properties", 0.55, new Rank(RankEnum.RECRUIT), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
@@ -158,6 +159,7 @@ public class GrimoireFragment extends Fragment {
         if (h != null) {
             otherList.add(h.getName());
         }
+        */
 
         for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
             otherList.add(grimoire.getOtherIngredients().get(i).getName());

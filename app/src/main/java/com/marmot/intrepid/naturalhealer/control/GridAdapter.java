@@ -13,9 +13,9 @@ import com.marmot.intrepid.naturalhealer.R;
 public class GridAdapter extends BaseAdapter{
     private Context mContext;
     private final String[] number;
-    private final int[] picture;
+    private final String[] picture;
 
-    public GridAdapter(Context c, String[] number, int[] picture) {
+    public GridAdapter(Context c, String[] number, String[] picture) {
         mContext = c;
         this.picture = picture;
         this.number = number;
@@ -30,30 +30,35 @@ public class GridAdapter extends BaseAdapter{
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return null;
+        return picture[position];
     }
 
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        View grid;
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         if (convertView == null) {
-            grid = new View(mContext);
-            grid = inflater.inflate(R.layout.gridview_layout, null);
-            TextView textView = (TextView) grid.findViewById(R.id.itemNumber);
-            ImageView imageView = (ImageView)grid.findViewById(R.id.itemIcon);
-            textView.setText(number[position]);
-            imageView.setImageResource(picture[position]);
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.gridview_layout, null);
         } else {
-            grid = (View) convertView;
+            convertView = (View) convertView;
         }
-        return grid;
+
+        TextView textView = (TextView) convertView.findViewById(R.id.itemNumber);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.itemIcon);
+
+        Context context = imageView.getContext();
+        int img = context.getResources().getIdentifier(picture[position], "mipmap", convertView.getContext().getPackageName());
+
+        textView.setText(number[position]);
+        imageView.setImageResource(img);
+
+        return convertView;
     }
 }
