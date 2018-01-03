@@ -14,12 +14,17 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.data.tables.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.Grimoire;
 import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.OtherIngredients;
 import com.marmot.intrepid.naturalhealer.model.Quest;
+import com.marmot.intrepid.naturalhealer.model.Rank;
 import com.marmot.intrepid.naturalhealer.model.Recipe;
+import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
+import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
+import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.ArrayList;
@@ -48,6 +53,8 @@ public class GrimoireFragment extends Fragment {
     private ArrayList<String> herbList = new ArrayList<String>();
     private ArrayList<String> recipeList = new ArrayList<String>();
     private ArrayList<String> otherList = new ArrayList<String>();
+
+    HerbDAO herbs;
 
     private OnFragmentInteractionListener mListener;
 
@@ -131,6 +138,27 @@ public class GrimoireFragment extends Fragment {
                 }
             }
         }
+
+        herbs = new HerbDAO(getContext());
+
+        Herb h1 = new Herb("Thym", "ic_herb_thyme", "Description", "Properties", 0.55, new Rank(RankEnum.RECRUIT), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
+        Herb h2 = new Herb("Basilic", "ic_herb_basil", "Description", "Properties", 0.55, new Rank(RankEnum.APPRENTICE), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
+        Herb h3 = new Herb("Millepertuis", "ic_herb_st_johns_wort", "Description", "Properties", 0.55, new Rank(RankEnum.MASTER), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
+        Herb h4 = new Herb("Menthe","ic_herb_mint",  "Description", "Properties", 0.55, new Rank(RankEnum.JUNIOR), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
+        Herb h5 = new Herb("Camomille", "ic_herb_camomile", "Description", "Properties", 0.55, new Rank(RankEnum.JUNIOR), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON);
+
+        herbs.ajouter(h1);
+        herbs.ajouter(h2);
+        herbs.ajouter(h3);
+        herbs.ajouter(h4);
+        herbs.ajouter(h5);
+
+        Herb h = herbs.find("NAME_HERB", h2.getName());
+
+        if (h != null) {
+            otherList.add(h.getName());
+        }
+
         for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
             otherList.add(grimoire.getOtherIngredients().get(i).getName());
         }

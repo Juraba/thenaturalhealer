@@ -2,6 +2,8 @@ package com.marmot.intrepid.naturalhealer.service;
 
 import android.graphics.Bitmap;
 
+import com.marmot.intrepid.naturalhealer.control.MainActivity;
+import com.marmot.intrepid.naturalhealer.data.tables.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
 
@@ -27,6 +29,8 @@ public class GameService {
     private Player player = Player.loadPlayer();
     private Grimoire grimoire = Grimoire.loadGrimoire(items);
     private Shop shop = Shop.loadShop(items);
+
+    //private HerbDAO herbs = new HerbDAO();
 
     public void fillInventory() {
         for (int i = 0; i < items.size(); i++) {
