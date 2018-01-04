@@ -3,6 +3,7 @@ package com.marmot.intrepid.naturalhealer.service;
 import com.marmot.intrepid.naturalhealer.model.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameService {
 
@@ -29,7 +30,8 @@ public class GameService {
 
     public void fillInventory() {
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getClass() != OtherIngredients.class) {
+            if (items.get(i).getClass() != Recipe.class) {
+                //System.out.println(items.get(i).getName());
                 int randomNum = 1 + (int)(Math.random() * 25);
                 player.addItems(items.get(i), randomNum);
             }

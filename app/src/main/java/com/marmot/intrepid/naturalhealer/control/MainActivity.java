@@ -24,6 +24,7 @@ import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -46,8 +47,9 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
+        game.fillInventory();
 
-        final DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+        final DAOBase db = DAOBase.getAppDatabase(getApplicationContext());
         new AsyncTask<Void, Void, List<Player>>(){
             @Override
             protected List<Player> doInBackground(Void... params) {
@@ -60,24 +62,18 @@ public class MainActivity extends AppCompatActivity
                 if(players == null){
                     Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
                     db.playerDAO().insertOne(player1);
-                    System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+                    List<Player> pList = db.playerDAO().getPlayer("Jean-Michel Druide");
+                    for (int i = 0; i < pList.size(); i++) {
+                        System.out.println(db.playerDAO().getPlayer("Player " + i + ": " + pList.get(i).getNickname()));
+                    }
                 }
                 else {
-                    System.out.println(players.toString());
+                    for (int i = 0; i < players.size(); i++) {
+                        System.out.println(db.playerDAO().getPlayer("Player " + i + ": " + players.get(i).getNickname()));
+                    }
                 }
             }
         }.execute();
-        /**List<Player> players = db.playerDAO().getAll();
-        if(players == null){
-            Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
-            db.playerDAO().insertOne(player1);
-            System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
-        }
-        else {
-            System.out.println(players.toString());
-        }*/
-
-        game.fillInventory();
 
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
 
@@ -125,6 +121,7 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new MainFragment());
         ft.commit();
+        super.onStop();
     }
 
     @Override

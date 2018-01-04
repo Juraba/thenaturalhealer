@@ -118,18 +118,25 @@ public class Player {
     }
 
     public void addItems(Item item, int number){
+        boolean check = false;
+        int value = number;
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
-            int value = i.getValue();
+            value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
                 value += number;
             } else {
-                this.inventory.put(item, number);
+                value = number;
             }
         }
+        this.inventory.put(item, value);
+
+        //System.out.println(this.inventory.size());
+
     }
 
+    // A modifier !
     public void sellItems(Item item, int number){
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();

@@ -20,7 +20,7 @@ public interface VillagerDAO{
     Villager getVillager(String villagername);
 
     @Insert
-    void insertVillager(Villager vilager);
+    void insertVillager(Villager villager);
 
     @Update
     void updateVillager(Villager villager);
