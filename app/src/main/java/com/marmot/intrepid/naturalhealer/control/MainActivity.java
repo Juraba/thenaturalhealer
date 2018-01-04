@@ -2,6 +2,7 @@ package com.marmot.intrepid.naturalhealer.control;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -46,8 +47,27 @@ public class MainActivity extends AppCompatActivity
 
         game = GameService.getInstance();
 
-        DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "database-name").build();
-        List<Player> players = db.playerDAO().getAll();
+        final DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+        new AsyncTask<Void, Void, List<Player>>(){
+            @Override
+            protected List<Player> doInBackground(Void... params) {
+                System.out.println(db.playerDAO().getAll());
+                return db.playerDAO().getAll();
+            }
+
+            @Override
+            protected void onPostExecute(List<Player> players) {
+                if(players == null){
+                    Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+                    db.playerDAO().insertOne(player1);
+                    System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+                }
+                else {
+                    System.out.println(players.toString());
+                }
+            }
+        }.execute();
+        /**List<Player> players = db.playerDAO().getAll();
         if(players == null){
             Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
             db.playerDAO().insertOne(player1);
@@ -55,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             System.out.println(players.toString());
-        }
+        }*/
 
         game.fillInventory();
 

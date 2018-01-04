@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
 
@@ -12,16 +13,17 @@ import java.util.ArrayList;
 @Entity
 public class Villager {
     @PrimaryKey
+    @NonNull
     private String name;
     @ColumnInfo(name = "pic_name")
     private String picName;
     @Ignore
     private ArrayList<Quest> quests;
 
-    public Villager(String name, String picture){
+    public Villager(String name, String picName){
         quests = new ArrayList<Quest>();
         this.name = name;
-        this.picName = picture;
+        this.picName = picName;
     }
 
     public String getName() {return this.name;}

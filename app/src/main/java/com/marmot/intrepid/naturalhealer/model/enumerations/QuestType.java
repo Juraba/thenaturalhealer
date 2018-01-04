@@ -20,4 +20,24 @@ public enum QuestType {
     public String getFr() {
         return this.fr;
     }
+
+    public static QuestType findEn(String type){
+        QuestType ret = null;
+        for(QuestType r : values()){
+            if( r.getEn().equals(type)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
+
+    public static QuestType findFr(String type){
+        QuestType ret = null;
+        for(QuestType r : values()){
+            if( r.getFr().equals(type)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
 }

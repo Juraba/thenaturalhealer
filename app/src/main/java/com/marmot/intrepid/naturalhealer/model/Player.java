@@ -6,6 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 
@@ -18,6 +19,7 @@ import com.marmot.intrepid.naturalhealer.service.GameService;
 @Entity
 public class Player {
     @PrimaryKey
+    @NonNull
     private String nickname;
     @ColumnInfo(name = "pic_name")
     private String picName;
@@ -34,10 +36,10 @@ public class Player {
     @Ignore
     private HashMap<String, Quest> quests;
 
-    public Player(String nickname, String picName, int exp, double purse, String rankName){
+    public Player(String nickname, String picName, int xp, double purse, String rankName){
         this.nickname = nickname;
         this.picName = picName;
-        this.xp = exp;
+        this.xp = xp;
         this.purse = purse;
         this.rank = new Rank(RankEnum.findEn(rankName));
         this.rankName = rankName;
