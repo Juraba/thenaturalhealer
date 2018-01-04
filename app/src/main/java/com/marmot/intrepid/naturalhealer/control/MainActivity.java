@@ -1,5 +1,6 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -17,9 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.data.DAOBase;
 import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
 import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -41,6 +45,18 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
+
+        DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "database-name").build();
+        List<Player> players = db.playerDAO().getAll();
+        if(players == null){
+            Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+            db.playerDAO().insertOne(player1);
+            System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+        }
+        else {
+            System.out.println(players.toString());
+        }
+
         game.fillInventory();
 
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);

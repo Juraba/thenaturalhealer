@@ -1,55 +1,32 @@
 package com.marmot.intrepid.naturalhealer.data.tables;
 
-import android.content.ContentValues;
-import android.content.Context;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 
 import com.marmot.intrepid.naturalhealer.data.DAOBase;
+import com.marmot.intrepid.naturalhealer.data.QuestBook;
 
-public class QuestBookDAO extends DAOBase{
-    public static final String TABLE_NAME = "inventory";
+import java.util.List;
 
-    public static final String NAME_VILLAGER = "name_item";
-    public static final String NAME_QUEST = "quantity_item";
-    public static final String NAME_PLAYER = "name_player";
+@Dao
+public interface QuestBookDAO{
+    @Query("SELECT * FROM QuestBook")
+    List<QuestBook> getAll();
 
-    public static final String TABLE_CREATE = "CREATE TABLE "+ TABLE_NAME + " ("+
-            NAME_QUEST + " TEXT PRIMARY KEY, " + NAME_PLAYER + " TEXT, " + NAME_VILLAGER + " TEXT);";
-    public static final String TABLE_DROP = "DROP TALE IF EXISTS " + TABLE_NAME + ";";
+    @Query("SELECT * FROM QuestBook WHERE quest_name =:questname")
+    QuestBook getQuestBook(String questname);
 
-    //TODO : qu'est ce que contexte? MainActivity normalement
-    public QuestBookDAO(Context c){
-        super(c, TABLE_CREATE, TABLE_DROP);
-    }
+    @Insert
+    void insertQuestBook(QuestBook questbook);
 
+    @Update
+    void updateQuestBook(QuestBook questbook);
 
-    public void ajouter (String nameQuest, String nameVillager, String namePlayer){
-        ContentValues values = new ContentValues();
-        values.put(QuestBookDAO.NAME_QUEST, nameQuest);
-        values.put(QuestBookDAO.NAME_VILLAGER, nameVillager);
-        values.put(QuestBookDAO.NAME_PLAYER, namePlayer);
-        mDb.insert(QuestBookDAO.TABLE_NAME, null, values);
-    }
-
-
-    public void supprimer(String key, String value){
-        mDb.delete(TABLE_NAME, key + " = ", new String[]{String.valueOf(value)});
-    }
-
-    public void modifier(String nameQuest, String nameVillager, String namePlayer) {
-        ContentValues values = new ContentValues();
-        values.put(QuestBookDAO.NAME_QUEST, nameQuest);
-        values.put(QuestBookDAO.NAME_VILLAGER, nameVillager);
-        values.put(QuestBookDAO.NAME_PLAYER, namePlayer);
-        mDb.update(TABLE_NAME, values, NAME_QUEST + " = ?", new String[]{nameQuest});
-    }
-
-    //TODO : findAll
-    /*public Cursor find (String param, String value){
-        //retourne un tableau
-        Cursor c = mDb.rawQuery("select * from "+TABLE_NAME+" where "+param+" = ?", new String[]{value});
-        Inventory p= new Inventory(c.getString(1), c.getString(2), c.getLong(3), c.getLong(4));
-        return p;
-    }*/
+    @Delete
+    void deleteQuestBook(QuestBook questbook);
 }
 

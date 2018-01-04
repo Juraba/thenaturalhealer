@@ -1,53 +1,31 @@
 package com.marmot.intrepid.naturalhealer.data.tables;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
 
-import com.marmot.intrepid.naturalhealer.data.DAOBase;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
 import com.marmot.intrepid.naturalhealer.model.Villager;
 
-public class VillagerDAO extends DAOBase{
-    public static final String TABLE_NAME = "player";
-    public static final String NAME_VILLAGER = "name_player";
-    public static final String PIC_NAME = "pic_name";
+import java.util.List;
 
+@Dao
+public interface VillagerDAO{
+    @Query("SELECT * FROM Villager")
+    List<Villager> getAll();
 
-    public static final String TABLE_CREATE = "CREATE TABLE "+ TABLE_NAME + " ("+
-            NAME_VILLAGER + " TEXT PRIMARY KEY, " + PIC_NAME + " TEXT);";
-    public static final String TABLE_DROP = "DROP TALE IF EXISTS " + TABLE_NAME + ";";
+    @Query("SELECT * FROM Villager WHERE name =:villagername")
+    Villager getVillager(String villagername);
 
-    //TODO : qu'est ce que contexte? MainActivity normalement
-    public VillagerDAO(Context c){
-        super(c, TABLE_CREATE, TABLE_DROP);
-    }
+    @Insert
+    void insertVillager(Villager vilager);
 
-    public void ajouter (Villager m){
-        ContentValues values = new ContentValues();
-        values.put(VillagerDAO.NAME_VILLAGER, m.getName());
-        values.put(VillagerDAO.PIC_NAME, m.getPicName());
-        mDb.insert(VillagerDAO.TABLE_NAME, null, values);
-    }
+    @Update
+    void updateVillager(Villager villager);
 
-
-    public void supprimer(String key, String value){
-        mDb.delete(TABLE_NAME, key + " = ", new String[]{String.valueOf(value)});
-    }
-
-
-    public void modifier(Villager m) {
-        ContentValues values = new ContentValues();
-        values.put(VillagerDAO.NAME_VILLAGER, m.getName());
-        values.put(VillagerDAO.PIC_NAME, m.getPicName());
-        mDb.update(TABLE_NAME, values, NAME_VILLAGER + " = ?", new String[]{m.getName()});
-    }
-
-
-    public Villager find (String param, String value){
-        //retourne un tableau
-        Cursor c = mDb.rawQuery("select * from "+TABLE_NAME+" where "+param+" = ?", new String[]{value});
-        Villager p= new Villager(c.getString(0), c.getString(1));
-        return p;
-    }
+    @Delete
+    void deleteVillager(Villager villager);
 }
 

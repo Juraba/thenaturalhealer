@@ -23,4 +23,24 @@ public enum RankEnum {
     public String getFr() {
         return this.fr;
     }
+
+    public static RankEnum findEn(String rank){
+        RankEnum ret = null;
+        for(RankEnum r : values()){
+            if( r.getEn().equals(rank)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
+
+    public static RankEnum findFr(String rank){
+        RankEnum ret = null;
+        for(RankEnum r : values()){
+            if( r.getFr().equals(rank)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
 }

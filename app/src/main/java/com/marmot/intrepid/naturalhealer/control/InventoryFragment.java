@@ -112,9 +112,9 @@ public class InventoryFragment extends Fragment {
         TextView money = (TextView) view.findViewById(R.id.money);
 
 
-        View gridview = inflater.inflate(R.layout.gridview_layout, container, false);
-        TextView itemNumber = (TextView) gridview.findViewById(R.id.itemNumber);
-        ImageView itemIcon = (ImageView) gridview.findViewById(R.id.itemIcon);
+        //View gridview = inflater.inflate(R.layout.gridview_layout, container, false);
+        //TextView itemNumber = (TextView) gridview.findViewById(R.id.itemNumber);
+        //ImageView itemIcon = (ImageView) gridview.findViewById(R.id.itemIcon);
 
         String[] pictures = new String[]{};
         String[] numbers = new  String[]{};
@@ -143,7 +143,7 @@ public class InventoryFragment extends Fragment {
         // Instantiating an adapter to store each items
         // R.layout.listview_layout defines the layout of each item
         //SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.gridview_layout, from, to);
-        GridAdapter adapter = new GridAdapter(getContext(), numbers, pictures);
+        GridAdapter adapter = new GridAdapter(getActivity().getApplicationContext(), numbers, pictures);
         // Setting an adapter containing images to the gridview
         itemList.setAdapter(adapter);
         adapter.notifyDataSetChanged();

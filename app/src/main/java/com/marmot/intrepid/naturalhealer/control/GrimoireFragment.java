@@ -14,17 +14,11 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
-import com.marmot.intrepid.naturalhealer.data.tables.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.Grimoire;
 import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.OtherIngredients;
-import com.marmot.intrepid.naturalhealer.model.Quest;
-import com.marmot.intrepid.naturalhealer.model.Rank;
 import com.marmot.intrepid.naturalhealer.model.Recipe;
-import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
-import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
-import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.ArrayList;
@@ -54,7 +48,7 @@ public class GrimoireFragment extends Fragment {
     private ArrayList<String> recipeList = new ArrayList<String>();
     private ArrayList<String> otherList = new ArrayList<String>();
 
-    HerbDAO herbs;
+    //HerbDAO herbs;
 
     private OnFragmentInteractionListener mListener;
 
