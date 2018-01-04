@@ -1,6 +1,12 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 
@@ -10,28 +16,76 @@ import java.util.Map;
 
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
+@Entity
 public class Player {
+    @PrimaryKey
+    @NonNull
     private String nickname;
+    @ColumnInfo(name = "pic_name")
     private String picName;
+    @ColumnInfo(name = "xp")
     private int xp;
+    @ColumnInfo(name = "purse")
     private double purse;
+    @ColumnInfo(name = "rank")
+    private String rankName;
+    @Ignore
     private Rank rank;
+    @Ignore
     private HashMap<Item, Integer> inventory;
+    @Ignore
     private HashMap<String, Quest> quests;
 
+    public Player(String nickname, String picName, int xp, double purse, String rankName){
+        this.nickname = nickname;
+        this.picName = picName;
+        this.xp = xp;
+        this.purse = purse;
+        this.rank = new Rank(RankEnum.findEn(rankName));
+        this.rankName = rankName;
+        this.inventory = new HashMap<Item, Integer>();
+        this.quests = new HashMap<String, Quest>();
+    }
+
+    @Ignore
     public Player(String nickname, String picName, Rank rank, int exp, double purse){
         this.nickname = nickname;
         this.picName = picName;
         this.xp = exp;
         this.purse = purse;
         this.rank = rank;
+        this.rankName = rank.getName().getEn();
         this.inventory = new HashMap<Item, Integer>();
         this.quests = new HashMap<String, Quest>();
     }
 
     public String getNickname() {return this.nickname;}
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public String getPicName() {return this.picName;}
+
+    public void setPicName(String picName) {
+        this.picName = picName;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public void setPurse(double purse) {
+        this.purse = purse;
+    }
+
+    public String getRankName() {
+        return rankName;
+    }
+
+    public void setRankName(String rankName) {
+        this.rankName = rankName;
+    }
 
     public int getXp() {return this.xp;}
 

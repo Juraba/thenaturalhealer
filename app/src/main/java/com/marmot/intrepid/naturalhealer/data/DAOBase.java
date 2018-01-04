@@ -1,50 +1,35 @@
 package com.marmot.intrepid.naturalhealer.data;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-public abstract class DAOBase extends SQLiteOpenHelper{
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.RoomDatabase;
 
-    String tableCreate, tableDrop;
+import com.marmot.intrepid.naturalhealer.data.tables.InventoryDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.ItemDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.PlayerDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.QuestBookDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.QuestDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.QuestListDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.VillagerDAO;
+import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.model.Quest;
+import com.marmot.intrepid.naturalhealer.model.Villager;
 
-    //Version 1 de la base (mettre a jour cet attribut en cas de changement de la base)
-    protected final static int VERSION = 1;
-    //Le nom du fichier de la base
-    protected final static String NOM = "database.db";
-
-    protected SQLiteDatabase mDb = null;
-    protected DatabaseHandler mHandler = null;
-
-    public DAOBase(Context context, String tableCreate, String tableDrop){
-        super(context,NOM, null, VERSION);
-        this.tableCreate =  tableCreate;
-        this.tableDrop = tableDrop;
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db){
-        db.execSQL(tableCreate);
-    }
-
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL(tableDrop);
-        onCreate(db);
-    }
-
-    public SQLiteDatabase open(){
-        if(mDb==null){
-            mDb = mHandler.getWritableDatabase();
-        }
-        return mDb;
-    }
-
-    public void close(){
-        mDb.close();
-    }
-
-    public SQLiteDatabase getDb(){
-        mDb = null;
-        return mDb;
-    }
+@Database(entities = {
+        Player.class,
+        Item.class,
+        Quest.class,
+        Villager.class,
+        QuestBook.class,
+        QuestList.class,
+        Inventory.class
+}, version = 1)
+public abstract class DAOBase extends RoomDatabase {
+    public abstract PlayerDAO playerDAO();
+    public abstract ItemDAO itemDAO();
+    public abstract QuestDAO questDAO();
+    public abstract VillagerDAO villagerDAO();
+    public abstract InventoryDAO inventoryDAO();
+    public abstract QuestListDAO questListDAO();
+    public abstract QuestBookDAO questBookDAO();
 }

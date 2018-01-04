@@ -1,11 +1,6 @@
 package com.marmot.intrepid.naturalhealer.service;
 
-import android.graphics.Bitmap;
-
-import com.marmot.intrepid.naturalhealer.control.MainActivity;
-import com.marmot.intrepid.naturalhealer.data.tables.HerbDAO;
 import com.marmot.intrepid.naturalhealer.model.*;
-import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
 
 import java.util.ArrayList;
 

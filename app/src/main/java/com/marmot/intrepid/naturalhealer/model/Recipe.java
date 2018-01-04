@@ -1,8 +1,11 @@
 package com.marmot.intrepid.naturalhealer.model;
 
+import android.arch.persistence.room.Entity;
+
 import com.marmot.intrepid.naturalhealer.model.enumerations.RecipeDifficulty;
 import com.marmot.intrepid.naturalhealer.model.enumerations.Symptoms;
 
+@Entity
 public class Recipe extends Item {
     private String protocol;
     private RecipeDifficulty difficulty;
