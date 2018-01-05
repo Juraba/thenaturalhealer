@@ -6,8 +6,10 @@ import com.marmot.intrepid.naturalhealer.control.MainActivity;
 import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.OtherIngredients;
 import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.model.Quest;
 import com.marmot.intrepid.naturalhealer.model.Rank;
 import com.marmot.intrepid.naturalhealer.model.Recipe;
+import com.marmot.intrepid.naturalhealer.model.Villager;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
 import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
 import com.marmot.intrepid.naturalhealer.model.enumerations.RecipeDifficulty;
@@ -76,11 +78,51 @@ public class DatabaseLoad implements Runnable {
                 item = new Recipe(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()), RecipeDifficulty.findEn(it.getDifficulty()), symptoms, it.getProtocol());
             }
             else if(it.getItemType().equals("other")){
-                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it).getRank()));
+                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()));
             }
             items.add(item);
         }
 
         return items;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.model.Quest> loadQuests(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.model.Quest> quests = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.model.Quest quest = null;
+        for(Quest it : db.questDAO().getAll()) {
+            quest = new Quest(it.getName(), it.getDescription(), it.getRequirements(), it.getGoals(), it.getRewardMoney(), it.getRewardXp(), it.isCancelable(), it.getType());
+            quests.add(quest);
+        }
+        return quests;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.model.Villager> loadVillagers(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.model.Villager> villagers = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.model.Villager villager = null;
+        for(Villager it : db.villagerDAO().getAll()) {
+            villager = new Villager(it.getName(), it.getPicName());
+            villagers.add(villager);
+        }
+        return villagers;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.data.QuestList> loadQuestList(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.data.QuestList> questLists = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.data.QuestList questList = null;
+        for(QuestList it : db.questListDAO().getAll()) {
+            questList = new QuestList(it.getId(), it.getVillagerName(), it.getQuestName());
+            questLists.add(questList);
+        }
+        return questLists;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.data.QuestBook> loadQuestBook(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.data.QuestBook> questBooks = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.data.QuestBook questBook = null;
+        for(QuestBook it : db.questBookDAO().getAll()) {
+            questBook = new QuestBook(it.getId(), it.getPlayerName(), it.getVillagerName(), it.getQuestName());
+            questBooks.add(questBook);
+        }
+        return questBooks;
     }
 }
