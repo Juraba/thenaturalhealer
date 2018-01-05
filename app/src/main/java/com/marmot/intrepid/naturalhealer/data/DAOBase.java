@@ -2,6 +2,7 @@ package com.marmot.intrepid.naturalhealer.data;
 
 
 import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 
 import com.marmot.intrepid.naturalhealer.data.tables.InventoryDAO;

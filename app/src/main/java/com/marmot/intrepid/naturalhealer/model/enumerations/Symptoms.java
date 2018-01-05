@@ -34,4 +34,24 @@ public enum Symptoms {
     public String getFr() {
         return this.fr;
     }
+
+    public static Symptoms findEn(String symptoms){
+        Symptoms ret = null;
+        for(Symptoms s : values()){
+            if( s.getEn().equals(symptoms)){
+                ret = s;
+            }
+        }
+        return ret;
+    }
+
+    public static Symptoms findFr(String symptoms){
+        Symptoms ret = null;
+        for(Symptoms s : values()){
+            if( s.getFr().equals(symptoms)){
+                ret = s;
+            }
+        }
+        return ret;
+    }
 }

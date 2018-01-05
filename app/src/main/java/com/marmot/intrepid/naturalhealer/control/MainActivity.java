@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
+    static Context actContext;
     private GameService game;
 
     @Override
@@ -43,12 +44,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        actContext = getApplicationContext();
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
 
-        final DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
-        new AsyncTask<Void, Void, List<Player>>(){
+        /**
+         DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+         new AsyncTask<Void, Void, List<Player>>(){
             @Override
             protected List<Player> doInBackground(Void... params) {
                 System.out.println(db.playerDAO().getAll());
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }.execute();
-        /**List<Player> players = db.playerDAO().getAll();
+        List<Player> players = db.playerDAO().getAll();
         if(players == null){
             Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
             db.playerDAO().insertOne(player1);
@@ -206,4 +209,6 @@ public class MainActivity extends AppCompatActivity
         // NOTE:  Code to replace the toolbar title based current visible fragment
         getSupportActionBar().setTitle(s);
     }
+
+    public static Context getContext() {return actContext;}
 }
