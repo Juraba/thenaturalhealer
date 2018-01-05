@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
+    static Context actContext;
     private GameService game;
     static Context actContext;
 
@@ -45,13 +46,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        actContext = getApplicationContext();
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
         game.fillInventory();
 
-        final DAOBase db = DAOBase.getAppDatabase(getApplicationContext());
-        new AsyncTask<Void, Void, List<Player>>(){
+         DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+         new AsyncTask<Void, Void, List<Player>>(){
             @Override
             protected List<Player> doInBackground(Void... params) {
                 System.out.println(db.playerDAO().getAll());
@@ -75,6 +77,18 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }.execute();
+        
+        List<Player> players = db.playerDAO().getAll();
+        if(players == null){
+            Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+            db.playerDAO().insertOne(player1);
+            System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+        }
+        else {
+            System.out.println(players.toString());
+        }*/
+
+        game.fillInventory();
 
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
 

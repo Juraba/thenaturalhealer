@@ -125,6 +125,4 @@ public class DatabaseLoad implements Runnable {
         }
         return questBooks;
     }
-
-
 }
