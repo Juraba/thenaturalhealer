@@ -73,12 +73,12 @@ public class DatabaseLoad implements Runnable {
                 String[] s = it.getSymptoms().split(",");
                 Symptoms[] symptoms = new Symptoms[s.length];
                 for(int l=0; l < s.length; l++){
-                    symptoms[l] = Symptoms.getEn(s[l]);
+                    symptoms[l] = Symptoms.findEn(s[l]);
                 }
                 item = new Recipe(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()), RecipeDifficulty.findEn(it.getDifficulty()), symptoms, it.getProtocol());
             }
             else if(it.getItemType().equals("other")){
-                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it).getRank()));
+                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()));
             }
             items.add(item);
         }

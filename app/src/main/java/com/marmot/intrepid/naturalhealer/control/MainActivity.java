@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView.OnNavigationItemSelectedListener {
 
     private GameService game;
+    static Context actContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,4 +204,6 @@ public class MainActivity extends AppCompatActivity
         // NOTE:  Code to replace the toolbar title based current visible fragment
         getSupportActionBar().setTitle(s);
     }
+
+    public static Context getContext() {return actContext;}
 }

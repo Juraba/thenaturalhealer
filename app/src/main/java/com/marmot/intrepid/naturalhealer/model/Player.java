@@ -171,7 +171,7 @@ public class Player {
 
     //Méthode temporaire
     public static Player loadPlayer() {
-        return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+        return new Player("Jean-Michel", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
     }
 
     public void setInventory(HashMap<Item, Integer> inventory) {
