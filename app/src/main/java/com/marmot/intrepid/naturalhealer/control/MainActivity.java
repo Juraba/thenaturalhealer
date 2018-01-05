@@ -59,17 +59,17 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             protected void onPostExecute(List<Player> players) {
-                if(players == null){
+                if(players.size()==0){
                     Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
                     db.playerDAO().insertOne(player1);
                     List<Player> pList = db.playerDAO().getPlayer("Jean-Michel Druide");
-                    for (int i = 0; i < pList.size(); i++) {
-                        System.out.println(db.playerDAO().getPlayer("Player " + i + ": " + pList.get(i).getNickname()));
+                    for (Player player : players) {
+                        System.out.println("Player : " + player.getNickname());
                     }
                 }
                 else {
-                    for (int i = 0; i < players.size(); i++) {
-                        System.out.println(db.playerDAO().getPlayer("Player " + i + ": " + players.get(i).getNickname()));
+                    for (Player player : players) {
+                        System.out.println("Player : " + player.getNickname());
                     }
                 }
             }
