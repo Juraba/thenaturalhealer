@@ -11,6 +11,7 @@ import com.marmot.intrepid.naturalhealer.data.tables.PlayerDAO;
 import com.marmot.intrepid.naturalhealer.data.tables.QuestBookDAO;
 import com.marmot.intrepid.naturalhealer.data.tables.QuestDAO;
 import com.marmot.intrepid.naturalhealer.data.tables.QuestListDAO;
+import com.marmot.intrepid.naturalhealer.data.tables.RequirementsDAO;
 import com.marmot.intrepid.naturalhealer.data.tables.VillagerDAO;
 import com.marmot.intrepid.naturalhealer.model.Player;
 import com.marmot.intrepid.naturalhealer.model.Quest;
@@ -23,8 +24,9 @@ import com.marmot.intrepid.naturalhealer.model.Villager;
         Villager.class,
         QuestBook.class,
         QuestList.class,
-        Inventory.class
-}, version = 1)
+        Inventory.class,
+        Requirements.class
+}, version = 1.2)
 
 public abstract class DAOBase extends RoomDatabase {
 
@@ -37,6 +39,7 @@ public abstract class DAOBase extends RoomDatabase {
     public abstract InventoryDAO inventoryDAO();
     public abstract QuestListDAO questListDAO();
     public abstract QuestBookDAO questBookDAO();
+    public abstract RequirementsDAO requirementsDAO();
 
     public static DAOBase getAppDatabase(Context context) {
         if (INSTANCE == null) {

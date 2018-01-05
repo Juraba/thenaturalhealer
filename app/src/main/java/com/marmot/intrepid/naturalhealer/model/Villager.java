@@ -6,9 +6,15 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.marmot.intrepid.naturalhealer.model.enumerations.HerbRarity;
+import com.marmot.intrepid.naturalhealer.model.enumerations.HerbType;
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
+import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
+import com.marmot.intrepid.naturalhealer.model.enumerations.RecipeDifficulty;
+import com.marmot.intrepid.naturalhealer.model.enumerations.Symptoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Entity
 public class Villager {
@@ -49,25 +55,19 @@ public class Villager {
         Villager v5 = new Villager("M.RABAULT", "rabault.png");
 
         //CREATION DE QUETES
-        //String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, String type
-        int[] intQ1 = {1, 5, 6};
-        float[] floatQ1 = {1, 5, 6};
-        Quest q1 = new Quest("Douleurs musculaires", "Madame SEGUIN a des douleurs musculaires dues à sa vieillesse, trouvez de quoi la soulager !", intQ1, floatQ1, 500, 10, true, QuestType.MAIN);
-        int[] intQ2 = {1, 5, 6};
-        float[] floatQ2 = {1, 5, 6};
-        Quest q2 = new Quest("Stress intense", "Monsieur LE MAIRE est très stressé à cause de son travail, aidez-le à retrouver sa sérénité", intQ1, floatQ1, 500, 10, true, QuestType.DAILY);
-        int[] intQ3 = {1, 5, 6};
-        float[] floatQ3 = {1, 5, 6};
-        Quest q3 = new Quest("Sommeil fuyard", "Monsieur LE MAIRE a du mal à trouver le sommeil ces derniers temps, auriez-vous de quoi l'apaiser ?", intQ1, floatQ1,500,10,true, QuestType.MAIN);
-        int[] intQ4 = {1, 5, 6};
-        float[] floatQ4 = {1, 5, 6};
-        Quest q4 = new Quest("Mal de tête", "Madame ROSSIGNOL subit un affreux mal de tête au travail depuis quelques temps, essayez de stopper cet enfer !", intQ1, floatQ1, 500, 10, true, QuestType.MAIN);
-        int[] intQ5 = {1, 5, 6};
-        float[] floatQ5 = {1, 5, 6};
-        Quest q5 = new Quest("Problème de poids", "Monsieur BROSSARD a pris quelques kilos après les fêtes, concotez de quoi stimuler sa perte de poids !", intQ1, floatQ1, 500, 10, true, QuestType.EVENT);
-        int[] intQ6 = {1, 5, 6};
-        float[] floatQ6 = {1, 5, 6};
-        Quest q6 = new Quest("Rage de dents", "Monsieur RABAULT a une rage de dents depuis maintenant deux jours, aidez-le à supprimer sa douleur", intQ1, floatQ1, 500, 10, true, QuestType.MAIN);
+        //String description, HashMap<Item, Integer> requirements, int rewardMoney, int rewardXp, boolean cancelable, String type
+        HashMap<Item, Integer> intQ1 = new HashMap<>();
+        Symptoms[] s1 = {Symptoms.COUGH, Symptoms.HEADACHE, Symptoms.RUNNYNOSE};
+        intQ1.put(new Herb("Thym", "ic_herb_thyme", "Description", "Properties", 0.55, new Rank(RankEnum.RECRUIT), "Race", HerbRarity.COMMON, "History", "Combination", HerbType.COMMON), 10);
+        intQ1.put(new Recipe("Onguent", "ic_recipe_ointment",  "Description", "Properties", 10.00, new Rank(RankEnum.RECRUIT), RecipeDifficulty.EASY, s1, "Protocol"), 10);
+        intQ1.put(new OtherIngredients("Water", "ic_other_water", "Description", "Properties", 0.55, new Rank(RankEnum.RECRUIT)), 10);
+
+        Quest q1 = new Quest("Douleurs musculaires", "Madame SEGUIN a des douleurs musculaires dues à sa vieillesse, trouvez de quoi la soulager !", intQ1, 500, 10, true, QuestType.MAIN);
+        Quest q2 = new Quest("Stress intense", "Monsieur LE MAIRE est très stressé à cause de son travail, aidez-le à retrouver sa sérénité", intQ1, 500, 10, true, QuestType.DAILY);
+        Quest q3 = new Quest("Sommeil fuyard", "Monsieur LE MAIRE a du mal à trouver le sommeil ces derniers temps, auriez-vous de quoi l'apaiser ?", intQ1,500,10,true, QuestType.MAIN);
+        Quest q4 = new Quest("Mal de tête", "Madame ROSSIGNOL subit un affreux mal de tête au travail depuis quelques temps, essayez de stopper cet enfer !", intQ1, 500, 10, true, QuestType.MAIN);
+        Quest q5 = new Quest("Problème de poids", "Monsieur BROSSARD a pris quelques kilos après les fêtes, concotez de quoi stimuler sa perte de poids !", intQ1, 500, 10, true, QuestType.EVENT);
+        Quest q6 = new Quest("Rage de dents", "Monsieur RABAULT a une rage de dents depuis maintenant deux jours, aidez-le à supprimer sa douleur", intQ1, 500, 10, true, QuestType.MAIN);
 
         //AJOUT DES LISTES AUX VILLAGEOIS
         v1.addQuest(q1);
