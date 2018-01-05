@@ -25,4 +25,24 @@ public enum HerbType {
     public String getFr() {
         return this.fr;
     }
+
+    public static HerbType findEn(String type){
+        HerbType ret = null;
+        for(HerbType t : values()){
+            if( t.getEn().equals(type)){
+                ret = t;
+            }
+        }
+        return ret;
+    }
+
+    public static HerbType findFr(String type){
+        HerbType ret = null;
+        for(HerbType t : values()){
+            if( t.getFr().equals(type)){
+                ret = t;
+            }
+        }
+        return ret;
+    }
 }

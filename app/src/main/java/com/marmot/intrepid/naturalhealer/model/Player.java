@@ -94,7 +94,6 @@ public class Player {
     public Rank getRank() {return this.rank;}
 
     public HashMap<Item, Integer> getInventory() {return this.inventory;}
-    public void setInventory(HashMap<Item, Integer> inventory) {this.inventory = inventory;}
 
     public HashMap<String, Quest> getQuests() {return this.quests;}
 
@@ -119,25 +118,18 @@ public class Player {
     }
 
     public void addItems(Item item, int number){
-        boolean check = false;
-        int value = number;
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
-            value = i.getValue();
+            int value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
                 value += number;
             } else {
-                value = number;
+                this.inventory.put(item, number);
             }
         }
-        this.inventory.put(item, value);
-
-        //System.out.println(this.inventory.size());
-
     }
 
-    // A modifier !
     public void sellItems(Item item, int number){
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
@@ -180,5 +172,13 @@ public class Player {
     //Méthode temporaire
     public static Player loadPlayer() {
         return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+    }
+
+    public void setInventory(HashMap<Item, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setQuests(HashMap<String, Quest> quests) {
+        this.quests = quests;
     }
 }

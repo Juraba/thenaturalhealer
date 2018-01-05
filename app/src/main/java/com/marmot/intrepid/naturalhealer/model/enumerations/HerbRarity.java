@@ -25,4 +25,24 @@ public enum HerbRarity {
     public String getFr() {
         return this.fr;
     }
+
+    public static HerbRarity findEn(String rarity){
+        HerbRarity ret = null;
+        for(HerbRarity r : values()){
+            if( r.getEn().equals(rarity)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
+
+    public static HerbRarity findFr(String rarity){
+        HerbRarity ret = null;
+        for(HerbRarity r : values()){
+            if( r.getFr().equals(rarity)){
+                ret = r;
+            }
+        }
+        return ret;
+    }
 }
