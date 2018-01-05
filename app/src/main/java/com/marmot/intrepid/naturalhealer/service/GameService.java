@@ -1,5 +1,7 @@
 package com.marmot.intrepid.naturalhealer.service;
 
+import com.marmot.intrepid.naturalhealer.data.DAOBase;
+import com.marmot.intrepid.naturalhealer.data.tables.PlayerDAO;
 import com.marmot.intrepid.naturalhealer.model.*;
 
 import java.util.ArrayList;
