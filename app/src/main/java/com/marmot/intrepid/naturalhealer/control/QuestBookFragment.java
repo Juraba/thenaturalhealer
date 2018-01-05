@@ -2,6 +2,7 @@ package com.marmot.intrepid.naturalhealer.control;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,12 +15,16 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Player;
 import com.marmot.intrepid.naturalhealer.model.Quest;
+import com.marmot.intrepid.naturalhealer.model.Rank;
 import com.marmot.intrepid.naturalhealer.model.Villager;
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
+import com.marmot.intrepid.naturalhealer.model.enumerations.RankEnum;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**

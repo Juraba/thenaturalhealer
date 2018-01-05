@@ -1,16 +1,37 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Herb;
+import com.marmot.intrepid.naturalhealer.model.Item;
+import com.marmot.intrepid.naturalhealer.model.OtherIngredients;
+import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.model.Recipe;
+import com.marmot.intrepid.naturalhealer.model.Shop;
+import com.marmot.intrepid.naturalhealer.service.GameService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -30,6 +51,9 @@ public class ShopFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private GameService game;
+    private Player player;
+    private Shop shop;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,6 +92,9 @@ public class ShopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shop, container, false);
+
+        game = GameService.getInstance();
+
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
@@ -83,8 +110,47 @@ public class ShopFragment extends Fragment {
         //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
 
         final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
-        final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
+        final Button recipes = (Button) view.findViewById(R.id.buttonRecipies);
         final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
+
+        player = game.getPlayer();
+        shop = game.getShop();
+
+        final GridView itemList = (GridView) view.findViewById(R.id.inventory);
+
+        TextView capacity = (TextView) view.findViewById(R.id.capacity);
+        TextView money = (TextView) view.findViewById(R.id.money);
+
+        final ArrayList<Herb> herbList = shop.getHerbs();
+        ArrayList<Recipe> recipeList = shop.getRecipes();
+        ArrayList<OtherIngredients> otherList = shop.getOtherIngredients();
+
+        final String[] herbPics = new String[herbList.size()];
+        final String[] recipePics = new String[herbList.size()];
+        final String[] otherPics = new String[herbList.size()];
+
+        for (int i = 0; i < herbList.size(); i++) {
+            herbPics[i] = herbList.get(i).getPicName();
+        }
+
+        for (int i = 0; i < recipeList.size(); i++) {
+            recipePics[i] = recipeList.get(i).getPicName();
+        }
+
+        for (int i = 0; i < otherList.size(); i++) {
+            otherPics[i] = otherList.get(i).getPicName();
+        }
+
+        //Taille de référence
+        BitmapDrawable bd=(BitmapDrawable) this.getResources().getDrawable(R.mipmap.ic_water);
+        float density = getContext().getResources().getDisplayMetrics().density;
+
+        int imageWidth = bd.getBitmap().getWidth();
+
+        itemList.setColumnWidth((int) (imageWidth * 0.4));
+
+        GridAdapter adapter = new GridAdapter(this.getContext(), new String[]{}, herbPics);
+        itemList.setAdapter(adapter);
 
         herbs.setPressed(true);
 
@@ -92,25 +158,33 @@ public class ShopFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    recipies.setPressed(false);
+                    recipes.setPressed(false);
                     other.setPressed(false);
                     herbs.setPressed(true);
-                    //categories = new String[]{"Aromatiques", "Sauvages", "Légumineuses"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+
+                    for (int i = 0; i < herbPics.length; i++) {
+                        System.out.println(herbPics[i]);
+                    }
+                    GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, herbPics);
+                    itemList.setAdapter(adapter);
                 }
                 return true;//Return true, so there will be no onClick-event
             }
         });
 
-        recipies.setOnTouchListener(new View.OnTouchListener(){
+        recipes.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     herbs.setPressed(false);
                     other.setPressed(false);
-                    recipies.setPressed(true);
-                    //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+                    recipes.setPressed(true);
+
+                    for (int i = 0; i < recipePics.length; i++) {
+                        System.out.println(recipePics[i]);
+                    }
+                    GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, recipePics);
+                    itemList.setAdapter(adapter);
                 }
                 return true;//Return true, so there will be no onClick-event
             }
@@ -121,12 +195,51 @@ public class ShopFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     herbs.setPressed(false);
-                    recipies.setPressed(false);
+                    recipes.setPressed(false);
                     other.setPressed(true);
-                    //categories = new String[]{"Tisanes", "Onguents", "Soupes", "Autre chose"};
-                    //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
+
+                    for (int i = 0; i < otherPics.length; i++) {
+                        System.out.println(otherPics[i]);
+                    }
+                    GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, otherPics);
+                    itemList.setAdapter(adapter);
                 }
                 return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
+                Object obj = itemList.getAdapter().getItem(position);
+                String value = obj.toString();
+
+                Intent intentList = new Intent(getActivity(), ItemInfoActivity.class);
+                intentList.putExtra("item", value);
+                intentList.putExtra("shop", 1);
+                startActivity(intentList);
+            }
+        });
+
+        /*
+        itemList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "TEST : " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        */
+
+        itemList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+                                           int position, long arg3) {
+
+                Toast.makeText(getContext(), "TEST : " + position, Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
 

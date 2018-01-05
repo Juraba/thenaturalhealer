@@ -1,9 +1,15 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +28,7 @@ import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.Player;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -103,7 +111,7 @@ public class InventoryFragment extends Fragment {
         player = game.getPlayer();
         inventory = game.getPlayer().getInventory();
 
-        GridView itemList = (GridView) view.findViewById(R.id.inventory);
+        final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
         Button sort = (Button) view.findViewById(R.id.sort);
         Button brew = (Button) view.findViewById(R.id.brew);
@@ -111,54 +119,49 @@ public class InventoryFragment extends Fragment {
         TextView capacity = (TextView) view.findViewById(R.id.capacity);
         TextView money = (TextView) view.findViewById(R.id.money);
 
+        capacity.setText(player.getInventory().size() + "/100");
+        money.setText(game.getPlayer().getPurse() + "$");
 
-        //View gridview = inflater.inflate(R.layout.gridview_layout, container, false);
-        //TextView itemNumber = (TextView) gridview.findViewById(R.id.itemNumber);
-        //ImageView itemIcon = (ImageView) gridview.findViewById(R.id.itemIcon);
-
-        String[] pictures = new String[]{};
-        String[] numbers = new  String[]{};
+        String[] pictures = new String[inventory.size()];
+        String[] numbers = new  String[inventory.size()];
 
         int cpt = 0;
-        for (Item key : inventory.keySet()) {
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            Item key = i.getKey();
+            int number = i.getValue();
+
             pictures[cpt] = key.getPicName();
-            numbers[cpt] = inventory.get(key).toString();
+            numbers[cpt] = Integer.toString(number);
             cpt++;
         }
 
-        // Each row in the list stores country name, currency and flag
-        List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-        for(int i = 0; i < inventory.size() ; i++){
-            HashMap<String, String> tmp = new HashMap<String,String>();
-            tmp.put("img", pictures[i]);
-            tmp.put("number", numbers[i]);
-            list.add(tmp);
-        }
+        //Taille de référence
+        BitmapDrawable bd=(BitmapDrawable) this.getResources().getDrawable(R.mipmap.ic_water);
+        float density = getContext().getResources().getDisplayMetrics().density;
 
-        // Keys used in Hashmap
-        String[] from = { "img","number"};
-        // Ids of views in listview_layout
-        int[] to = {R.id.itemIcon, R.id.itemNumber};
+        int imageWidth = bd.getBitmap().getWidth();
 
-        // Instantiating an adapter to store each items
-        // R.layout.listview_layout defines the layout of each item
-        //SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.gridview_layout, from, to);
-        GridAdapter adapter = new GridAdapter(getActivity().getApplicationContext(), numbers, pictures);
-        // Setting an adapter containing images to the gridview
+        itemList.setColumnWidth((int) (imageWidth * 0.4));
+
+        GridAdapter adapter = new GridAdapter(this.getContext(), numbers, pictures);
         itemList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-        /*
-        Context context = playerPic.getContext();
-        int id = context.getResources().getIdentifier(player.getPicName(), "mipmap", context.getPackageName());
-        playerPic.setImageResource(id);
-
-        inventory.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_gallery_item, itemIconList));
-        */
 
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-                Toast.makeText(getContext(), "" + position, Toast.LENGTH_SHORT).show();
+                Object obj = itemList.getAdapter().getItem(position);
+                String value = obj.toString();
+
+                Intent intentList = new Intent(getActivity(), ItemInfoActivity.class);
+                intentList.putExtra("item", value);
+                intentList.putExtra("inventory", 1);
+                startActivity(intentList);
+            }
+        });
+
+        itemList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+                                           int position, long arg3) {
+                return false;
             }
         });
 

@@ -89,7 +89,7 @@
 
         "Components with responsive elevations may encounter other components as they move between "
         "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
+        "through other material, components avoid interfering with one another any numbers of ways, "
         "whether on a per component basis or using the entire app layout.\n"
         "On a component level, components can move or be removed before they cause interference. "
         "For example, a floating action button (FAB) can disappear or move off screen before a "

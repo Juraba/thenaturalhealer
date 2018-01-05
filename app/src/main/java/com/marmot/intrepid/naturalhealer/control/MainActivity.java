@@ -24,6 +24,7 @@ import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -48,8 +49,8 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
+        game.fillInventory();
 
-        /**
          DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
          new AsyncTask<Void, Void, List<Player>>(){
             @Override
@@ -60,16 +61,22 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             protected void onPostExecute(List<Player> players) {
-                if(players == null){
+                if(players.size()==0){
                     Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
                     db.playerDAO().insertOne(player1);
-                    System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+                    List<Player> pList = db.playerDAO().getPlayer("Jean-Michel Druide");
+                    for (Player player : players) {
+                        System.out.println("Player : " + player.getNickname());
+                    }
                 }
                 else {
-                    System.out.println(players.toString());
+                    for (Player player : players) {
+                        System.out.println("Player : " + player.getNickname());
+                    }
                 }
             }
         }.execute();
+        
         List<Player> players = db.playerDAO().getAll();
         if(players == null){
             Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
@@ -128,6 +135,7 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new MainFragment());
         ft.commit();
+        super.onStop();
     }
 
     @Override
