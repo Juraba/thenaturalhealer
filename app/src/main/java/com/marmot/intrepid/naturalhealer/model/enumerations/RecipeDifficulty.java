@@ -25,4 +25,24 @@ public enum RecipeDifficulty {
     public String getFr() {
         return this.fr;
     }
+
+    public static RecipeDifficulty findEn(String difficulty){
+        RecipeDifficulty ret = null;
+        for(RecipeDifficulty d : values()){
+            if( d.getEn().equals(difficulty)){
+                ret = d;
+            }
+        }
+        return ret;
+    }
+
+    public static RecipeDifficulty findFr(String difficulty){
+        RecipeDifficulty ret = null;
+        for(RecipeDifficulty d : values()){
+            if( d.getFr().equals(difficulty)){
+                ret = d;
+            }
+        }
+        return ret;
+    }
 }
