@@ -1,6 +1,10 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,6 +29,7 @@ import com.marmot.intrepid.naturalhealer.model.Recipe;
 import com.marmot.intrepid.naturalhealer.model.Shop;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -112,9 +117,6 @@ public class ShopFragment extends Fragment {
         shop = game.getShop();
 
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
-
-        Button sort = (Button) view.findViewById(R.id.sort);
-        Button brew = (Button) view.findViewById(R.id.brew);
 
         TextView capacity = (TextView) view.findViewById(R.id.capacity);
         TextView money = (TextView) view.findViewById(R.id.money);
@@ -208,7 +210,36 @@ public class ShopFragment extends Fragment {
 
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-                Toast.makeText(getContext(), "" + position, Toast.LENGTH_SHORT).show();
+                Object obj = itemList.getAdapter().getItem(position);
+                String value = obj.toString();
+
+                Intent intentList = new Intent(getActivity(), ItemInfoActivity.class);
+                intentList.putExtra("item", value);
+                intentList.putExtra("shop", 1);
+                startActivity(intentList);
+            }
+        });
+
+        /*
+        itemList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "TEST : " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        */
+
+        itemList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View arg1,
+                                           int position, long arg3) {
+
+                Toast.makeText(getContext(), "TEST : " + position, Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
 

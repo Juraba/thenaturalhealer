@@ -126,34 +126,78 @@ public class Player {
 
             if (key.getName().equals(item.getName())) {
                 value += number;
+                check = true;
             } else {
                 value = number;
             }
         }
-        this.inventory.put(item, value);
+        if (!check) {
+            this.inventory.put(item, value);
+        }
+    }
 
-        //System.out.println(this.inventory.size());
+    public String buyItems(Item item, int number) {
+        boolean check = false;
+        int value = number;
+        String render = "";
 
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            Item key = i.getKey();
+            value = i.getValue();
+
+            if (key.getName().equals(item.getName())) {
+                check = true;
+                if ((this.getPurse()-(number*item.getPrice())) >= 0) {
+                    value += number;
+                    this.setPurse(this.getPurse()-(number*item.getPrice()));
+                } else {
+                    render = "You don't have enough money ! ";
+                }
+            }
+        }
+        if (!check) {
+            if ((this.getPurse()-(number*item.getPrice())) >= 0) {
+                this.inventory.put(item, value);
+                this.setPurse(this.getPurse()-(number*item.getPrice()));
+            } else {
+                render = "You don't have enough money ! ";
+            }
+        }
+
+        return render;
     }
 
     // A modifier !
-    public void sellItems(Item item, int number){
+    public String sellItems(Item item, int number){
+        boolean check = false;
+        int value = number;
+        String render = "";
+
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
-            int value = i.getValue();
+            value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
-                if ((value-number) < 0) {
-                    //toast "wat r u doin bro ?!!!!" et ne pas lancer l'action
-                } else if ((value-number) > 0) {
-                    value -= number;
+                if ((this.getPurse()-(number*item.getPrice())) >= 0) {
+                    if ((value-number) < 0) {
+                        render = "You don't have enough of this item to sell it ! ";
+                    } else if ((value-number) > 0) {
+                        value -= number;
+                        this.setPurse(this.getPurse()-(number*item.getPrice()));
+                    } else if ((value-number) == 0){
+                        check = true;
+                        this.setPurse(this.getPurse()-(number*item.getPrice()));
+                    }
                 } else {
-                    removeItem(item);
+                    render = "You don't have enough money ! ";
                 }
-            } else {
-                this.inventory.put(item, number);
             }
         }
+        if (check) {
+            this.inventory.remove(item);
+        }
+
+        return render;
     }
 
     public void removeItem(Item item){
