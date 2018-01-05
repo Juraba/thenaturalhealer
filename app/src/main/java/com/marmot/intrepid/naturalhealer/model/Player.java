@@ -94,6 +94,7 @@ public class Player {
     public Rank getRank() {return this.rank;}
 
     public HashMap<Item, Integer> getInventory() {return this.inventory;}
+    public void setInventory(HashMap<Item, Integer> inventory) {this.inventory = inventory;}
 
     public HashMap<String, Quest> getQuests() {return this.quests;}
 
