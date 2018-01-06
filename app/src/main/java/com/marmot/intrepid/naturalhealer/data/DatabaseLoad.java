@@ -312,10 +312,10 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initQuestList(DAOBase db){
-        QuestList q1 = new QuestList(0, "M.LE MAIRE", "Mal de tête");
-        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Stress intense");
-        QuestList q3 = new QuestList(0, "M.LE MAIRE", "Douleurs musculaires");
-        QuestList q4 = new QuestList(0, "M.BROSSARD", "Sommeil fuyard");
+        QuestList q1 = new QuestList(0, "M.LE MAIRE", "Stress intense");
+        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Mal de tête");
+        QuestList q3 = new QuestList(0, "M.LE MAIRE", "Sommeil fuyard");
+        QuestList q4 = new QuestList(0, "M.BROSSARD", "Douleurs musculaires");
 
         db.questListDAO().insertQuestList(q1);
         db.questListDAO().insertQuestList(q2);

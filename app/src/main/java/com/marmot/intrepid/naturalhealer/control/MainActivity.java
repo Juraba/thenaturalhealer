@@ -31,6 +31,7 @@ import java.util.concurrent.Executor;
 public class MainActivity extends AppCompatActivity
         implements
         MainFragment.OnFragmentInteractionListener,
+        VillagersFragment.OnFragmentInteractionListener,
         InventoryFragment.OnFragmentInteractionListener,
         GrimoireFragment.OnFragmentInteractionListener,
         QuestBookFragment.OnFragmentInteractionListener,
@@ -187,6 +188,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_map) {
             fragmentClass = MainFragment.class;
+        } else if (id == R.id.nav_villagers) {
+            fragmentClass = VillagersFragment.class;
         } else if (id == R.id.nav_inventory) {
             fragmentClass = InventoryFragment.class;
         } else if (id == R.id.nav_grimoire) {

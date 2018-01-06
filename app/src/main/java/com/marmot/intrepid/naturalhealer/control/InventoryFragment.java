@@ -122,7 +122,7 @@ public class InventoryFragment extends Fragment {
         capacity.setText(player.getInventory().size() + "/100");
         money.setText(game.getPlayer().getPurse() + "$");
 
-        String[] pictures = new String[inventory.size()];
+        final String[] pictures = new String[inventory.size()];
         String[] numbers = new  String[inventory.size()];
 
         int cpt = 0;
@@ -151,8 +151,18 @@ public class InventoryFragment extends Fragment {
                 Object obj = itemList.getAdapter().getItem(position);
                 String value = obj.toString();
 
+                String render = "";
+
+                for (int i = 0; i < pictures.length; i++) {
+                    if (pictures[i].equals(value)) {
+                        render = pictures[i];
+                    }
+                }
+
+                System.out.println("ITEM VALUE : " + render);
+
                 Intent intentList = new Intent(getActivity(), ItemInfoActivity.class);
-                intentList.putExtra("item", value);
+                intentList.putExtra("item", render);
                 intentList.putExtra("inventory", 1);
                 startActivity(intentList);
             }

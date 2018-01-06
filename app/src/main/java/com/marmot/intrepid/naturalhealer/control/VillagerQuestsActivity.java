@@ -55,7 +55,7 @@ public class VillagerQuestsActivity extends AppCompatActivity {
                         questsName.add(quests.get(i).getName());
                     }
 
-                    questsList.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, questsName));
+                    questsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questsName));
 
                     questsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
