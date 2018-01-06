@@ -8,6 +8,7 @@ import com.marmot.intrepid.naturalhealer.model.Quest;
 import com.marmot.intrepid.naturalhealer.model.Villager;
 
 public class DatabaseInit implements Runnable {
+
     public void run(){
         //Getting database instance
         DAOBase db = Room.databaseBuilder(MainActivity.getContext(), DAOBase.class, "db-thenaturalhealer").addMigrations(MainActivity.getMigration12()).build();
@@ -32,6 +33,7 @@ public class DatabaseInit implements Runnable {
         else {
             System.out.println("Database not empty -- No need to initialize");
         }
+        this.notifyAll();
         db.close();
     }
 

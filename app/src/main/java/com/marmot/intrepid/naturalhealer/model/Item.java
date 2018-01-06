@@ -34,6 +34,7 @@ public class Item {
 
     public Rank getRank() {return this.rank;}
 
+    /**
     //Méthode temporaire
     public static ArrayList<Item> loadItems() {
 
@@ -74,6 +75,6 @@ public class Item {
         items.add(o3);
 
         return items;
-    }
+    }*/
 }
 
