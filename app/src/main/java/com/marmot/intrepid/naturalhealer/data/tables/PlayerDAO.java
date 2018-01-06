@@ -4,6 +4,7 @@ package com.marmot.intrepid.naturalhealer.data.tables;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -25,10 +26,16 @@ public interface PlayerDAO {
     @Insert
     void insertMany(List<Player> players);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertOrUpdate(Player player);
+
     @Update
     void updatePlayer(Player player);
 
     @Delete
     void deletePlayer(Player player);
+
+    @Query("DELETE FROM Player")
+    void nukeTable();
 }
 

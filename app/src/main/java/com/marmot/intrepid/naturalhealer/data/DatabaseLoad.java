@@ -44,6 +44,8 @@ public class DatabaseLoad implements Runnable {
             initQuestList(db);
             System.out.println("Initialization Inventory");
             initInventory(db);
+            System.out.println("Initialization Requirements");
+            initRequirements(db);
             System.out.println("Initialization ended");
         }
         else {
@@ -329,5 +331,15 @@ public class DatabaseLoad implements Runnable {
         db.inventoryDAO().insertInventory(it1);
         db.inventoryDAO().insertInventory(it2);
         db.inventoryDAO().insertInventory(it3);
+    }
+
+    public void initRequirements(DAOBase db){
+        Requirements r1 = new Requirements(0, "Douleurs musculaires","Water", 15);
+        Requirements r2 = new Requirements(0, "Douleurs musculaires","Basilic", 4);
+        Requirements r3 = new Requirements(0, "Mal de tête","Tisane", 2);
+
+        db.requirementsDAO().insertRequirements(r1);
+        db.requirementsDAO().insertRequirements(r2);
+        db.requirementsDAO().insertRequirements(r3);
     }
 }

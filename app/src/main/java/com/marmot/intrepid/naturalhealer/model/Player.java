@@ -243,4 +243,12 @@ public class Player {
     public void setPurseString(String purseString) {
         this.purseString = purseString;
     }
+
+    public void setInventory(HashMap<Item, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setQuests(HashMap<String, Quest> quests) {
+        this.quests = quests;
+    }
 }
