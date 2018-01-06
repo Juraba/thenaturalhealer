@@ -78,7 +78,6 @@ public class GameService {
         this.grimoire = Grimoire.loadGrimoire(items);
     }
 
-
     public Shop getShop() {return shop;}
 
     public void setShop(Shop shop) {
