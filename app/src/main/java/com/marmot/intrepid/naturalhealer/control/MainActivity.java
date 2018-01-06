@@ -1,6 +1,8 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -226,4 +228,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     public static Context getContext() {return actContext;}
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            // Since we didn't alter the table, there's nothing else to do here.
+        }
+    };
+
+    public static Migration getMigration12(){
+        return MIGRATION_1_2;
+    }
 }

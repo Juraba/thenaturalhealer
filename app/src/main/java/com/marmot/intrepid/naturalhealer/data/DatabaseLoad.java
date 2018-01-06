@@ -1,6 +1,8 @@
 package com.marmot.intrepid.naturalhealer.data;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 
 import com.marmot.intrepid.naturalhealer.control.MainActivity;
 import com.marmot.intrepid.naturalhealer.model.Herb;
@@ -24,24 +26,30 @@ public class DatabaseLoad implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("=== Database Load ===");
+        System.out.println("--Getting database and game instance--");
         //Getting database instance
-        DAOBase db = Room.databaseBuilder(MainActivity.getContext(), DAOBase.class, "db-thenaturalhealer").build();
+        DAOBase db = Room.databaseBuilder(MainActivity.getContext(), DAOBase.class, "db-thenaturalhealer").addMigrations(MainActivity.getMigration12()).build();
         //Getting game instance
         GameService game = GameService.getInstance();
 
+        System.out.println("--Loading data--");
         //Loading game data from database
         ArrayList<com.marmot.intrepid.naturalhealer.model.Item> items = loadItems(db);
         ArrayList<Quest> quests = loadQuests(db, items);
         ArrayList<Villager> villagers = loadVillagers(db, quests);
         ArrayList<Player> players = loadPlayers(db, items, quests);
 
-
+        System.out.println("--Setting up game parameters--");
         //Setting up the data into the game's parameters
         game.setPlayer(players.get(0));
         game.setItems(items);
         game.setVillagers(villagers);
         game.setGrimoire(items);
         game.setShop(items);
+
+        System.out.println("--End of loading--");
+        db.close();
 
     }
 

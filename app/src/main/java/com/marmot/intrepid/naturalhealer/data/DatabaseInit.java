@@ -12,20 +12,29 @@ import com.marmot.intrepid.naturalhealer.model.Villager;
 public class DatabaseInit implements Runnable {
     public void run(){
         //Getting database instance
-        DAOBase db = Room.databaseBuilder(MainActivity.getContext(), DAOBase.class, "db-thenaturalhealer").build();
+        DAOBase db = Room.databaseBuilder(MainActivity.getContext(), DAOBase.class, "db-thenaturalhealer").addMigrations(MainActivity.getMigration12()).build();
         if(db.playerDAO().getAll() == null || db.playerDAO().getAll().size() == 0){
             System.out.println("Database empty -- Initialization");
+            System.out.println("Initialization Player");
             initPlayer(db);
+            System.out.println("Initialization Item");
             initItem(db);
+            System.out.println("Initialization Villager");
             initVillager(db);
+            System.out.println("Initialization Quest");
             initQuest(db);
+            System.out.println("Initialization QuestBook");
             initQuestBook(db);
+            System.out.println("Initialization QuestList");
             initQuestList(db);
+            System.out.println("Initialization Inventory");
             initInventory(db);
+            System.out.println("Initialization ended");
         }
         else {
             System.out.println("Database not empty -- No need to initialize");
         }
+        db.close();
     }
 
     public void initPlayer(DAOBase db){
@@ -86,7 +95,7 @@ public class DatabaseInit implements Runnable {
 
     public void initQuestBook(DAOBase db){
         QuestBook q1 = new QuestBook(0, "Jean-Michel Druide", "M.LE MAIRE", "Mal de tête");
-        QuestBook q2 = new QuestBook(0, "Jean-Michel Druide", "Mme. ROSSIGNOL", "Stress intense");
+        QuestBook q2 = new QuestBook(0, "Jean-Michel Druide", "Mme.ROSSIGNOL", "Stress intense");
 
         db.questBookDAO().insertQuestBook(q1);
         db.questBookDAO().insertQuestBook(q2);
@@ -94,7 +103,7 @@ public class DatabaseInit implements Runnable {
 
     public void initQuestList(DAOBase db){
         QuestList q1 = new QuestList(0, "M.LE MAIRE", "Mal de tête");
-        QuestList q2 = new QuestList(0, "Mme. ROSSIGNOL", "Stress intense");
+        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Stress intense");
         QuestList q3 = new QuestList(0, "M.LE MAIRE", "Douleurs musculaires");
         QuestList q4 = new QuestList(0, "M.BROSSARD", "Sommeil fuyard");
 
