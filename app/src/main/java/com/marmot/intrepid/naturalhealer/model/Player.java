@@ -134,10 +134,9 @@ public class Player {
             } else {
                 this.inventory.put(item, number);
             }
-
-            if (!check) {
-                this.inventory.put(item, value);
-            }
+        }
+        if (!check) {
+            this.inventory.put(item, value);
         }
     }
 
@@ -226,15 +225,7 @@ public class Player {
 
     //Méthode temporaire
     public static Player loadPlayer() {
-        return new Player("Jean-Michel", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
-    }
-
-    public void setInventory(HashMap<Item, Integer> inventory) {
-        this.inventory = inventory;
-    }
-
-    public void setQuests(HashMap<String, Quest> quests) {
-        this.quests = quests;
+        return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
     }
 
     public String getPurseString() {

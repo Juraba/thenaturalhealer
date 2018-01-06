@@ -56,41 +56,41 @@ public class MainActivity extends AppCompatActivity
 
         //game.fillInventory();
 
-         //DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
-         /**new AsyncTask<Void, Void, List<Player>>(){
-            @Override
-            protected List<Player> doInBackground(Void... params) {
-                System.out.println(db.playerDAO().getAll());
-                return db.playerDAO().getAll();
-            }
+        //DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+        /**new AsyncTask<Void, Void, List<Player>>(){
+        @Override
+        protected List<Player> doInBackground(Void... params) {
+        System.out.println(db.playerDAO().getAll());
+        return db.playerDAO().getAll();
+        }
 
-            @Override
-            protected void onPostExecute(List<Player> players) {
-                if(players.size()==0){
-                    Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
-                    db.playerDAO().insertOne(player1);
-                    List<Player> pList = db.playerDAO().getPlayer("Jean-Michel Druide");
-                    for (Player player : players) {
-                        System.out.println("Player : " + player.getNickname());
-                    }
-                }
-                else {
-                    for (Player player : players) {
-                        System.out.println("Player : " + player.getNickname());
-                    }
-                }
-            }
-        }.execute();
-        
-        List<Player> players = db.playerDAO().getAll();
-        if(players == null){
-            Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
-            db.playerDAO().insertOne(player1);
-            System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+        @Override
+        protected void onPostExecute(List<Player> players) {
+        if(players.size()==0){
+        Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+        db.playerDAO().insertOne(player1);
+        List<Player> pList = db.playerDAO().getPlayer("Jean-Michel Druide");
+        for (Player player : players) {
+        System.out.println("Player : " + player.getNickname());
+        }
         }
         else {
-            System.out.println(players.toString());
-        }*/
+        for (Player player : players) {
+        System.out.println("Player : " + player.getNickname());
+        }
+        }
+        }
+        }.execute();
+
+         List<Player> players = db.playerDAO().getAll();
+         if(players == null){
+         Player player1 = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+         db.playerDAO().insertOne(player1);
+         System.out.println(db.playerDAO().getPlayer("Jean-Michel Druide"));
+         }
+         else {
+         System.out.println(players.toString());
+         }*/
 
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
         //Player player = game.getPlayer();
