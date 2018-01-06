@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,9 +36,20 @@ public class QuestInfoActivity extends AppCompatActivity {
         TextView goals = (TextView) findViewById(R.id.goals);
         TextView rewards = (TextView) findViewById(R.id.reward);
 
+        Button acceptOrGiveUp = (Button) findViewById(R.id.acceptOrGiveUp);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             if (bundle.get("quest") != null) {
+
+                if (bundle.get("surrender") != null) {
+                    acceptOrGiveUp.setVisibility(View.VISIBLE);
+                    acceptOrGiveUp.setText("SURRENDER QUEST");
+                }
+                if (bundle.get("accept") != null) {
+                    acceptOrGiveUp.setVisibility(View.VISIBLE);
+                    acceptOrGiveUp.setText("ACCEPT QUEST");
+                }
 
                 setTitle("Quest : " + bundle.get("quest").toString());
 

@@ -209,6 +209,7 @@ public class QuestBookFragment extends Fragment {
                         }
                     }
                 }
+                intent.putExtra("surrender", "surrender");
                 startActivity(intent);
             }
         });
@@ -250,6 +251,7 @@ public class QuestBookFragment extends Fragment {
                         }
                     }
                 }
+                intent.putExtra("surrender", "surrender");
                 startActivity(intent);
             }
         });
@@ -291,6 +293,7 @@ public class QuestBookFragment extends Fragment {
                         }
                     }
                 }
+                intent.putExtra("surrender", "surrender");
                 startActivity(intent);
             }
         });
