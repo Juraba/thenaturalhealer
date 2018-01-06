@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
-    static Context actContext;
     private GameService game;
     static Context actContext;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         game = GameService.getInstance();
         game.fillInventory();
 
-         DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+         final DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
          new AsyncTask<Void, Void, List<Player>>(){
             @Override
             protected List<Player> doInBackground(Void... params) {
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             System.out.println(players.toString());
-        }*/
+        }
 
         game.fillInventory();
 
