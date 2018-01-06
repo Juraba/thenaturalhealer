@@ -21,14 +21,18 @@ public class GameService {
 
     // ========== ATTRIBUTS DE CLASSE DE MODEL ==========
 
-    private ArrayList<Villager> villagers = Villager.loadVillagers();
+    /**private ArrayList<Villager> villagers = Villager.loadVillagers();
     private ArrayList<Item> items = Item.loadItems();
 
     private Player player = Player.loadPlayer();
     private Grimoire grimoire = Grimoire.loadGrimoire(items);
-    private Shop shop = Shop.loadShop(items);
+    private Shop shop = Shop.loadShop(items);*/
 
-    //private HerbDAO herbs = new HerbDAO();
+    private ArrayList<Villager> villagers;
+    private ArrayList<Item> items;
+    private Player player;
+    private Grimoire grimoire;
+    private Shop shop;
 
     public void fillInventory() {
         for (int i = 0; i < items.size(); i++) {
@@ -70,11 +74,18 @@ public class GameService {
         this.grimoire = grimoire;
     }
 
+    public void setGrimoire(ArrayList<Item> items) {
+        this.grimoire = Grimoire.loadGrimoire(items);
+    }
+
+
     public Shop getShop() {return shop;}
 
     public void setShop(Shop shop) {
         this.shop = shop;
     }
 
-
+    public void setShop(ArrayList<Item> items) {
+        this.shop = Shop.loadShop(items);
+    }
 }

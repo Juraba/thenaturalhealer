@@ -1,6 +1,8 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,13 +21,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.data.BDDExecutor;
 import com.marmot.intrepid.naturalhealer.data.DAOBase;
+import com.marmot.intrepid.naturalhealer.data.DatabaseInit;
+import com.marmot.intrepid.naturalhealer.data.DatabaseLoad;
 import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -50,10 +56,14 @@ public class MainActivity extends AppCompatActivity
         // ========== GAME CREATION ==========
 
         game = GameService.getInstance();
-        game.fillInventory();
+        Executor executor = new BDDExecutor();
+        executor.execute(new DatabaseInit());
+        executor.execute(new DatabaseLoad());
 
-         DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
-         new AsyncTask<Void, Void, List<Player>>(){
+        //game.fillInventory();
+
+         //DAOBase db = Room.databaseBuilder(getApplicationContext(), DAOBase.class, "db-thenaturalhealer").build();
+         /**new AsyncTask<Void, Void, List<Player>>(){
             @Override
             protected List<Player> doInBackground(Void... params) {
                 System.out.println(db.playerDAO().getAll());
@@ -88,9 +98,8 @@ public class MainActivity extends AppCompatActivity
             System.out.println(players.toString());
         }*/
 
-        game.fillInventory();
-
         Player player = new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+        //Player player = game.getPlayer();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -220,4 +229,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     public static Context getContext() {return actContext;}
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            // Since we didn't alter the table, there's nothing else to do here.
+        }
+    };
+
+    public static Migration getMigration12(){
+        return MIGRATION_1_2;
+    }
 }
