@@ -3,6 +3,7 @@ package com.marmot.intrepid.naturalhealer.data.tables;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import com.marmot.intrepid.naturalhealer.data.QuestList;
@@ -20,10 +21,16 @@ public interface QuestListDAO {
     @Insert
     void insertQuestList(QuestList questlist);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertOrUpdate(QuestList questList);
+
     @Update
     void updateQuestList(QuestList questlist);
 
     @Delete
     void deleteQuestList(QuestList questlist);
+
+    @Query("DELETE FROM QuestList")
+    void nukeTable();
 }
 
