@@ -129,6 +129,14 @@ public class ShopFragment extends Fragment {
         final String[] recipePics = new String[herbList.size()];
         final String[] otherPics = new String[herbList.size()];
 
+        /**System.out.println("HerbPics.length : "+herbPics.length);
+        System.out.println("HerbPics.length : "+recipePics.length);
+        System.out.println("HerbPics.length : "+otherPics.length);
+        System.out.println("HerbPics.length : "+herbList.size());
+        System.out.println("HerbPics.length : "+recipeList.size());
+        System.out.println("HerbPics.length : "+otherList.size());*/
+
+
         for (int i = 0; i < herbList.size(); i++) {
             herbPics[i] = herbList.get(i).getPicName();
         }

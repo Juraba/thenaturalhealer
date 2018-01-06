@@ -6,10 +6,6 @@ import com.marmot.intrepid.naturalhealer.model.Villager;
 
 import java.util.ArrayList;
 
-/**
- * Created by Camille K on 05/01/2018.
- */
-
 public class DatabaseUpdate implements Runnable{
 
     public void run(){

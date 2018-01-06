@@ -5,10 +5,8 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
  */
 
 public enum HerbType {
-    COMMON("Aromatic", "Aromatiques"),
-    RARE("Rare", "Sauvages"),
-    UNIQUE("Unique", "Unique"),
-    LEGENDARY("Legendary", "Légendaire");
+    AROMATIC("Aromatic", "Aromatiques"),
+    WILD("Wild", "Sauvages");
 
     private String en = "";
     private String fr = "";

@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity
         InfoFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
-    static Context actContext;
     private GameService game;
     static Context actContext;
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
         game = GameService.getInstance();
         Executor executor = new BDDExecutor();
-        executor.execute(new DatabaseInit());
+        //executor.execute(new DatabaseInit());
         executor.execute(new DatabaseLoad());
 
         //game.fillInventory();
