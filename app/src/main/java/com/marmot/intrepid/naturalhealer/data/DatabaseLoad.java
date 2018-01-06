@@ -159,11 +159,11 @@ public class DatabaseLoad implements Runnable {
     public ArrayList<Villager> loadVillagers(DAOBase db, ArrayList<Quest> quests){
         ArrayList<Villager> villagers = new ArrayList<>();
         Villager villager;
+
         for(Villager it : db.villagerDAO().getAll()) {
             villager = new Villager(it.getName(), it.getPicName());
             villagers.add(villager);
         }
-
         //--Loading villagers questlist--
         List<QuestList> questlists = db.questListDAO().getAll();
         for(int i=0; i < villagers.size(); i++){ //Loop on all players
@@ -181,7 +181,26 @@ public class DatabaseLoad implements Runnable {
                 }
             }
         }
-
         return villagers;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.data.QuestList> loadQuestList(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.data.QuestList> questLists = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.data.QuestList questList = null;
+        for(QuestList it : db.questListDAO().getAll()) {
+            questList = new QuestList(it.getId(), it.getVillagerName(), it.getQuestName());
+            questLists.add(questList);
+        }
+        return questLists;
+    }
+
+    public ArrayList<com.marmot.intrepid.naturalhealer.data.QuestBook> loadQuestBook(DAOBase db){
+        ArrayList<com.marmot.intrepid.naturalhealer.data.QuestBook> questBooks = new ArrayList<>();
+        com.marmot.intrepid.naturalhealer.data.QuestBook questBook = null;
+        for(QuestBook it : db.questBookDAO().getAll()) {
+            questBook = new QuestBook(it.getId(), it.getPlayerName(), it.getVillagerName(), it.getQuestName());
+            questBooks.add(questBook);
+        }
+        return questBooks;
     }
 }

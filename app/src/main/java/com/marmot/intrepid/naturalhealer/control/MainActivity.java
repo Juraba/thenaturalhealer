@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     static Context actContext;
     private GameService game;
+    static Context actContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

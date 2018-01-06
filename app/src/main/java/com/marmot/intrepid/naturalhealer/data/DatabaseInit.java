@@ -1,13 +1,11 @@
 package com.marmot.intrepid.naturalhealer.data;
 
-
 import android.arch.persistence.room.Room;
 
 import com.marmot.intrepid.naturalhealer.control.MainActivity;
 import com.marmot.intrepid.naturalhealer.model.Player;
 import com.marmot.intrepid.naturalhealer.model.Quest;
 import com.marmot.intrepid.naturalhealer.model.Villager;
-
 
 public class DatabaseInit implements Runnable {
     public void run(){

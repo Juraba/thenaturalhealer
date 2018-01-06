@@ -122,19 +122,20 @@ public class Player {
     }
 
     public void addItems(Item item, int number){
-        boolean check = false;
-        int value = number;
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
-            value = i.getValue();
+            int value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
                 value += number;
                 check = true;
             } else {
-                value = number;
+                this.inventory.put(item, number);
             }
         }
+    }
+
+    public void sellItems(Item item, int number){
         if (!check) {
             this.inventory.put(item, value);
         }
@@ -171,7 +172,6 @@ public class Player {
         return render;
     }
 
-    // A modifier !
     public String sellItems(Item item, int number){
         boolean check = false;
         int value = number;
@@ -226,7 +226,15 @@ public class Player {
 
     //Méthode temporaire
     public static Player loadPlayer() {
-        return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+        return new Player("Jean-Michel", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+    }
+
+    public void setInventory(HashMap<Item, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setQuests(HashMap<String, Quest> quests) {
+        this.quests = quests;
     }
 
     public void setInventory(HashMap<Item, Integer> inventory) {
