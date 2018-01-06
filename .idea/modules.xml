@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/thenaturalhealer.iml" filepath="$PROJECT_DIR$/thenaturalhealer.iml" />
-      <module fileurl="file://C:\Users\PC-Justine\Documents\Travail\Personnel\Projets\thenaturalhealer\thenaturalhealer.iml" filepath="C:\Users\PC-Justine\Documents\Travail\Personnel\Projets\thenaturalhealer\thenaturalhealer.iml" />
     </modules>
   </component>
 </project>

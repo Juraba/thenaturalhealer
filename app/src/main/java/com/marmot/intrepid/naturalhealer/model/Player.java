@@ -25,7 +25,9 @@ public class Player {
     private String picName;
     @ColumnInfo(name = "xp")
     private int xp;
-    @ColumnInfo(name = "purse")
+    @ColumnInfo(name = "purseString")
+    private String purseString;
+    @Ignore
     private double purse;
     @ColumnInfo(name = "rank")
     private String rankName;
@@ -36,15 +38,16 @@ public class Player {
     @Ignore
     private HashMap<String, Quest> quests;
 
-    public Player(String nickname, String picName, int xp, double purse, String rankName){
+    public Player(String nickname, String picName, int xp, String purseString, String rankName){
         this.nickname = nickname;
         this.picName = picName;
         this.xp = xp;
-        this.purse = purse;
+        this.purseString = purseString;
+        this.purse = Double.parseDouble(purseString);
         this.rank = new Rank(RankEnum.findEn(rankName));
         this.rankName = rankName;
-        this.inventory = new HashMap<Item, Integer>();
-        this.quests = new HashMap<String, Quest>();
+        this.inventory = new HashMap<>();
+        this.quests = new HashMap<>();
     }
 
     @Ignore
@@ -53,6 +56,7 @@ public class Player {
         this.picName = picName;
         this.xp = exp;
         this.purse = purse;
+        this.purseString = Double.toString(purse);
         this.rank = rank;
         this.rankName = rank.getName().getEn();
         this.inventory = new HashMap<Item, Integer>();
@@ -222,5 +226,13 @@ public class Player {
     //Méthode temporaire
     public static Player loadPlayer() {
         return new Player("Jean-Michel Druide", "ic_player", new Rank(RankEnum.APPRENTICE), 930, 500.00);
+    }
+
+    public String getPurseString() {
+        return purseString;
+    }
+
+    public void setPurseString(String purseString) {
+        this.purseString = purseString;
     }
 }

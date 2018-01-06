@@ -17,7 +17,7 @@ public class Item {
     @ColumnInfo(name = "properties")
     private String properties;
     @ColumnInfo(name = "price")
-    private double price;
+    private String price;
     @ColumnInfo(name = "rank")
     private String rank;
     @ColumnInfo(name = "race")
@@ -43,7 +43,7 @@ public class Item {
     @ColumnInfo(name = "itemType")
     private String itemType;
 
-    public Item(String name, String picName, String description, String properties, double price, String rank, String race, String history, String combination, String rarity, String type, int available, String protocol, String difficulty, String symptoms, int discovered, String itemType){
+    public Item(String name, String picName, String description, String properties, String price, String rank, String race, String history, String combination, String rarity, String type, int available, String protocol, String difficulty, String symptoms, int discovered, String itemType){
         this.name = name;
         this.picName = picName;
         this.description = description;
@@ -96,11 +96,11 @@ public class Item {
         this.properties = properties;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

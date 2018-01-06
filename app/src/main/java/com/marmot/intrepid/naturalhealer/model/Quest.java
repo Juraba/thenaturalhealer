@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 
 import com.marmot.intrepid.naturalhealer.model.enumerations.QuestType;
 
+import java.util.HashMap;
+
 @Entity
 public class Quest {
     @PrimaryKey
@@ -20,13 +22,7 @@ public class Quest {
     @ColumnInfo(name = "quest_type")
     private String questType;
     @Ignore
-    private int[] requirements;
-    @ColumnInfo(name = "requirements")
-    private String requirementsString;
-    @Ignore
-    private float[] goals;
-    @ColumnInfo(name = "goals")
-    private String goalsString;
+    private HashMap<Item, Integer> requirements;
     @ColumnInfo(name = "reward_money")
     private int rewardMoney;
     @ColumnInfo(name = "reward_xp")
@@ -38,21 +34,10 @@ public class Quest {
     @ColumnInfo(name = "done")
     private String doneString;
 
-    public Quest(String name, String description, String questType, String requirementsString, String goalsString, int rewardMoney, int rewardXp, String cancelableString, String doneString){
+    public Quest(String name, String description, String questType, int rewardMoney, int rewardXp, String cancelableString, String doneString){
         this.name = name;
         this.description = description;
-        this.requirementsString = requirementsString;
-        String[] tmp = requirementsString.split("\\§");
-        this.requirements = new int[tmp.length];
-        for(int i=0; i < tmp.length; i++){
-            this.requirements[i] = Integer.parseInt(tmp[i]);
-        }
-        this.goalsString = goalsString;
-        tmp = goalsString.split("\\§");
-        this.goals = new float[tmp.length];
-        for(int i=0; i < tmp.length; i++){
-            this.goals[i] = Float.parseFloat(tmp[i]);
-        }
+        this.requirements = null;
         this.rewardMoney = rewardMoney;
         this.rewardXp = rewardXp;
         this.cancelableString = cancelableString;
@@ -63,13 +48,10 @@ public class Quest {
     }
 
     @Ignore
-    public Quest(String name, String description, int[] requirements, float[] goals, int rewardMoney, int rewardXp, boolean cancelable, QuestType type){
+    public Quest(String name, String description, HashMap<Item, Integer> requirements, int rewardMoney, int rewardXp, boolean cancelable, QuestType type){
         this.name = name;
         this.description = description;
         this.requirements = requirements;
-        this.requirementsString = requirements.toString();
-        this.goals = goals;
-        this.goalsString = goals.toString();
         this.rewardMoney = rewardMoney;
         this.rewardXp = rewardXp;
         this.cancelable = cancelable;
@@ -92,15 +74,11 @@ public class Quest {
 
     public boolean isCancelable(){return this.cancelable;}
 
-    public int[] getRequirements() {
+    public HashMap<Item, Integer> getRequirements() {
         return requirements;
     }
 
-    public float[] getGoals() {
-        return goals;
-    }
-
-    public void fill(int[] requirements){}
+    public void setRequirements(HashMap<Item, Integer> requirements){this.requirements = requirements;}
 
     public void setName(String name) {
         this.name = name;
@@ -116,22 +94,6 @@ public class Quest {
 
     public void setQuestType(String questType) {
         this.questType = questType;
-    }
-
-    public String getRequirementsString() {
-        return requirementsString;
-    }
-
-    public void setRequirementsString(String requirementsString) {
-        this.requirementsString = requirementsString;
-    }
-
-    public String getGoalsString() {
-        return goalsString;
-    }
-
-    public void setGoalsString(String goalsString) {
-        this.goalsString = goalsString;
     }
 
     public void setRewardMoney(int rewardMoney) {
