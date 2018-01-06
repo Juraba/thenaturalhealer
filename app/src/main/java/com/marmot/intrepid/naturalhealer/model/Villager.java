@@ -42,6 +42,7 @@ public class Villager {
 
     public void addQuest(Quest quest){this.quests.add(quest);}
 
+    /**
     //Méthode temporaire
     public static ArrayList<Villager> loadVillagers() {
 
@@ -85,5 +86,5 @@ public class Villager {
         villagers.add(v5);
 
         return villagers;
-    }
+    }*/
 }
