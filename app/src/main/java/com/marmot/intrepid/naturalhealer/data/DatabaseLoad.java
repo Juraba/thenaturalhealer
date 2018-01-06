@@ -100,7 +100,7 @@ public class DatabaseLoad implements Runnable {
         com.marmot.intrepid.naturalhealer.model.Item item = null;
         for(Item it : db.itemDAO().getAll()){
             if(it.getItemType().equals("herb")){
-                item = new Herb(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()), it.getRace(), HerbRarity.findEn(it.getRarity()), it.getHistory(), it.getCombination(), HerbType.findEn(it.getType()));
+                item = new Herb(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), Double.parseDouble(it.getPrice()), new Rank(it.getRank()), it.getRace(), HerbRarity.findEn(it.getRarity()), it.getHistory(), it.getCombination(), HerbType.findEn(it.getType()));
             }
             else if(it.getItemType().equals("recipe")){
                 String[] s = it.getSymptoms().split(",");
@@ -108,10 +108,10 @@ public class DatabaseLoad implements Runnable {
                 for(int l=0; l < s.length; l++){
                     symptoms[l] = Symptoms.findEn(s[l]);
                 }
-                item = new Recipe(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()), RecipeDifficulty.findEn(it.getDifficulty()), symptoms, it.getProtocol());
+                item = new Recipe(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), Double.parseDouble(it.getPrice()), new Rank(it.getRank()), RecipeDifficulty.findEn(it.getDifficulty()), symptoms, it.getProtocol());
             }
             else if(it.getItemType().equals("other")){
-                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), it.getPrice(), new Rank(it.getRank()));
+                item = new OtherIngredients(it.getName(), it.getPicName(), it.getDescription(), it.getProperties(), Double.parseDouble(it.getPrice()), new Rank(it.getRank()));
             }
             items.add(item);
         }

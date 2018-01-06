@@ -29,22 +29,22 @@ public class DatabaseInit implements Runnable {
     }
 
     public void initPlayer(DAOBase db){
-        Player player = new Player("Jean-Michel Druide", "ic_player", 930, 500.00, "Recruit");
+        Player player = new Player("Jean-Michel Druide", "ic_player", 930, "500.00", "Recruit");
         db.playerDAO().insertOne(player);
     }
 
     public void initItem(DAOBase db){
 
-        Item h1 = new Item("Thym", "ic_herb_thyme", "Description", "Properties", 0.55,"Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
-        Item h2 = new Item("Basilic", "ic_herb_basil", "Description", "Properties", 0.55,"Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
-        Item h3 = new Item("Millepertuis", "ic_herb_st_johns_wort", "Description", "Properties", 0.55,"Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
+        Item h1 = new Item("Thym", "ic_herb_thyme", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
+        Item h2 = new Item("Basilic", "ic_herb_basil", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
+        Item h3 = new Item("Millepertuis", "ic_herb_st_johns_wort", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Common", 0, "", "", "", 0, "herb");
 
-        Item r1 = new Item("Tisane", "ic_recipe_herbal_brew", "Description", "Properties", 10.00,"Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
-        Item r2 = new Item("Onguent", "ic_recipe_ointment", "Description", "Properties", 10.00,"Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
+        Item r1 = new Item("Tisane", "ic_recipe_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item r2 = new Item("Onguent", "ic_recipe_ointment", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
 
-        Item o1 = new Item("Water", "ic_other_water", "Description", "Properties", 10.00,"Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
-        Item o2 = new Item("Milk", "ic_other_milk", "Description", "Properties", 10.00,"Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
-        Item o3 = new Item("Rhum", "ic_other_rhum", "Description", "Properties", 10.00,"Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item o1 = new Item("Water", "ic_other_water", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item o2 = new Item("Milk", "ic_other_milk", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item o3 = new Item("Rhum", "ic_other_rhum", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
 
         db.itemDAO().insertItem(h1);
         db.itemDAO().insertItem(h2);

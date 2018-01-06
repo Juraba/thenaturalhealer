@@ -26,7 +26,7 @@ import com.marmot.intrepid.naturalhealer.model.Villager;
         QuestList.class,
         Inventory.class,
         Requirements.class
-}, version = 1.2)
+}, version = 1)
 
 public abstract class DAOBase extends RoomDatabase {
 
