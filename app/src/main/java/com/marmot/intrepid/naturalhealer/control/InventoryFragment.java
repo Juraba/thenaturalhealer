@@ -28,6 +28,7 @@ import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.model.Recipe;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.io.IOException;
@@ -112,6 +113,7 @@ public class InventoryFragment extends Fragment {
 
         player = game.getPlayer();
         inventory = game.getPlayer().getInventory();
+        final ArrayList<Herb> brewSelection = new ArrayList<>();
 
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
@@ -172,7 +174,18 @@ public class InventoryFragment extends Fragment {
 
         itemList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
                     public boolean onItemLongClick(AdapterView<?> parent, View arg1, int position, long arg3) {
-                        return false;
+                        Item item = null;
+                        for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
+                            if(entry.getKey().getClass() == Herb.class){
+                                String itemName = "ic_"+entry.getKey().getName();
+                                if(itemName.equals(itemList.getItemAtPosition(position))){
+                                    brewSelection.add((Herb) entry.getKey());
+                                    itemList.setClickable(false);
+                                }
+                            }
+                        }
+                        //System.out.println("");
+                        return true;
                     }
         });
 
@@ -198,6 +211,63 @@ public class InventoryFragment extends Fragment {
                     Toast.makeText(v.getContext(), "You earnd :" + gain, Toast.LENGTH_LONG);
                 }
                 return true;//Return true, so there will be no onClick-event
+            }
+        });
+
+        brew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Item item = null;
+                ArrayList<Recipe> recipeList = new ArrayList<>();
+                //Making list of recipes
+                for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
+                    if(entry.getKey().getClass() == Recipe.class){
+                        recipeList.add((Recipe) entry.getKey());
+                    }
+                }
+                //Are components ok ?
+                boolean ok = true;
+                HashMap<Integer, String> protocol, protocolSave;
+                protocolSave = new HashMap<>();
+                for(int i=0;i < recipeList.size(); i++){
+                    //Getting protocol
+                    protocol = new HashMap<>();
+                    String[] components = recipeList.get(i).getProtocol().split(", ");
+                    for(int j=0; j < components.length; j++){
+                        String[] component = components[j].split(" ");
+                        protocol.put(Integer.parseInt(component[0]), component[1]);
+                        protocolSave.put(Integer.parseInt(component[0]), component[1]);
+                    }
+                    if(brewSelection.size() == protocol.size()){ //Number of selected items = number of items in protocol
+                        int j=0;
+                        for(HashMap.Entry<Integer, String> entry : protocol.entrySet()){
+                            if(brewSelection.get(j).getName().equals(entry.getValue())){
+                                for(HashMap.Entry<Item, Integer> entryInv : inventory.entrySet()){
+                                    if(entry.getKey() > entryInv.getValue()){
+                                        ok = false;
+                                    }
+                                }
+                            }
+                            j++;
+                        }
+                    }
+                }
+
+                if(ok){
+                    int i=0;
+                    for(HashMap.Entry<Integer, String> entry : protocolSave.entrySet()){
+                        if(brewSelection.get(i).getName().equals(entry.getValue())){
+                            for(HashMap.Entry<Item, Integer> entryInv : inventory.entrySet()){
+                                if(entry.getKey() <= entryInv.getValue()){
+                                    entryInv.setValue(entryInv.getValue()-entry.getKey());
+                                }
+                            }
+                        }
+                        i++;
+                    }
+                    MainActivity.quickSave();
+                }
+                //System.out.println("");
             }
         });
 
