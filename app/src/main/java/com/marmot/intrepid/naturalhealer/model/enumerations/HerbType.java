@@ -9,10 +9,12 @@ public enum HerbType {
     WILD("Wild", "Sauvages"),
     PERENNIALHERBACEOUS("Perennial Herbaceous","Herbacées Vivaces"),
     PERENNIAL("Perennial", "Vivaces"),
-    HERBACEOUS("Herbaceous", "Hherbacées"),
+    HERBACEOUS("Herbaceous", "Herbacées"),
     TREE("Tree", "Arbre"),
     BIENNIAL("Biennial", "Bisanuelle"),
-    FRUIT("Fruit", "Fruit");
+    FRUIT("Fruit", "Fruit"),
+    BIENNIALHERBACEOUS("Biennial Herbaceous", "Herbacées Bisanuelles"),
+    MATERIAL("Material", "Matériau");
 
     private String en = "";
     private String fr = "";

@@ -322,9 +322,9 @@ public class DatabaseLoad implements Runnable {
         Item h4 = new Item(
                 "Absinth",
                 "ic_absinth",
-                "Perennial, herbaceous plant that measures between 0.50 and 1 meter1. Plant covered with silky silvery white hairs and many oleiferous glands. The stem is silver green in color, straight, fluted, branched and very leafy.\n" +
+                "Perennial, herbaceous plant that measures between 0.50 and 1 meter. Plant covered with silky silvery white hairs and many oleiferous glands. The stem is silver green in color, straight, fluted, branched and very leafy.\n" +
                         "\n" +
-                        "The leaves are alternate, greenish-gray above and almost white and silky on the underside. The basal leaves are up to 25 centimeters long [ref. necessary] and are extensively petiolated. The stem leaves are briefly petiolate, less divided. The leaves at the top can even be simple and sessile (without petiole). The plant has a hard rhizome.\n" +
+                        "The leaves are alternate, greenish-gray above and almost white and silky on the underside. The basal leaves are up to 25 centimeters long and are extensively petiolated. The stem leaves are briefly petiolate, less divided. The leaves at the top can even be simple and sessile (without petiole). The plant has a hard rhizome.\n" +
                         "\n" +
                         "Flowering takes place from July to September. The flowers are yellow, tubular, united in capitules (Compound) globular, bent, in turn united in panicles with leaves and branches. The fruits are achenes.",
                 "Absinth is a plant used primarily to fight against stomach upset. In infusion, it also helps treat fatigue or certain disorders such as seasickness. Tonic and aperitif, wormwood is also a dewormer. The medicinal properties of this plant of the Alps are numerous and known since ancient times.",
@@ -577,10 +577,84 @@ public class DatabaseLoad implements Runnable {
                 "",
                 0,
                 "herb");
-        Item h17 = new Item("Cinnamon", "ic_cinnamon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h18 = new Item("Cardamom", "ic_cardamom", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h19 = new Item("Chervil", "ic_chervil", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h20 = new Item("Vegetable Coal", "ic_vegetable_coal", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h17 = new Item(
+                "Cinnamon",
+                "ic_cinnamon",
+                "Growing from seedlings or cuttings, the cinnamon tree can reach 15 m high. Depending on its species, it becomes tree or remains shrub. It can not withstand temperatures below 15 ° C and only lives in tropical or subtropical regions. Growing on light soil, it is harvested for the first time only six or seven years after planting. The branches are then cut for the harvest of the bark, which will be dried. Starch and proanthocyanidolic oligomers are recovered.",
+                "Intestinal transit, dental pain, diabetes, fatigue. Prevents the progression of Alzheimer's disease, promotes weight loss, reduces aging due to stress, stimulates the immune system, has a disinfecting power of parts by diffusion.",
+                "1.08",
+                "Recruit",
+                "Lauraceae",
+                "Originally from Sri Lanka, cinnamon is better known as \"cinnamon of Ceylon\". Used for more than 5,000 years, it is Ayurvedic medicine (India), then Chinese medicine that used it first, in combination with turmeric, ginger, nutmeg, clove or cardamom. Fragrant wine, cinnamon is also incorporated into many dishes, whether sweet or savory. Over time, it has been found that cinnamon has medical \"powers\", such as those to fight against winter infections (colds or flus). Its antimicrobial strengths and its glycemic enhancing properties were brought to light. Grown mainly in China, Vietnam, Indonesia, Madagascar and Sri Lanka, this plant was very expensive. Nowadays, it is accessible to everyone and is used for its aromatic benefits, as well as in the composition of some dental products and cosmetics.",
+                "Sticks, essential oils, ground powder, herbal teas, tinctures, capsules, tablets, dental rinse solutions",
+                "Common",
+                "Tree",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h18 = new Item(
+                "Cardamom",
+                "ic_cardamom",
+                "Cardamom is a plant in the zingiberaceae family, as are ginger and turmeric. It is a perennial herb with a rhizome that can reach a height of 2 to 5 m.",
+                "Cardamom effectively treats many digestive disorders such as indigestion, colic, gastritis and gastralgia, diarrhea, functional colopathy, Crohn's disease and digestive spasms. The essential oil of cardamom is recognized for its anti-inflammatory, antispasmodic and analgesic properties.",
+                "1.56",
+                "Junior",
+                "Zingiberaceae",
+                "Cardamom has been used for millennia in Ayurvedic medicine to treat digestive disorders, certain respiratory disorders (such as asthma and bronchitis), anorexia, anemia, asthenia and kidney stones. It was also known as an aphrodisiac and is still used against bad breath. It could also be used in case of snake or scorpion bite. It arrived in Western Europe from the fifteenth century on the back of trade with the Indian subcontinent, which began to develop at that time. It was also known in ancient Greece, as early as the fourth century BCE. His presence in Egypt has been attested for at least twenty-five centuries. It has also been used in China for a long time to treat urinary disorders.",
+                "Essential oils, tinctures, infusions, powders, capsules, poultices, decoctions",
+                "Rare",
+                "Perennial Herbaceous",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h19 = new Item(
+                "Chervil",
+                "ic_chervil",
+                "A biennial herbaceous plant, grown as an annual, 30 to 60 cm tall. Leaves long petiole, very tender and finely divided. Inflorescence in umbels of white flowers.\n" +
+                        "\n" +
+                        "This plant, which resembles parsley, presents a risk of confusion with the little hemlock, (Aethusa cynapium), a toxic plant, which does not have the same pleasant smell.",
+                "Chervil can be eaten in infusions, to promote digestion. While it helps to fight against the retention of urine, it also acts on gout, asthma, bronchitis and kidney stones.",
+                "0.93",
+                "Recruit",
+                "Apiaceae",
+                "It is one of the plants whose cultivation is recommended in the royal domains by Charlemagne in the chapter house De Villis (end of the first or beginning of the ninth century).",
+                "Poultices, decoctions, infusions, mother tincture, fresh juice, fresh leaves",
+                "Common",
+                "Biennial Herbaceous",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h20 = new Item(
+                "Vegetable Coal",
+                "ic_vegetable_coal",
+                "In France, charcoal was made from birch, oak, beech, poplar, pine, willow or linden.\n" +
+                        "\n" +
+                        "Poplar coal, also known as \"Belloc coal\", is prepared from tree shoots of three to four years. The shoots are calcined in a vacuum. The coal is boiled in hydrochloric acid diluted 1/32. It is then washed, dried and pulverized. It is kept away from the air to prevent it from absorbing atmospheric gases and moisture.",
+                "Occasional constipation, diarrhea, gastroenteritis, heartburn, bad breath, flatulence, irritable bowel syndrome, intoxication or poisoning.",
+                "1.08",
+                "Recruit",
+                "Carbo vegetabilis",
+                "Evidence of the use of activated charcoal dates back to antiquity with medicinal uses by Hippocrates around 400 BC. AD or for purification of water by the Egyptians towards 1 550 BC. In the eighteenth century, animal black, produced from bone, was used for the purification of liquids by filtration and for discoloration, especially for the production of white sugar. Scottish John Stenhouse used it for the first breathing masks (1860, 1867).\n" +
+                        "\n" +
+                        "It was in the twentieth century that production processes were improved to allow industrial production of activated carbons for various applications: capture of pollutant in gaseous or aqueous phase, gas separation processes, etc. Physical or chemical treatment processes have been developed to enable the production of active carbons with greater efficiency: the Swedish chemist von Ostreijko defined the basics of physical (carbon dioxide water vapor) and chemical (chlorides) activation two patents dated 1900 and 1901, and chemical activation by acids (Bayer, 1905), etc.",
+                "Powders, capsules, granules.",
+                "Common",
+                "Material",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h21 = new Item("Chicory", "ic_chicory", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h22 = new Item("Citronella", "ic_citronella", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h23 = new Item("Coriander", "ic_coriander", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
