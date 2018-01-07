@@ -22,6 +22,9 @@ import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.data.BDDExecutor;
 import com.marmot.intrepid.naturalhealer.data.DatabaseLoad;
 import com.marmot.intrepid.naturalhealer.data.DatabaseSave;
+import com.marmot.intrepid.naturalhealer.data.DatabaseSaveItems;
+import com.marmot.intrepid.naturalhealer.data.DatabaseSavePlayer;
+import com.marmot.intrepid.naturalhealer.data.DatabaseSaveVillager;
 import com.marmot.intrepid.naturalhealer.model.*;
 import com.marmot.intrepid.naturalhealer.model.enumerations.*;
 import com.marmot.intrepid.naturalhealer.service.GameService;
@@ -243,5 +246,12 @@ public class MainActivity extends AppCompatActivity
         return MIGRATION_1_2;
     }
 
-    public static Executor getExecutor(){ return executor;}
+    public static void quickSave(){
+        executor.execute(new DatabaseSave());
+    }
+
+    public static void quickLoad(){
+        executor.execute(new DatabaseLoad());
+    }
+
 }
