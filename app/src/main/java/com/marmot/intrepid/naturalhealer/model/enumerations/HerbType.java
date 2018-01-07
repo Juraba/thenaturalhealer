@@ -6,7 +6,13 @@ package com.marmot.intrepid.naturalhealer.model.enumerations;
 
 public enum HerbType {
     AROMATIC("Aromatic", "Aromatiques"),
-    WILD("Wild", "Sauvages");
+    WILD("Wild", "Sauvages"),
+    PERENNIALHERBACEOUS("Perennial Herbaceous","Herbacées Vivaces"),
+    PERENNIAL("Perennial", "Vivaces"),
+    HERBACEOUS("Herbaceous", "Hherbacées"),
+    TREE("Tree", "Arbre"),
+    BIENNIAL("Biennial", "Bisanuelle"),
+    FRUIT("Fruit", "Fruit");
 
     private String en = "";
     private String fr = "";
