@@ -188,7 +188,14 @@ public class InventoryFragment extends Fragment {
                             herbs.add((Herb) items.get(i));
                         }
                     }
-                    game.getPlayer().explore(herbs);
+                    HashMap<Item, Integer> reward = game.getPlayer().explore(herbs);
+
+                    String gain = "";
+                    for (Map.Entry<Item, Integer> i : reward.entrySet()) {
+                        gain += "\n" + i.getValue() + " " + i.getKey().getName();
+                    }
+
+                    Toast.makeText(v.getContext(), "You earnd :" + gain, Toast.LENGTH_LONG);
                 }
                 return true;//Return true, so there will be no onClick-event
             }

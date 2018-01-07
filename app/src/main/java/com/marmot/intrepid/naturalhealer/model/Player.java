@@ -129,14 +129,15 @@ public class Player {
             value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
-                value += number;
+                i.setValue(value + number);
+                //value += number;
                 check = true;
             } else {
                 this.inventory.put(item, number);
             }
         }
         if (!check) {
-            this.inventory.put(item, value);
+            this.inventory.put(item, number);
         }
     }
 
@@ -152,16 +153,18 @@ public class Player {
             if (key.getName().equals(item.getName())) {
                 check = true;
                 if ((this.getPurse()-(number*item.getPrice())) >= 0) {
-                    value += number;
+                    i.setValue(value+number);
+                    //value += number;
                     this.setPurse(this.getPurse()-(number*item.getPrice()));
                 } else {
                     render = "You don't have enough money ! ";
                 }
             }
         }
+
         if (!check) {
             if ((this.getPurse()-(number*item.getPrice())) >= 0) {
-                this.inventory.put(item, value);
+                this.inventory.put(item, number);
                 this.setPurse(this.getPurse()-(number*item.getPrice()));
             } else {
                 render = "You don't have enough money ! ";
@@ -185,7 +188,8 @@ public class Player {
                     if ((value-number) < 0) {
                         render = "You don't have enough of this item to sell it ! ";
                     } else if ((value-number) > 0) {
-                        value -= number;
+                        //value -= number;
+                        i.setValue(value-number);
                         this.setPurse(this.getPurse()-(number*item.getPrice()));
                     } else if ((value-number) == 0){
                         check = true;
@@ -207,7 +211,7 @@ public class Player {
         inventory.remove(item);
     }
 
-    public void /*HashMap<Item, Integer>*/ explore(ArrayList<Herb> herbs){
+    public HashMap<Item, Integer> explore(ArrayList<Herb> herbs){
         HashMap<Item, Integer> rewards = new HashMap<>();
         int rewardNumber = (int) ((Math.random()*5) +1);
         for(int i=0; i < rewardNumber; i++){
@@ -225,9 +229,9 @@ public class Player {
                 }
             }
             */
-            //rewards.put(herbs.get(herb), nbHerb); //rewards.push(herbs.get(herb), nbHerb);
+            rewards.put((Item) herbs.get(herb), nbHerb); //rewards.push(herbs.get(herb), nbHerb);
         }
-        //return rewards;
+        return rewards;
     }
 
     public void brew(ArrayList<Item> ingredients){
