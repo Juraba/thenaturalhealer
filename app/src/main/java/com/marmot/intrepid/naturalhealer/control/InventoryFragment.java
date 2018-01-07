@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
+import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.Player;
 import com.marmot.intrepid.naturalhealer.service.GameService;
@@ -113,13 +115,13 @@ public class InventoryFragment extends Fragment {
 
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
-        Button sort = (Button) view.findViewById(R.id.sort);
+        Button explore = (Button) view.findViewById(R.id.explore);
         Button brew = (Button) view.findViewById(R.id.brew);
 
         TextView capacity = (TextView) view.findViewById(R.id.capacity);
         TextView money = (TextView) view.findViewById(R.id.money);
 
-        capacity.setText(player.getInventory().size() + "/100");
+        capacity.setText(player.getInventory().size() + " item(s)");
         money.setText(game.getPlayer().getPurse() + "$");
 
         final String[] pictures = new String[inventory.size()];
@@ -141,7 +143,7 @@ public class InventoryFragment extends Fragment {
 
         int imageWidth = bd.getBitmap().getWidth();
 
-        itemList.setColumnWidth((int) (imageWidth * 0.4));
+        itemList.setColumnWidth((int) (imageWidth));
 
         GridAdapter adapter = new GridAdapter(this.getContext(), numbers, pictures);
         itemList.setAdapter(adapter);
@@ -168,10 +170,27 @@ public class InventoryFragment extends Fragment {
             }
         });
 
-        itemList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> parent, View arg1,
-                                           int position, long arg3) {
-                return false;
+        itemList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
+                    public boolean onItemLongClick(AdapterView<?> parent, View arg1, int position, long arg3) {
+                        return false;
+                    }
+        });
+
+        explore.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    ArrayList<Item> items = game.getItems();
+                    ArrayList<Herb> herbs = new ArrayList<Herb>();
+
+                    for (int i = 0; i < items.size(); i++) {
+                        if (items.get(i).getClass() == Herb.class) {
+                            herbs.add((Herb) items.get(i));
+                        }
+                    }
+                    game.getPlayer().explore(herbs);
+                }
+                return true;//Return true, so there will be no onClick-event
             }
         });
 

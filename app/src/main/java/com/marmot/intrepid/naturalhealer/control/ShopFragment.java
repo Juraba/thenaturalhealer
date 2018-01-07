@@ -105,10 +105,6 @@ public class ShopFragment extends Fragment {
         // For eg: Button btn1= (Button) view.findViewById(R.id.frag1_btn1);
         // btn1.setOnclickListener(...
 
-        final ListView list = (ListView) view.findViewById(R.id.listCategories);
-
-        //list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categories));
-
         final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
         final Button recipes = (Button) view.findViewById(R.id.buttonRecipies);
         final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
@@ -118,8 +114,8 @@ public class ShopFragment extends Fragment {
 
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
-        TextView capacity = (TextView) view.findViewById(R.id.capacity);
         TextView money = (TextView) view.findViewById(R.id.money);
+        money.setText(game.getPlayer().getPurse() + "$");
 
         final ArrayList<Herb> herbList = shop.getHerbs();
         ArrayList<Recipe> recipeList = shop.getRecipes();
@@ -155,7 +151,7 @@ public class ShopFragment extends Fragment {
 
         int imageWidth = bd.getBitmap().getWidth();
 
-        itemList.setColumnWidth((int) (imageWidth * 0.4));
+        itemList.setColumnWidth((int) (imageWidth));
 
         GridAdapter adapter = new GridAdapter(this.getContext(), new String[]{}, herbPics);
         itemList.setAdapter(adapter);

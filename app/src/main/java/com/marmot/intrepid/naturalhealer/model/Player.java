@@ -207,16 +207,27 @@ public class Player {
         inventory.remove(item);
     }
 
-    public static HashMap<Item, Integer> explore(){
-        ArrayList<Herb> herbs = new ArrayList<Herb>();
+    public void /*HashMap<Item, Integer>*/ explore(ArrayList<Herb> herbs){
         HashMap<Item, Integer> rewards = new HashMap<>();
         int rewardNumber = (int) ((Math.random()*5) +1);
         for(int i=0; i < rewardNumber; i++){
             int herb = (int) (Math.random()*(herbs.size())); //int herb = (int) (Math.random()(herbs.size()));
             Integer nbHerb = new Integer((int) (Math.random()*5)+1);
-            rewards.put(herbs.get(herb), nbHerb); //rewards.push(herbs.get(herb), nbHerb);
+            this.addItems(herbs.get(herb), nbHerb);
+            /*
+            for (Map.Entry<Item, Integer> item : inventory.entrySet()) {
+                int number = item.getValue();
+                if (item.getKey().equals(herbs.get(herb))) {
+                    number = nbHerb;
+                }
+                else {
+                    inventory.put(herbs.get(herb), nbHerb);
+                }
+            }
+            */
+            //rewards.put(herbs.get(herb), nbHerb); //rewards.push(herbs.get(herb), nbHerb);
         }
-        return rewards;
+        //return rewards;
     }
 
     public void brew(ArrayList<Item> ingredients){

@@ -141,8 +141,6 @@ public class ItemInfoActivity extends AppCompatActivity {
                     if (items.get(i).getPicName().equals(item)) {
                         if (items.get(i).getClass() == Herb.class) {
 
-                            Toast.makeText(getApplicationContext(), "HERB", Toast.LENGTH_LONG).show();
-
                             Herb h = (Herb) items.get(i);
                             setTitle("Item : " + h.getName());
                             itemName = h.getName();
@@ -156,8 +154,6 @@ public class ItemInfoActivity extends AppCompatActivity {
                             combiOrSympTitle.setText("COMBINATIONS");
                             combiOrSymp.setText(h.getCombination());
                         } else if (items.get(i).getClass() == Recipe.class) {
-
-                            Toast.makeText(getApplicationContext(), "RECIPE", Toast.LENGTH_LONG).show();
 
                             Recipe r = (Recipe) items.get(i);
                             setTitle("Item : " + r.getName());
@@ -181,8 +177,6 @@ public class ItemInfoActivity extends AppCompatActivity {
                             combiOrSympTitle.setText("SYMPTOMS");
                             combiOrSymp.setText(str);
                         } else if (items.get(i).getClass() == OtherIngredients.class) {
-
-                            Toast.makeText(getApplicationContext(), "OTHER", Toast.LENGTH_LONG).show();
 
                             OtherIngredients o = (OtherIngredients) items.get(i);
                             setTitle("Item : " + o.getName());

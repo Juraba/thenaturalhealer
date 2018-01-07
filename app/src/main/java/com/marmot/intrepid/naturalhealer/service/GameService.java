@@ -33,16 +33,6 @@ public class GameService {
     private Grimoire grimoire;
     private Shop shop;
 
-    public void fillInventory() {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getClass() != Recipe.class) {
-                //System.out.println(items.get(i).getName());
-                int randomNum = 1 + (int)(Math.random() * 25);
-                player.addItems(items.get(i), randomNum);
-            }
-        }
-    }
-
     public ArrayList<Villager> getVillagers() {
         return villagers;
     }
@@ -72,7 +62,6 @@ public class GameService {
     public void setGrimoire(Grimoire grimoire) {
         this.grimoire = grimoire;
     }
-
 
     public void setGrimoire(ArrayList<Item> items) {
         this.grimoire = Grimoire.loadGrimoire(items);
