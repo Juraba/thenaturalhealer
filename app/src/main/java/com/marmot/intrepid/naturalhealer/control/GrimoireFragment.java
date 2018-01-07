@@ -263,6 +263,13 @@ public class GrimoireFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("==== On Start ====");
+        MainActivity.quickLoad();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

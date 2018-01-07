@@ -325,6 +325,20 @@ public class QuestBookFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("==== On Start ====");
+        MainActivity.quickLoad();
+    }
+
+    /**@Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("==== On Stop ====");
+        MainActivity.quickSave();
+    }*/
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
