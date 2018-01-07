@@ -95,19 +95,13 @@ public class DatabaseLoad implements Runnable {
         List<Inventory> inventories = db.inventoryDAO().getAll();
         HashMap<com.marmot.intrepid.naturalhealer.model.Item, Integer> invPlayer = new HashMap<>();
 
-        System.out.println("§§§§§§§§§§§§§§§§§§§§§§§§§§");
-        System.out.println(items.toString());
-
         for(int i=0; i < players.size(); i++){ //Loop on all players
             for(int j=0; j < inventories.size(); j++){ //Loop on all inventories
                 if(players.get(i).getNickname().equals(inventories.get(j).getPlayerName())){
-                    System.out.println("+++Passage+++");
                     int k = 0;
                     boolean found = false;
                     while(!found && k < items.size()){ //Adding each item in player's inventory
-                        System.out.println("===Passage===");
                         if(inventories.get(j).getItemName().equals(items.get(k).getName())){
-                            System.out.println("---Passage---");
                             invPlayer.put( items.get(k), inventories.get(j).getQuantity());
                             found = true;
                         }
@@ -117,7 +111,6 @@ public class DatabaseLoad implements Runnable {
             }
             players.get(i).setInventory(invPlayer);
         }
-        System.out.println("§§§§§§§§§§§§§§§§§§§§§§§§§§");
 
         //--Loading players questbook--
         List<QuestBook> questbooks = db.questBookDAO().getAll();
@@ -129,7 +122,7 @@ public class DatabaseLoad implements Runnable {
                     boolean found = false;
                     while(!found && k < quests.size()){ //Adding each item in player's inventory
                         if(questbooks.get(j).getQuestName().equals(quests.get(k).getName())){
-                            qbPlayer.put( quests.get(k).getName(), quests.get(k));
+                            qbPlayer.put( questbooks.get(j).getVillagerName(), quests.get(k));
                             found = true;
                         }
                         k++;
@@ -191,6 +184,7 @@ public class DatabaseLoad implements Runnable {
 
                 }
             }
+            quests.get(i).setRequirements(requirementsList);
         }
 
         return quests;
