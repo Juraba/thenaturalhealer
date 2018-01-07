@@ -179,4 +179,11 @@ public class MainFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(String s);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("==== On Start ====");
+        MainActivity.quickLoad();
+    }
 }

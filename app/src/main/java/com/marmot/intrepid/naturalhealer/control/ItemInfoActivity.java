@@ -59,6 +59,7 @@ public class ItemInfoActivity extends AppCompatActivity {
         TextView properties = (TextView) findViewById(R.id.properties);
         TextView combiOrSymp = (TextView) findViewById(R.id.combiOrSymp);
         TextView combiOrSympTitle = (TextView) findViewById(R.id.combiOrSympTitle);
+        TextView quantity = (TextView) findViewById(R.id.quantity);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -195,6 +196,15 @@ public class ItemInfoActivity extends AppCompatActivity {
                 }
 
                 final String render = itemName;
+
+                for(HashMap.Entry<Item, Integer> entry : game.getPlayer().getInventory().entrySet()){
+                    if(entry.getKey().getName().equals(itemName)){
+                        quantity.setText(Integer.toString(entry.getValue()));
+                    }
+                    else {
+                        quantity.setText("La ressource n'est pas présente dans l'inventaire.");
+                    }
+                }
 
                 final Button buyOrSell = (Button) findViewById(R.id.buyOrSell);
 

@@ -1,5 +1,6 @@
 package com.marmot.intrepid.naturalhealer.control;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -156,6 +157,7 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                                 double price = numberSold * finalItemPrice;
 
                                                 snackRender[0] = game.getPlayer().sellItems(finalItemSold ,numberSold);
+                                                MainActivity.quickSave();
 
                                                 if (snackRender[0] != "") {
                                                     snackRender[0] = snackRender[0] + "You sold " + numberSold + " " + itemName.getText() + " for " + price + "$";
@@ -245,30 +247,31 @@ public class ItemTransactionActivity extends AppCompatActivity {
 
                             final int numberSold = number.getValue();
 
-                            System.out.println("NUMBER SOLD : " + numberSold + " // FINAL ITEM SOLD : " + finalItemSold);
+                            System.out.println("NUMBER BUOUGHT : " + numberSold + " // FINAL ITEM BOUGHT : " + finalItemSold);
 
                             new AlertDialog.Builder(v.getContext())
-                                    .setMessage("Are you sure you want to sell this item ?")
+                                    .setMessage("Are you sure you want to buy this item ?")
                                     .setCancelable(false)
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
                                             if (numberSold == 0) {
-                                                Toast.makeText(getApplicationContext(), "You're not selling any item !", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "You're not buying any item !", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 double price = numberSold * finalItemPrice;
 
-                                                snackRender[0] = game.getPlayer().sellItems(finalItemSold ,numberSold);
+                                                snackRender[0] = game.getPlayer().buyItems(finalItemSold ,numberSold);
+                                                MainActivity.quickSave();
 
                                                 if (snackRender[0] != "") {
-                                                    snackRender[0] = snackRender[0] + "You sold " + numberSold + " " + itemName.getText() + " for " + price + "$";
+                                                    snackRender[0] = snackRender[0] + "You bought " + numberSold + " " + itemName.getText() + " for " + price + "$";
                                                 }
                                             }
                                         }
                                     })
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            snackRender[0] = "You canceled the item selling";
+                                            snackRender[0] = "You canceled the item buying";
                                         }
                                     })
                                     .show();
