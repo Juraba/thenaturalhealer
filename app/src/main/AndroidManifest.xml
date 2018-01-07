@@ -19,11 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".control.QuestInfoActivity"/>
+        <activity android:name=".control.QuestInfoActivity" />
         <activity android:name=".control.ItemInfoActivity" />
         <activity android:name=".control.GrimoireItemsActivity" />
-        <activity android:name=".control.WindowActivity"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert" ></activity>
+        <!-- android:theme="@style/Theme.AppCompat.Dialog.Alert" -->
+        <activity android:name=".control.VillagerQuestsActivity" />
+        <activity android:name=".control.ItemTransactionActivity"></activity>
     </application>
 
 </manifest>

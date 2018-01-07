@@ -1,11 +1,8 @@
 package com.marmot.intrepid.naturalhealer.service;
 
-import com.marmot.intrepid.naturalhealer.data.DAOBase;
-import com.marmot.intrepid.naturalhealer.data.tables.PlayerDAO;
 import com.marmot.intrepid.naturalhealer.model.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GameService {
 
@@ -21,28 +18,20 @@ public class GameService {
 
     // ========== ATTRIBUTS DE CLASSE DE MODEL ==========
 
-    /**private ArrayList<Villager> villagers = Villager.loadVillagers();
+    /*
+    private ArrayList<Villager> villagers = Villager.loadVillagers();
     private ArrayList<Item> items = Item.loadItems();
 
     private Player player = Player.loadPlayer();
     private Grimoire grimoire = Grimoire.loadGrimoire(items);
-    private Shop shop = Shop.loadShop(items);*/
+    private Shop shop = Shop.loadShop(items);
+    */
 
     private ArrayList<Villager> villagers;
     private ArrayList<Item> items;
     private Player player;
     private Grimoire grimoire;
     private Shop shop;
-
-    public void fillInventory() {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getClass() != Recipe.class) {
-                //System.out.println(items.get(i).getName());
-                int randomNum = 1 + (int)(Math.random() * 25);
-                player.addItems(items.get(i), randomNum);
-            }
-        }
-    }
 
     public ArrayList<Villager> getVillagers() {
         return villagers;

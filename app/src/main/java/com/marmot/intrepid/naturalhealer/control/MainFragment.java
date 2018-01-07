@@ -2,6 +2,7 @@ package com.marmot.intrepid.naturalhealer.control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,8 @@ import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.Herb;
 import com.marmot.intrepid.naturalhealer.model.Item;
 import com.marmot.intrepid.naturalhealer.model.Player;
+import com.marmot.intrepid.naturalhealer.model.Quest;
+import com.marmot.intrepid.naturalhealer.model.Villager;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.ArrayList;
@@ -42,6 +48,7 @@ public class MainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private GameService game;
+    private ArrayList<Villager> villagers;
 
     private OnFragmentInteractionListener mListener;
 
@@ -87,9 +94,10 @@ public class MainFragment extends Fragment {
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("MAP");
+            mListener.onFragmentInteraction("INTRODUCTION");
         }
 
+        /*
         final Snackbar snackbar = Snackbar.make(view, "Time before exploring again : ", Snackbar.LENGTH_INDEFINITE);
         final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         final CountDownTimer cdt = new CountDownTimer(60000, 1000) {
@@ -103,7 +111,7 @@ public class MainFragment extends Fragment {
             public void onFinish() {
                 ArrayList<Herb> herbs = new ArrayList<Herb>();
                 HashMap<Item, Integer> rewards = game.getPlayer().explore();
-                Toast.makeText(getContext(), "Now you can explore again ! \n You earned : "/*rewards.toString()*/, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Now you can explore again ! \n You earned : ", Toast.LENGTH_LONG).show();//rewards.toString()
                 snackbar.dismiss();
                 fab.setVisibility(View.VISIBLE);
             }
@@ -128,6 +136,7 @@ public class MainFragment extends Fragment {
 
             }
         });
+        */
 
         return view;
     }

@@ -34,20 +34,23 @@
                     android:id="@+id/infoTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:text="\nGAME INFORMATIONS" />
 
                 <TextView
                     android:id="@+id/infoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="\n\n\n
-            This game has been created by a team of 3 gorgeous people that are very very very passionate.\n\n\n
-            Camille KESSAB, Julien RABAULT and Justine FERRON are really happy to have you playing their new game !\n\n\n" />
+                    android:text="
+    This game has been created by a team of 3 developers : Julien RABAULT, Justine FERRON and Camille KESSAB.\n\n\
+    A huge 'Thank you !' to Sarah FERRON for designing the menu icons for free and having finished it on time !
+" />
 
                 <TextView
                     android:id="@+id/infoEnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:gravity="right"
                     android:text="Enjoy your game !" />
             </LinearLayout>

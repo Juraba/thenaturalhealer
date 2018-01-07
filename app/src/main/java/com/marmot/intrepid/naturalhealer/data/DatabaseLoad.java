@@ -248,23 +248,125 @@ public class DatabaseLoad implements Runnable {
 
     public void initItem(DAOBase db){
 
-        Item h1 = new Item("Thym", "ic_herb_thyme", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h2 = new Item("Basilic", "ic_herb_basil", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h3 = new Item("Millepertuis", "ic_herb_st_johns_wort", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h1 = new Item("Thyme", "ic_thyme", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h2 = new Item("Basil", "ic_basil", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h3 = new Item("Hypericum", "ic_hypericum", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h4 = new Item("Absinth", "ic_absinth", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h5 = new Item("Yarrow", "ic_yarrow", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h6 = new Item("Motherwort", "ic_motherwort", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h7 = new Item("Garbic", "ic_garbic", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h8 = new Item("Aloe Vera", "ic_aloe_vera", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h9 = new Item("Anise", "ic_anise", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h10 = new Item("Arganier", "ic_arganier", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h11 = new Item("Arnica", "ic_arnica", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h12 = new Item("Bamboo", "ic_bamboo", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h13 = new Item("Burdock", "ic_burdock", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h14 = new Item("Bergamot", "ic_bergamot", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h15 = new Item("Calendula", "ic_calendula", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h16 = new Item("Chamomile", "ic_chamomile", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h17 = new Item("Cinnamon", "ic_cinnamon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h18 = new Item("Cardamom", "ic_cardamom", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h19 = new Item("Chervil", "ic_chervil", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h20 = new Item("Vegetable Coal", "ic_vegetable_coal", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h21 = new Item("Chicory", "ic_chicory", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h22 = new Item("Citronella", "ic_citronella", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h23 = new Item("Coriander", "ic_coriander", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h24 = new Item("Comfrey", "ic_comfrey", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h25 = new Item("Tarragon", "ic_tarragon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h26 = new Item("Eucalyptus", "ic_eucalyptus", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h27 = new Item("Fennel", "ic_fennel", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h28 = new Item("Fenugreek", "ic_fenugreek", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h29 = new Item("Galanga", "ic_galanga", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h30 = new Item("Gentian", "ic_gentian", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h31 = new Item("Ginger", "ic_ginger", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h32 = new Item("Ginseng", "ic_ginseng", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h33 = new Item("Jasmine", "ic_jasmine", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h34 = new Item("Lavender", "ic_lavender", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h35 = new Item("Marjoram", "ic_marjoram", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h36 = new Item("Primrose", "ic_primrose", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h37 = new Item("Nettle", "ic_nettle", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h38 = new Item("Passiflora", "ic_passiflora", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h39 = new Item("Salad Burnet", "ic_salad_burnet", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h40 = new Item("Rosemary", "ic_rosemary", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h41 = new Item("Rooibos", "ic_rooibos", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h42 = new Item("Rose", "ic_rose", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h43 = new Item("Saffron", "ic_saffron", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h44 = new Item("Sage", "ic_sage", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h45 = new Item("Elderberry", "ic_elderberry", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h46 = new Item("Green Tea", "ic_green_tea", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h47 = new Item("Linden", "ic_linden", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h48 = new Item("Red Clover", "ic_red_clover", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h49 = new Item("Valerian", "ic_valerian", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h50 = new Item("Vanilla", "ic_vanilla", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h51 = new Item("Verbena", "ic_verbena", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h52 = new Item("Mint", "ic_mint", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
 
-        Item r1 = new Item("Tisane", "ic_recipe_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
-        Item r2 = new Item("Onguent", "ic_recipe_ointment", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
+        Item r1 = new Item("Herbal Brew", "ic_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item r2 = new Item("Ointment", "ic_ointment", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
+        Item r3 = new Item("Soup", "ic_soup", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
+        Item r4= new Item("Cake", "ic_cake", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
 
-        Item o1 = new Item("Water", "ic_other_water", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
-        Item o2 = new Item("Milk", "ic_other_milk", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
-        Item o3 = new Item("Rhum", "ic_other_rhum", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
+        Item o1 = new Item("Water", "ic_water", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
+        Item o2 = new Item("Milk", "ic_milk", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
+        Item o3 = new Item("Rhum", "ic_rhum", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
 
         db.itemDAO().insertItem(h1);
         db.itemDAO().insertItem(h2);
         db.itemDAO().insertItem(h3);
+        db.itemDAO().insertItem(h4);
+        db.itemDAO().insertItem(h5);
+        db.itemDAO().insertItem(h6);
+        db.itemDAO().insertItem(h7);
+        db.itemDAO().insertItem(h8);
+        db.itemDAO().insertItem(h9);
+        db.itemDAO().insertItem(h10);
+        db.itemDAO().insertItem(h11);
+        db.itemDAO().insertItem(h12);
+        db.itemDAO().insertItem(h13);
+        db.itemDAO().insertItem(h14);
+        db.itemDAO().insertItem(h15);
+        db.itemDAO().insertItem(h16);
+        db.itemDAO().insertItem(h17);
+        db.itemDAO().insertItem(h18);
+        db.itemDAO().insertItem(h19);
+        db.itemDAO().insertItem(h20);
+        db.itemDAO().insertItem(h21);
+        db.itemDAO().insertItem(h22);
+        db.itemDAO().insertItem(h23);
+        db.itemDAO().insertItem(h24);
+        db.itemDAO().insertItem(h25);
+        db.itemDAO().insertItem(h26);
+        db.itemDAO().insertItem(h27);
+        db.itemDAO().insertItem(h28);
+        db.itemDAO().insertItem(h29);
+        db.itemDAO().insertItem(h30);
+        db.itemDAO().insertItem(h31);
+        db.itemDAO().insertItem(h32);
+        db.itemDAO().insertItem(h33);
+        db.itemDAO().insertItem(h34);
+        db.itemDAO().insertItem(h35);
+        db.itemDAO().insertItem(h36);
+        db.itemDAO().insertItem(h37);
+        db.itemDAO().insertItem(h38);
+        db.itemDAO().insertItem(h39);
+        db.itemDAO().insertItem(h40);
+        db.itemDAO().insertItem(h41);
+        db.itemDAO().insertItem(h42);
+        db.itemDAO().insertItem(h43);
+        db.itemDAO().insertItem(h44);
+        db.itemDAO().insertItem(h45);
+        db.itemDAO().insertItem(h46);
+        db.itemDAO().insertItem(h47);
+        db.itemDAO().insertItem(h48);
+        db.itemDAO().insertItem(h49);
+        db.itemDAO().insertItem(h50);
+        db.itemDAO().insertItem(h51);
+        db.itemDAO().insertItem(h52);
 
         db.itemDAO().insertItem(r1);
         db.itemDAO().insertItem(r2);
+        db.itemDAO().insertItem(r3);
+        db.itemDAO().insertItem(r4);
 
         db.itemDAO().insertItem(o1);
         db.itemDAO().insertItem(o2);
@@ -306,10 +408,10 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initQuestList(DAOBase db){
-        QuestList q1 = new QuestList(0, "M.LE MAIRE", "Mal de tête");
-        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Stress intense");
-        QuestList q3 = new QuestList(0, "M.LE MAIRE", "Douleurs musculaires");
-        QuestList q4 = new QuestList(0, "M.BROSSARD", "Sommeil fuyard");
+        QuestList q1 = new QuestList(0, "M.LE MAIRE", "Stress intense");
+        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Mal de tête");
+        QuestList q3 = new QuestList(0, "M.LE MAIRE", "Sommeil fuyard");
+        QuestList q4 = new QuestList(0, "M.BROSSARD", "Douleurs musculaires");
 
         db.questListDAO().insertQuestList(q1);
         db.questListDAO().insertQuestList(q2);
@@ -318,9 +420,9 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initInventory(DAOBase db){
-        Inventory it1 = new Inventory(0, "Jean-Michel Druide", "Basilic", "herb", 8);
+        Inventory it1 = new Inventory(0, "Jean-Michel Druide", "Basil", "herb", 8);
         Inventory it2 = new Inventory(0, "Jean-Michel Druide", "Water", "other", 17);
-        Inventory it3 = new Inventory(0, "Jean-Michel Druide", "Onguent", "recipe", 3);
+        Inventory it3 = new Inventory(0, "Jean-Michel Druide", "Ointment", "recipe", 3);
 
         db.inventoryDAO().insertInventory(it1);
         db.inventoryDAO().insertInventory(it2);
@@ -329,8 +431,8 @@ public class DatabaseLoad implements Runnable {
 
     public void initRequirements(DAOBase db){
         Requirements r1 = new Requirements(0, "Douleurs musculaires","Water", 15);
-        Requirements r2 = new Requirements(0, "Douleurs musculaires","Basilic", 4);
-        Requirements r3 = new Requirements(0, "Mal de tête","Tisane", 2);
+        Requirements r2 = new Requirements(0, "Douleurs musculaires","Basil", 4);
+        Requirements r3 = new Requirements(0, "Mal de tête","Soup", 2);
 
         db.requirementsDAO().insertRequirements(r1);
         db.requirementsDAO().insertRequirements(r2);

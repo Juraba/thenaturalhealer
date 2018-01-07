@@ -127,68 +127,78 @@ public class ItemInfoActivity extends AppCompatActivity {
             }
             if (bundle.get("item") != null) {
 
-                final String item = bundle.get("item").toString();
+                String item = bundle.get("item").toString();
 
-                final ArrayList<Herb> h = game.getShop().getHerbs();
-                final ArrayList<Recipe> r = game.getShop().getRecipes();
-                final ArrayList<OtherIngredients> o = game.getShop().getOtherIngredients();
+                System.out.println("ITEM VALUE AFTER : " + item);
+
+                final ArrayList<Item> items = game.getItems();
 
                 final HashMap<Item, Integer> inventory = game.getPlayer().getInventory();
 
-                for (int i = 0; i < h.size(); i++) {
-                    if (h.get(i).getPicName().equals(item)) {
-                        int img = getApplicationContext().getResources().getIdentifier(h.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                String itemName = "";
 
-                        setTitle("Item : " + h.get(i).getName());
-                        picture.setImageResource(img);
-                        name.setText(h.get(i).getName());
-                        basicInfos.setText(h.get(i).getType().getEn() + " / " + h.get(i).getRace() + " / " + h.get(i).getRarity().getEn());
-                        description.setText(h.get(i).getDescription());
-                        properties.setText(h.get(i).getProperties());
-                        combiOrSympTitle.setText("COMBINATIONS");
-                        combiOrSymp.setText(h.get(i).getCombination());
-                    }
-                }
-                for (int i = 0; i < r.size(); i++) {
-                    if (r.get(i).getPicName().equals(item)) {
-                        int img = getApplicationContext().getResources().getIdentifier(r.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                for (int i = 0; i < items.size(); i++) {
+                    if (items.get(i).getPicName().equals(item)) {
+                        if (items.get(i).getClass() == Herb.class) {
 
-                        setTitle("Item : " + r.get(i).getName());
-                        picture.setImageResource(img);
-                        name.setText(r.get(i).getName());
-                        String str = "";
-                        for (int j = 0; j < r.get(i).getSymptoms().length; j++) {
-                            if (j == 0) {
-                                str = "- " + r.get(i).getSymptoms()[j].getEn();
+                            Herb h = (Herb) items.get(i);
+                            setTitle("Item : " + h.getName());
+                            itemName = h.getName();
+
+                            int img = getApplicationContext().getResources().getIdentifier(h.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                            picture.setImageResource(img);
+                            name.setText(h.getName());
+                            basicInfos.setText(h.getType().getEn() + " / " + h.getRace() + " / " + h.getRarity().getEn());
+                            description.setText(h.getDescription());
+                            properties.setText(h.getProperties());
+                            combiOrSympTitle.setText("COMBINATIONS");
+                            combiOrSymp.setText(h.getCombination());
+                        } else if (items.get(i).getClass() == Recipe.class) {
+
+                            Recipe r = (Recipe) items.get(i);
+                            setTitle("Item : " + r.getName());
+                            itemName = r.getName();
+
+                            int img = getApplicationContext().getResources().getIdentifier(r.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                            picture.setImageResource(img);
+                            name.setText(r.getName());
+                            String str = "";
+                            for (int j = 0; j < r.getSymptoms().length; j++) {
+                                if (j == 0) {
+                                    str = "- " + r.getSymptoms()[j].getEn();
+                                }
+                                else {
+                                    str += "\n- " + r.getSymptoms()[j].getEn();
+                                }
                             }
-                            else {
-                                str += "\n- " + r.get(i).getSymptoms()[j].getEn();
-                            }
+                            basicInfos.setText(r.getDifficulty().getEn());
+                            description.setText(r.getDescription());
+                            properties.setText(r.getProperties());
+                            combiOrSympTitle.setText("SYMPTOMS");
+                            combiOrSymp.setText(str);
+                        } else if (items.get(i).getClass() == OtherIngredients.class) {
+
+                            OtherIngredients o = (OtherIngredients) items.get(i);
+                            setTitle("Item : " + o.getName());
+                            itemName = o.getName();
+
+                            int img = getApplicationContext().getResources().getIdentifier(o.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                            picture.setImageResource(img);
+                            name.setText(o.getName());
+                            basicInfos.setVisibility(View.INVISIBLE);
+                            description.setText(o.getDescription());
+                            properties.setText(o.getProperties());
+                            combiOrSympTitle.setVisibility(View.INVISIBLE);
+                            combiOrSymp.setVisibility(View.INVISIBLE);
                         }
-                        basicInfos.setText(r.get(i).getDifficulty().getEn());
-                        description.setText(r.get(i).getDescription());
-                        properties.setText(r.get(i).getProperties());
-                        combiOrSympTitle.setText("SYMPTOMS");
-                        combiOrSymp.setText(str);
                     }
                 }
-                for (int i = 0; i < o.size(); i++) {
-                    if (o.get(i).getPicName().equals(item)) {
-                        int img = getApplicationContext().getResources().getIdentifier(o.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
 
-                        setTitle("Item : " + o.get(i).getName());
-                        picture.setImageResource(img);
-                        name.setText(o.get(i).getName());
-                        basicInfos.setVisibility(View.INVISIBLE);
-                        description.setText(o.get(i).getDescription());
-                        properties.setText(o.get(i).getProperties());
-                        combiOrSympTitle.setVisibility(View.INVISIBLE);
-                        combiOrSymp.setVisibility(View.INVISIBLE);
-                    }
-                }
+                final String render = itemName;
 
                 final Button buyOrSell = (Button) findViewById(R.id.buyOrSell);
 
+                // WINDOW POPUP
                 /*
                 final LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("ResourceType") final View windowView = inflater.inflate(R.layout.popup_layout, (ViewGroup) findViewById(R.layout.activity_item_info));
@@ -209,10 +219,13 @@ public class ItemInfoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
 
-                            Intent intentList = new Intent(getApplicationContext(), WindowActivity.class);
-                            intentList.putExtra("sell", item);
+                            System.out.println("ITEM VALUE AFTER AFTER : " + render);
+
+                            Intent intentList = new Intent(getApplicationContext(), ItemTransactionActivity.class);
+                            intentList.putExtra("sell", render);
                             startActivity(intentList);
 
+                            // WINDOW POPUP
                             /*
                             int img = 0;
                             double itemPrice = 0;
@@ -327,10 +340,11 @@ public class ItemInfoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
 
-                            Intent intentList = new Intent(getApplicationContext(), WindowActivity.class);
-                            intentList.putExtra("sell", item);
+                            Intent intentList = new Intent(getApplicationContext(), ItemTransactionActivity.class);
+                            intentList.putExtra("buy", render);
                             startActivity(intentList);
 
+                            // WINDOW POPUP
                             /*
                             int img = 0;
                             double itemPrice = 0;

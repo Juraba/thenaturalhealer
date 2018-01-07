@@ -56,15 +56,11 @@ public class GridAdapter extends BaseAdapter{
 
         if (pictures[position] != null) {
             int img = mContext.getResources().getIdentifier(pictures[position], "mipmap", convertView.getContext().getPackageName());
-
-            int imageWidth = mContext.getResources().getDrawable(img).getBounds().width();
-            int imageHeight = mContext.getResources().getDrawable(img).getBounds().height();
-
             if (numbers.length != 0) {
                 textView.setText(numbers[position]);
             }
-            //textView.setBackgroundResource(img);
             imageView.setImageResource(img);
+            System.out.println(pictures[position]);
         }
 
         return convertView;
