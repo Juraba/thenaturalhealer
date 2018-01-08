@@ -113,7 +113,7 @@ public class InventoryFragment extends Fragment {
 
         player = game.getPlayer();
         inventory = game.getPlayer().getInventory();
-        final ArrayList<Herb> brewSelection = new ArrayList<>();
+        final ArrayList<Item> brewSelection = new ArrayList<>();
 
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
@@ -147,7 +147,7 @@ public class InventoryFragment extends Fragment {
 
         itemList.setColumnWidth((int) (imageWidth));
 
-        GridAdapter adapter = new GridAdapter(this.getContext(), numbers, pictures);
+        final GridAdapter adapter = new GridAdapter(this.getContext(), numbers, pictures);
         itemList.setAdapter(adapter);
 
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,10 +176,11 @@ public class InventoryFragment extends Fragment {
                     public boolean onItemLongClick(AdapterView<?> parent, View arg1, int position, long arg3) {
                         Item item = null;
                         for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
-                            if(entry.getKey().getClass() == Herb.class){
+                            if(entry.getKey().getClass() != Recipe.class){
                                 String itemName = "ic_"+entry.getKey().getName();
                                 if(itemName.equals(itemList.getItemAtPosition(position))){
-                                    brewSelection.add((Herb) entry.getKey());
+                                    System.out.println("PASSAGE ADD SELECTION LIST");
+                                    brewSelection.add(entry.getKey());
                                     itemList.setClickable(false);
                                 }
                             }
@@ -188,6 +189,28 @@ public class InventoryFragment extends Fragment {
                         return true;
                     }
         });
+
+        /**itemList.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View arg1, int position, long arg3) {
+                Item item = null;
+                for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
+                    if(entry.getKey().getClass() != Recipe.class){
+                        String itemName = "ic_"+entry.getKey().getName();
+                        if(itemName.equals(itemList.getItemAtPosition(position))){
+                            System.out.println("PASSAGE ADD SELECTION LIST");
+                            brewSelection.add(entry.getKey());
+                            itemList.setClickable(false);
+
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                //System.out.println("");
+                //return true;
+            }
+
+            public void onNothingSelected(AdapterView<?> parent){}
+        });*/
 
         explore.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -217,27 +240,46 @@ public class InventoryFragment extends Fragment {
         brew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("=== PASSAGE ONCLICK BREW ===");
                 Item item = null;
                 ArrayList<Recipe> recipeList = new ArrayList<>();
                 //Making list of recipes
-                for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
+                /**for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
                     if(entry.getKey().getClass() == Recipe.class){
                         recipeList.add((Recipe) entry.getKey());
+                        System.out.println("Recipe : "+entry.getKey().getName());
+                    }
+                }*/
+                for(int i=0; i < game.getItems().size(); i++){
+                    if(game.getItems().get(i).getClass() == Recipe.class){
+                        recipeList.add((Recipe) game.getItems().get(i));
+                        System.out.println("Recipe : "+game.getItems().get(i).getName());
                     }
                 }
                 //Are components ok ?
                 boolean ok = true;
                 HashMap<Integer, String> protocol, protocolSave;
                 protocolSave = new HashMap<>();
+                System.out.println("RecipeList : "+recipeList.size());
                 for(int i=0;i < recipeList.size(); i++){
                     //Getting protocol
                     protocol = new HashMap<>();
                     String[] components = recipeList.get(i).getProtocol().split(", ");
                     for(int j=0; j < components.length; j++){
                         String[] component = components[j].split(" ");
-                        protocol.put(Integer.parseInt(component[0]), component[1]);
-                        protocolSave.put(Integer.parseInt(component[0]), component[1]);
+                        System.out.println(components[j]);
+                        System.out.println("QUANTITE : "+component[0]);
+                        System.out.println("NAME ITEM : "+component[1]);
+                        if(component.length == 2){
+                            protocol.put(Integer.parseInt(component[0]), component[1]);
+                            protocolSave.put(Integer.parseInt(component[0]), component[1]);
+                        }
+                        else if(component.length == 3){
+                            protocol.put(Integer.parseInt(component[0]),component[1]+" "+component[2]);
+                            protocolSave.put(Integer.parseInt(component[0]),component[1]+" "+component[2]);
+                        }
                     }
+                    System.out.println("Protocol : "+protocol.toString());
                     if(brewSelection.size() == protocol.size()){ //Number of selected items = number of items in protocol
                         int j=0;
                         for(HashMap.Entry<Integer, String> entry : protocol.entrySet()){
