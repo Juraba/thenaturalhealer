@@ -42,6 +42,8 @@ public class QuestInfoActivity extends AppCompatActivity {
         if (bundle != null) {
             if (bundle.get("quest") != null) {
 
+                System.out.println("TEST DU DESCRIPTIF DES QUETES");
+
                 if (bundle.get("surrender") != null) {
                     acceptOrGiveUp.setVisibility(View.VISIBLE);
                     acceptOrGiveUp.setText("SURRENDER QUEST");

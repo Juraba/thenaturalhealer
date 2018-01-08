@@ -38,7 +38,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:id="@+id/name"
@@ -134,7 +135,7 @@
                 android:id="@+id/combiOrSymp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="5dp"
+                android:paddingBottom="55dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp" />

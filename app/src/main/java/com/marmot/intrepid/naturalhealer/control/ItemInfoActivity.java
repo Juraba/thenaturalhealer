@@ -72,6 +72,8 @@ public class ItemInfoActivity extends AppCompatActivity {
                 ArrayList<Herb> herbs = game.getGrimoire().getHerbs();
                 for (int i = 0; i < herbs.size(); i++) {
                     if (herbs.get(i).getName().equals(herb)) {
+                        int img = getApplicationContext().getResources().getIdentifier(herbs.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                        picture.setImageResource(img);
                         name.setText(herbs.get(i).getName());
                         basicInfos.setText(herbs.get(i).getType().getEn() + " / " + herbs.get(i).getRace() + " / " + herbs.get(i).getRarity().getEn());
                         description.setText(herbs.get(i).getDescription());
@@ -90,6 +92,8 @@ public class ItemInfoActivity extends AppCompatActivity {
                 ArrayList<Recipe> recipes = game.getGrimoire().getRecipes();
                 for (int i = 0; i < recipes.size(); i++) {
                     if (recipes.get(i).getName().equals(recipe)) {
+                        int img = getApplicationContext().getResources().getIdentifier(recipes.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                        picture.setImageResource(img);
                         name.setText(recipes.get(i).getName());
                         String str = "";
                         for (int j = 0; j < recipes.get(i).getSymptoms().length; j++) {
@@ -117,6 +121,8 @@ public class ItemInfoActivity extends AppCompatActivity {
                 ArrayList<OtherIngredients> others = game.getGrimoire().getOtherIngredients();
                 for (int i = 0; i < others.size(); i++) {
                     if (others.get(i).getName().equals(other)) {
+                        int img = getApplicationContext().getResources().getIdentifier(others.get(i).getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
+                        picture.setImageResource(img);
                         name.setText(others.get(i).getName());
                         basicInfos.setVisibility(View.INVISIBLE);
                         description.setText(others.get(i).getDescription());

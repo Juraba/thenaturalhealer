@@ -1250,9 +1250,9 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initInventory(DAOBase db){
-        Inventory it1 = new Inventory(0, "Jean-Michel Druide", "Basil", "herb", 8);
+        Inventory it1 = new Inventory(0, "Jean-Michel Druide", "Lavender", "herb", 8);
         Inventory it2 = new Inventory(0, "Jean-Michel Druide", "Water", "other", 17);
-        Inventory it3 = new Inventory(0, "Jean-Michel Druide", "Ointment", "recipe", 3);
+        Inventory it3 = new Inventory(0, "Jean-Michel Druide", "Relaxing Tea", "recipe", 3);
 
         db.inventoryDAO().insertInventory(it1);
         db.inventoryDAO().insertInventory(it2);
@@ -1260,9 +1260,9 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initRequirements(DAOBase db){
-        Requirements r1 = new Requirements(0, "Douleurs musculaires","Water", 15);
-        Requirements r2 = new Requirements(0, "Douleurs musculaires","Basil", 4);
-        Requirements r3 = new Requirements(0, "Mal de tête","Soup", 2);
+        Requirements r1 = new Requirements(0, "Douleurs musculaires","Honey", 15);
+        Requirements r2 = new Requirements(0, "Douleurs musculaires","Rosemary", 4);
+        Requirements r3 = new Requirements(0, "Mal de tête","Soothing Tea", 2);
 
         db.requirementsDAO().insertRequirements(r1);
         db.requirementsDAO().insertRequirements(r2);

@@ -65,12 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="
-    You play as a Druid of modern times and must help the people of your village.
-
-    For this, learn the role of plants and their associations.
-
-    Grow financially by managing your crops and stocks.
-
+    You play as a Druid of modern times and must help the people of your village.\n\n
+    For this, learn the role of plants and their associations.\n\n
+    Grow financially by managing your crops and stocks.\n\n
     Expand your spellbook, complete your quests and become The Natural Healer!
 " />
 
