@@ -14,7 +14,9 @@ public enum HerbType {
     BIENNIAL("Biennial", "Bisanuelle"),
     FRUIT("Fruit", "Fruit"),
     BIENNIALHERBACEOUS("Biennial Herbaceous", "Herbacées Bisanuelles"),
-    MATERIAL("Material", "Matériau");
+    MATERIAL("Material", "Matériau"),
+    SHRUB("Shrub", "Arbrisseau"),
+    CHILLIPEPPER("Chilli Pepper", "Piment");
 
     private String en = "";
     private String fr = "";

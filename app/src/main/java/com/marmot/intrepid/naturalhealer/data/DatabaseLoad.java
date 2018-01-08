@@ -655,9 +655,43 @@ public class DatabaseLoad implements Runnable {
                 "",
                 0,
                 "herb");
-        Item h21 = new Item("Chicory", "ic_chicory", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h22 = new Item("Citronella", "ic_citronella", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h23 = new Item("Coriander", "ic_coriander", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h21 = new Item(
+                "Chicory",
+                "ic_chicory",
+                "Herbaceous with a taproot, wild chicory comes from Europe, North Africa and Asia. Measuring 40 cm to 1 m, this plant has basal, intermediate and upper leaves of elongated shape on an angular stem. The flowers of chicory are in capitula and are heliotropic, they change from blue to pale blue and pink depending on the hours of the day. Similarly, they open under the sun and close in overcast weather or at night, which is important for gathering for medicinal purposes. Several varieties of chicory are also grown for food purposes. In the wild, chicory grows easily in meadows, ditches and on the edges of fields.",
+                "Chicory is useful in herbal medicine, in the treatment of gastric and intestinal disorders, pain, nausea, indigestion, etc. It also helps fight against lack of appetite. It promotes the proper functioning of the gastrointestinal system.",
+                "0.72",
+                "Recruit",
+                "Asteraceae",
+                "\"The humblest plants are sometimes the richest in hidden virtues,\" wrote Maurice Mességué, a passionate herbalist, about chicory. Our ancestors were not mistaken, who already used this plant 4,000 years before Christ, mainly for digestive purposes. Chicory has had other uses since, in the Middle Ages, it was considered an anaphrodisiac plant: its roots and crushed leaves then ingested were supposed to calm all the heat! Beyond this particular property, chicory roots were also used to fight against many diseases, including jaundice, angina pectoris and congestions of the liver. The discovery of the process of roasting in the seventeenth century and the blockade of English ships - many of whom carried coffee - by Napoleon I in the early nineteenth century, with the aim of ruining the British economy, have contributed to its now usual use, that of coffee substitute. As a mother of salads and chicory, chicory is widely consumed in Europe. It is known to contain a lot of provitamin A, vitamins B and C as well as mineral salts.",
+                "Infusions, juices, decoctions, roasted roots",
+                "Common",
+                "Herbaceous",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h22 = new Item(
+                "Citronella",
+                "ic_citronella",
+                "Perennial plant with its rhizomes (underground stems), lemongrass has in common with lemon only the smell it releases, when one crumples its leaves. Native to southern India and Sri Lanka, this plant of the family Poaceae (or grass) also grows in the tropical regions of the West Indies and Africa, where it is commonly used as a medicinal plant. Lemongrass is a herbaceous plant with long, narrow, linear, blue-green leaves with sharp edges. These leaves, with branch-shaped peduncles, measure from 90 cm to 2 m. The stem of lemongrass is hollow and bulbous: it is its base that is used in cooking to flavor dishes. Lemongrass has given its name to other plants with which it must not be confused: lemongrass verbena, lemongrass lemon balm and citronella aurone.",
+                "Digestive and gastrointestinal disorders; fever, flu-like conditions; joint and muscle pain; rheumatism; states of fatigue, insomnia, stress, anxiety.",
+                "0.60",
+                "Recruit",
+                "Poaceae",
+                "If the medicinal properties of lemongrass are known since ancient Egypt, on the Indian subcontinent, this plant is used for even longer. In the West Indies, it is a traditional remedy for lowering fever, while in Africa it is used in the treatment of conditions such as tuberculosis and malaria. In tropical countries, it is often planted near homes, to keep insects away.",
+                "Decoctions, infusions, essential oils",
+                "Common",
+                "Perennial",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h23 = new Item("Coriander", "ic_coriander", "Description", "Properties", "0.55", "Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h24 = new Item("Comfrey", "ic_comfrey", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h25 = new Item("Tarragon", "ic_tarragon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h26 = new Item("Eucalyptus", "ic_eucalyptus", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
@@ -665,103 +699,508 @@ public class DatabaseLoad implements Runnable {
         Item h28 = new Item("Fenugreek", "ic_fenugreek", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h29 = new Item("Galanga", "ic_galanga", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h30 = new Item("Gentian", "ic_gentian", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h31 = new Item("Ginger", "ic_ginger", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h31 = new Item(
+                "Ginger",
+                "ic_ginger",
+                "Ginger consists of two parts: the underground part, called the rhizome, is gnarled and branched and the aerial part is formed of leaves and a stem about one meter high. The rhizome, whose pulp is yellow inside, serves as a reserve for the plant and ensures its survival. The leaves are alternate, lanceolate and fragrant and the flowers are yellow with a red lip. The fruits contain few black seeds. Ginger multiplies and reproduces itself rather thanks to the division of its rhizome. It needs a wet, warm and sunny weather to grow, which is why it is usually found in tropical countries.",
+                "Digestive disorders (nausea, vomiting, bloating, gas, intestinal pain), infection, colds, flu, cough, sore throat, fever, fatigue, lack of energy, muscle and joint pain, injury.",
+                "0.84",
+                "Recruit",
+                "Zingiberaceae",
+                "Ginger is grown in sunny and tropical areas, mainly in Asia (India, China, Nepal). There are written records of its use dating back more than 3,500 years, but it seems that its qualities have been known for more than 5,000 years. He is known in our regions thanks to the Mediterranean trade of Romans and Greeks. It is often used as a spice to decorate dishes. In Malaysia and India, where ginger comes from, it is a well-known medicinal plant, especially in Indian Ayurveda medicine which is very old. Today, it is used worldwide to treat intestinal disorders, flu-like conditions and depressed health.",
+                "Capsules, ground ginger, herbal teas, fresh ginger, essential oils, tinctures",
+                "Common",
+                "Perennial",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h32 = new Item("Ginseng", "ic_ginseng", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h33 = new Item("Jasmine", "ic_jasmine", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h34 = new Item("Lavender", "ic_lavender", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h34 = new Item(
+                "Lavender",
+                "ic_lavender",
+                "Lavender is a small dicotyledonous shrub of the family Labieae (or Lamiaceae), which measures 30 to 60 cm in height; its branches are fine and woody and there are narrow, pointed leaves at its base only. The flowers of lavender, a soft blue or purplish and shaped small corollas, are grouped in terminal spikes and give off a very pleasant fragrance. This plant grows only in rocky, but well drained, limestone and sunny. It is found throughout Mediterranean Europe, sometimes up to 1800 m altitude, especially in the Prealps of Provence. Excellent melliferous plant, lavender is very popular with bees.",
+                "Dermatological problems (bactericidal, antiseptic); joint and rheumatic pains; irritation and / or respiratory inflammation; nervousness, anxiety, anxiety; insomnia: promotes sleep.",
+                "1.07",
+                "Recruit",
+                "Labiatae",
+                "Lavender is native to the West Mediterranean basin. The ancient Romans used it to perfume the baths and the linen. St. Hildegard of Bingen, in the twelfth century, gave it a place of choice in its natural pharmacopoeia and, at the same time, it was cultivated in the monasteries for its therapeutic properties. Since the Middle Ages, lavender was used in Provence in the manufacture of medicines and perfumes. From the nineteenth century, this aromatic plant has seen its culture grow in several European countries as well as in America. The region of Grasse, France, is now the \"capital\" of lavender, because of its large production of essential oil of this plant, which is used in herbal medicine but also in perfumery. It also grows in the following countries: Portugal, Spain, Balearic Islands, Somalia, India, Sahara and Australia.",
+                "Essences, essential oils, decoctions, herbal teas, micronized powders, capsules, alcoholates, dyes, nebulisates",
+                "Common",
+                "Shrub",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h35 = new Item("Marjoram", "ic_marjoram", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h36 = new Item("Primrose", "ic_primrose", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h37 = new Item("Nettle", "ic_nettle", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h38 = new Item("Passiflora", "ic_passiflora", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h39 = new Item("Salad Burnet", "ic_salad_burnet", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h40 = new Item("Rosemary", "ic_rosemary", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h40 = new Item(
+                "Rosemary",
+                "ic_rosemary",
+                "Rocky shrub in the wild, rosemary, family lamiaceae, can reach 2 m in height, in culture. It is easily recognized all year round, erected in the middle of the Mediterranean bushes: its evergreen leaves are rolled up on their edges. They are much longer than they are wide, of a dark green color, shiny on their upper surface and whitish on the underside. Its flowers, most often a purplish blue hue (whites are rarer) aggregate in short clusters, from February to May. Their calyx has a fluffy appearance, the corolla is bilabied and has four stamens, two of which extend beyond the upper lip. The fruit of rosemary, of globular form, is a brown tetrakene.",
+                "The choline it contains acts as a regulator of lipids, in the liver, and promotes digestion.\n" +
+                        "Its diuretic properties facilitate kidney activity and help prevent rheumatism.\n" +
+                        "Its antioxidant properties have a stimulating effect on brain activity and improve memory.",
+                "0.72",
+                "Recruit",
+                "Lamiaceae",
+                "The use of rosemary in perfumery dates back to the 14th century. We then lend to the water of Hungary, the first alcoholic perfume inventoried and consisting essentially of rosemary, powers of water of youth. The legend claims, in fact, that rosemary allowed Elizabeth of Poland, cured of her paralysis and her problems of arthritis, to become queen of Hungary, seducing the king, despite her 72 years. However, it gave him stimulating effects on brain activity, from ancient Greece. It was for this reason that Greek intellectuals girded their heads with rosemary wreaths. Also used empirically, as a remedy for a good number of ailments, the honey of Narbonne, derived from rosemary, found a place of choice in the marine pharmacopoeia in the eighteenth century. Closer to home, in the 19th century, the German Catholic physician and priest Sebastian Kneipp, who actively contributed to the development of herbal medicine, prescribed rosemary baths for the elderly. They could thus fight against a number of ailments: general weakness, tiredness of the eyes, hypotonia, hypotension, hypercholesterolemia, cirrhosis, physical and intellectual overwork, with loss of memory, cardiac disorders of nervous origin, syncope, rheumatism or paralysis.",
+                "Essential oils, capsules, ointments, tinctures, herbal teas, decoctions, inhalations, poultices, baths",
+                "Common",
+                "Shrub",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h41 = new Item("Rooibos", "ic_rooibos", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h42 = new Item("Rose", "ic_rose", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h43 = new Item("Saffron", "ic_saffron", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h44 = new Item("Sage", "ic_sage", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h45 = new Item("Elderberry", "ic_elderberry", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h46 = new Item("Green Tea", "ic_green_tea", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h46 = new Item(
+                "Green Tea",
+                "ic_green_tea",
+                "Green tea, or virgin tea, is an evergreen shrub, native to the Far East. It can reach 30 m in height, but in cultivation it is generally maintained at a height of about 1.5 m. It produces fragrant white flowers. Depending on the variety, its leaves, dark green, can measure from 3 to 20 cm and have a glossy or matte appearance.",
+                "Green tea, thanks to its high levels of caffeine and vitamin C, is a stimulant used to fight against fatigue. The consumption of tea promotes weight loss, especially in the case of anti-obesity treatments, and reduces cholesterol levels, thanks to the antioxidant action of polyphenols. Green tea, containing fluoride, helps prevent cavities.",
+                "1.44",
+                "Junior",
+                "Theaceae",
+                "Cultivated in Asia for millennia, green tea is one of the fundamental elements of traditional Asian medicine, in general, and Chinese in particular. Green tea has always been used for its stimulating properties, but also for its effective action against digestive infections. Caffeine, it contains, is traditionally used to fight against migraines. Finally, green tea has always been used in herbal medicine for its diuretic action. Traditional medicine advises against pregnancy, breastfeeding, insomnia and urinary problems, such as frequent urination.",
+                "Infusions, herbal teas, capsules of total powder, extracts",
+                "Common",
+                "Shrub",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h47 = new Item("Linden", "ic_linden", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h48 = new Item("Red Clover", "ic_red_clover", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h49 = new Item("Valerian", "ic_valerian", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h49 = new Item(
+                "Valerian",
+                "ic_valerian",
+                "Valerian is a perennial of the family Valerianaceae, up to 1 m in height. It has a vertical root with thick roots and opposite leaves, divided into pointed leaflets reminiscent of those of the fern. Its small, pale pink flowers show a high crescent inflorescence. Its essential oils give off a characteristic smell. Valerian enjoys humid climates and is cultivated in all temperate regions of the globe. It is grown in central and eastern Europe by sowing in spring, while its root and rhizome, used in herbal medicine, are harvested after two years in the fall.",
+                "Anxiety, nervousness, stress, depression, sleep disorders, spasms and neuralgia, joint and muscle pain, high blood pressure due to stress.",
+                "0.84",
+                "Recruit",
+                "Valerianaceae",
+                "The name of valerian comes from the Latin valere which means \"to be well\". The characteristic odor of this plant, cultivated in Europe and North Asia, is at the origin of many legends and appellations. In the 1st century AD, in his De materia medica, reference work on more than six hundred medicinal plants, the Greek Dioscorides, doctor in the Roman army, pharmacologist and botanist, called phu, which means in Greek \"unpleasant smell\". It is this pronounced odor that is supposed to attract cats: hence the vernacular name of \"cat-weed\" given to this plant. Valerian has also been used since time immemorial by the Chinese and the Indians: the latter used its roots and used them to perfume their tobacco. In Greco-Roman antiquity, valerian is known for its soothing and relaxing virtues: Galen recognizes its sedative properties. In the Middle Ages, it is a universal remedy: hence its name \"cure-all\". It is used to fight against coughs, lack of breath, menstruation and vision disorders. It is also used to treat bruises and wounds, cuts and boils, as an antidote to poisons and as a cure for epilepsy. Nowadays, valerian is mainly used to soothe nervous disorders and to improve the quality of sleep. It is also an effective pain reliever for headaches and a relaxant used in case of muscle or joint pain.",
+                "Powders, tablets, capsules, decoctions, tinctures.",
+                "Common",
+                "Perennial",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
         Item h50 = new Item("Vanilla", "ic_vanilla", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h51 = new Item("Verbena", "ic_verbena", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h52 = new Item("Mint", "ic_mint", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
-        Item h53 = new Item("Lemon", "ic_lemon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h51 = new Item("Verbena", "ic_verbena", "Description", "Properties", "0.55", "Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
+        Item h52 = new Item(
+                "Mint",
+                "ic_mint",
+                "Mint is a very aromatic plant up to 80 cm tall. It belongs to the lamiaceae family. Its most used variety in herbal medicine is peppermint. It has a serrated structure with square rods. Its color is green and its harvest is carried out annually. It sows in the spring and is harvested in summer. It is found in Europe, Asia and North America.",
+                "Digestive disorders (difficult digestion, bloating, flatulence), inflammation of the respiratory system, joint pain, muscle pain or headache. Itchy skin or oral infection.",
+                "0.72",
+                "Recruit",
+                "Lamiaceae",
+                "Mint is one of the best known medicinal plants. Archaeologists have found mint leaves in Egyptian tombs. Its use is proven in the Greeks and Romans to relieve pain or purge patients. Fell into oblivion in the West, it only joined the traditional pharmacopoeia in the eighteenth century. Since then, it has been one of the first plants to be used extensively by the pharmaceutical industry. Menthol has become one of the classics of pharmacy stalls. We also find mint in a large number of candies, syrups or as a flavor intended to improve the taste of certain drugs.",
+                "Drying, tablets, capsules, sweets, oils, ointments, lotions, infusions, tinctures, decoctions",
+                "Common",
+                "Aromatic",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h53 = new Item(
+                "Lemon",
+                "ic_lemon",
+                "Lemon (or lemon) is a citrus, fruit of the lemon tree, whose juice has a pH of 2.5. The lemon tree (Citrus limon) is a shrub 5 to 10 meters high, evergreen, family Rutaceae.\n" +
+                        "\n" +
+                        "This ripe fruit has a bark that ranges from tender green to bright yellow under the action of the cold. Maturity is late autumn and early winter in the northern hemisphere. Its flesh is juicy, acidic and rich in vitamin C, which is worth it - with its easy conservation - to have been spread all over the planet by browsers who use it to prevent scurvy. From the bark is extracted an essential oil which contains among others limonene and citral substances.\n" +
+                        "\n" +
+                        "Sweet lemons are fruits of juice cultivars with little or no acid nevertheless classified Citrus limon (L.) Burm. f. (Tanaka classification).",
+                "Advertisements regarding the benefits of lemon may contain false, ambiguous or misleading health claims. Thus, lemon is lent all kinds of virtues: high in vitamin C, it would erase all fatigue, promote digestion, make white teeth, would be diuretic. In addition to its anti-infective, antiseptic and healing properties, it reduces cellulite (fat-burning food), slows down aging and even helps protect against cancer.\n" +
+                        "\n" +
+                        "Most of these claims are not scientifically proven. However, its richness in vitamin C promotes healing. The citric acid of the juice is antiseptic, hence the gargles with juice cut water in case of sore throat and the addition of a few drops of lemon juice in seafood eaten raw. The lemon rubbed on the teeth, instead of whitening them (eliminating the stains of tea, tobacco), attacks the enamel on which the repeated acidity can lead to demineralization of the teeth and create micropores sufficient to let the bacteria enter. origin of caries. Finally, this fruit remains interesting for health because of its richness in vitamin C, calcium, phosphorus and potassium whose assimilation is favored by citric acid.\n" +
+                        "\n" +
+                        "Lemon can even have significant adverse effects. Lemon, like all citrus fruit, is rich in furanocoumarines (psoralen, bergaptene, especially present in the pulp, these components are therefore more concentrated in fresh fruit juice than in pasteurized fruit juice) which can lead to photosensitization. High citrus consumption increases the risk of melanoma by 30%. Thus, the frequent consumption of fresh fruit juice would slow the progression of certain cancers but would favor that of the skin for people who do not protect themselves from the sun.",
+                "0.99",
+                "Recruit",
+                "Race",
+                "Phanias d'Eresa seems to make us suspect that lemon can derive its name from the word cedron.\n" +
+                        "\n" +
+                        "The origin of the yellow lemon has long remained unknown, notably because of its polymorphism and inter-varietal diversity. The researchers located his wild ancestor in the region of Assam, the Indo-Burmese region or China. Phylogenetic studies in 2016 show that he was born in the Mediterranean and comes from a hybrid between bigarade (or bitter orange) and citron around the 5th millennium BC. AD\n" +
+                        "\n" +
+                        "The lemon tree was originally used as an ornamental plant in recreational gardens in the Middle Ages, including Islamic gardens. The lemon is gradually introduced into the medieval diet where it is used as an acid fund intended essentially for the development of raw vegetables or seasoning any food in the same way as verjuice, vinegar or orange juice. However, it is likely that it has been used as a technique for preserving meat with acid since ancient times.",
+                "Cakes, pies, juices, zests, infusions, essential oils.",
+                "Common",
+                "Fruit",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h54 = new Item(
+                "Cayenne Pepper",
+                "ic_cayenne_pepper",
+                "There are two main varieties of the plant, one American and the other African. The African variety is the most pungent, with its small yellow red pods. And it is with capsaicin, active ingredient of Cayenne Pepper that we owe the majority of the virtues of the plant.",
+                "The plant has a nutritional nutritional value, but a medicinal value too. Its ancestral medical uses range from healing ulcers (stimulating gastrointestinal secretions), congestion and colds, to neuralgia, low back pain, high blood pressure, indigestion, and even kidney problems. In addition to this, cayenne pepper is a stimulant and activator. That is, it improves the metabolism, and makes the benefits of other substances, including herbs, effective for the body.\n" +
+                        "\n" +
+                        "The plant is also anti-fungal. Some studies show efficacy against diabetes.\n" +
+                        "\n" +
+                        "The contraindications are not numerous, mainly allergy to this plant, hemorrhoids, hypertension, and gastritis.",
+                "0.30",
+                "Recruit",
+                "Race",
+                "The Aztecs gave the Cayenne the name of Chili. The natives of Equatorial America, where the plant comes from, know the culinary and medicinal virtues of its fruits since at least 9000 years. Archaeologists believe that it was already cultivated in Mexico about 7,000 years ago.\n" +
+                        "\n" +
+                        "It was Dr. Diego Alvarez Chanca, a companion of Christopher Columbus, who introduced the plant to the Europeans, following a famous voyage of exploration that ended in India, but ended in the Caribbean. From the European continent, fruits migrated rapidly to all equatorial regions of the globe and were adopted by many cultures in Asia, the Middle East and Africa, as well as in southern Europe, especially in southern Italy. In fact, few spices are known to be so universally widespread.\n" +
+                        "\n" +
+                        "The Cayenne pepper enjoys an enviable reputation in all its cultures for its digestive and therapeutic virtues, and the humans who live in the tropics have quickly understood that it allows the body to better withstand the intense heat that occurs in these latitudes.\n" +
+                        "\n" +
+                        "Among the therapeutic uses attributed to it in these different traditions, modern medicine has mainly retained the analgesic effects of capsaicin, the substance which gives the Cayenne pepper its characteristic piquant flavor. However, it seems that the virtues of cayenne are more varied and numerous than the topical uses currently recognized in the West.",
+                "Exotic cuisine, sauce, marinade, infusions",
+                "Common",
+                "Chilli Pepper",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h55 = new Item(
+                "Lime",
+                "ic_lime",
+                "The lime tree is a wild and ornamental tree about 15 to 30 m tall, deciduous, whose flowers are light yellow. Tree very present in Europe and Asia Minor, it grows wild in various spaces: forests, fields, but also in the gardens. The trunk is rather short and its summit is very ramified. Its summer bloom allows the harvest of its flowers, grouped in the form of bunches and particularly fragrant. The leaves, deciduous, are light green, toothed and heart-shaped. The inside of the leaves is covered with a fine down, along the veins. The fruits of the lime tree are in the form of small capsules. The lime trees can live up to four hundred years.\n",
+                "The lime tree is known for its tranquilizing effects. It reduces stress and improves anxiety states and sleep disorders. It also helps to lower blood pressure and has diuretic effects. Other usual uses are the relief of digestive disorders such as spasms and the symptoms of colds.",
+                "0.95",
+                "Recruit",
+                "Tiliaceae",
+                "Throughout the ages, we find evidence of preparations made from flowers or peel cooked, crushed and mixed with culinary preparations. Linden has always been used for its sedative and soothing properties. The best-known form is the herbal tea, made from dried flowers and leaves, which has been used since the 16th century. As early as 1709, the king 's doctor wrote that \"a decoction of linden wood, especially young branches, relieves hydropics\" (patients suffering from edema or heart failure). During the Second World War, dried linden leaves were sifted into flour, appreciated for its nutritional qualities and its protein intake. With 1 kg of fresh leaves, 300 g of flour were obtained. Linden is now one of the most popular medicinal plants in France. Since the nineteenth century, there is in France an industrial production of linden flowers, for herbal medicine and marketed in various forms.\n",
+                "Infusions, decoctions, mother tinctures, aqueous extracts, homeopathic dilutions, honey, capsules",
+                "Common",
+                "Tree",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
+        Item h56 = new Item(
+                "Lemon Verbena",
+                "ic_lemon_verbena",
+                "The fragrant verbena is a small shrub with a main stem woody, 1 to 3 m high, deciduous.\n" +
+                        "\n" +
+                        "Leaves lanceolate, pointed, almost sessile (petiole very short), pale green and arranged by 3. They exhale a strong smell of lemon when crumpled.\n" +
+                        "\n" +
+                        "The small flowers, white or pale mauve, are grouped in loose spikes about 10 cm long. They do not grow in Europe.\n" +
+                        "\n" +
+                        "The main components in citronella verbena oil are citral (30-35%), nerol and geraniol.",
+                "Nervous fatigue: anxiety, anxiety, stress, mild depression and related gastrointestinal disorders. Difficult digestions and gastric disturbances.",
+                "0.96",
+                "Recruit",
+                "Verbenaceae",
+                "The first European botanist who noticed lemon verbena was Frenchman Philibert Commerson, who in 1767 took a specimen from Buenos Aires during his botanical circumnavigation trip with Bougainville. However, the plant had previously been discreetly imported directly to Real Botanical Garden of Madrid, where in 1797 the teachers Casimiro Gómez de Ortega and Antonio Palau y Verdera, without devoting him an official publication, give him the name Aloysia citrodora in Latin and Hierba Princesa (Herb of the Princess) in Spanish, in honor of Marie-Louise of Parma, Princess of Asturias, the wife of Infant Charles de Bourbon, owner of the garden and son of King Charles III. This name is actually published in the first volume of Parte Práctica de Botánica de Palau in 1784.\n" +
+                        "\n" +
+                        "Lemon verbena is also brought back from Peru by the French naturalist Joseph Dombey (1742-1795), who manages to introduce it in Europe with difficulty. Dombey did not even obtain permission from the Spanish authorities to plant seeds and when his collections of American plants were landed in Cadiz in 1785, they were seized and left to rot in the warehouses. He manages to survive a lemongrass verbena plant, with some other plants harvested during eight years in Peru. The botanist Deleuze, will report later the discovery in these terms:\n" +
+                        "\n" +
+                        "\"Of all the plants that Dombey has made known to us, the most interesting is the verbena with lemon scent (verbena triphylla L'Her.). This shrub, which rises to 15 feet, is of all the plants which can be cultivated in Europe, the one whose foliage has the most delicious perfume. In Paris one is obliged to shelter it in the orangery during the strong frosts; in more temperate climates, it spends the winter in the ground. Already we see hedges at Florence, and M. de Ruffo has cultivated it successfully in the department of Basses-Alpes. When it is more widespread in the south of France, it will line the roads and form small groves that, by the elegance of the shrubs, the lightness of their panicles of flowers of a gray of linen, the green cheerful their foliage, and especially their sweet and vivifying perfume, will appear much preferable to the myrtle groves so much celebrated by the poets. The dried leaves retain all their odor, and the infusion is very pleasant and salutary. If, as some authors have thought, this shrub must be separated from verbenas, and make a genus apart, it is to him that we would like to be called Dombey. \"\n" +
+                        "\n" +
+                        "At the same time Gómez Ortega sends seeds and specimens of the plant to Charles Louis L'Héritier de Brutelle in Paris, who publishes it under the name Verbena triphylla in the second issue of his stirpes Novae in December 1785 or January 1786 From Paris, John Sibthorpe, a professor of botany at Oxford, gets a specimen he introduces into British horticultural circles: in 1797 lemongrass verbena is spread in greenhouses around London and its popularity as a essence of scented bouquets grows during the next century. They win the Royal Horticultural Society's Award of Garden Merit.",
+                "Infusions, essential oil",
+                "Common",
+                "Shrub",
+                0,
+                "",
+                "",
+                "",
+                0,
+                "herb");
 
-        Item r1 = new Item("Herbal Brew", "ic_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
-        Item r2 = new Item("Ointment", "ic_ointment", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
-        Item r3 = new Item("Soup", "ic_soup", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
-        Item r4= new Item("Cake", "ic_cake", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
+        Item r1 = new Item(
+                "Diurectic Tea",
+                "ic_diuretic_tea",
+                "Pour a cup of boiling water over the green tea and herbs, then let infuse 3 minutes. Filter in the cup. Sugar with honey if you want, stir and sip.",
+                "Green tea is beneficial for chronic coughs, colds and sore throats. It stimulates cellular regeneration.",
+                "10.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "1 Green Tea, 3 Mint, 1 Lemon Verbena, 1 Lemon, 1 Honey, 1 Sugar",
+                "Easy",
+                "Weak, Sore throat, Cough",
+                1,
+                "recipe");
+        Item r2 = new Item(
+                "Soothing Tea",
+                "ic_soothing_tea",
+                "Pour a cup of boiling water over the ginger before crushing it with the back of a spoon. Add the remaining ingredients and stir. Let infuse 5 minutes. Filter into the cup and sip.",
+                "This herbal tea is excellent in case of colds. Cayenne pepper is a fabulous antiseptic for the throat. Sip 3 cups of herbal tea a day for 2 days.",
+                "15.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "6 Ginger, 2 Lemon, 2 Honey, 1 Cayenne Pepper",
+                "Easy",
+                "Cough, Headache, Runny nose",
+                1,
+                "recipe");
+        Item r3 = new Item(
+                "Relaxing Tea",
+                "ic_relaxing_tea",
+                "This relaxing infusion has a relaxing and anti-stress effect. It is effective against muscle tension and spasms",
+                "Pour a cup of boiling water over linden, lavender, ginger and cardamom. Let infuse 5 minutes. Filter into the cup, add the honey and stir. Drink slowly.",
+                "7.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "1 Lime, 2 Ginger, 1 Lavender, 1 Cardamom, 1 Honey",
+                "Easy",
+                "Tired, Nervous, Tensed, Stressed, Muscle Pain",
+                1,
+                "recipe");
+        Item r4 = new Item(
+                "Rejuvenating Infusion",
+                "ic_rejuvenating_infusion",
+                "Pour two cups of boiling water over the rosemary. Let infuse 7 minutes, then add the honey and stir. Filter. Sip a half cup of this tonic, hot or cold, 4 times a day.",
+                "Pure rosemary toner has a beneficial effect on the physical appearance",
+                "3.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "1 Rosemary, 1 Honey",
+                "Easy",
+                "None",
+                1,
+                "recipe");
+        Item r5 = new Item(
+                "Calming Infusion",
+                "ic_calming_infusion",
+                "Versez deux tasses d'eau bouillante sur les ingrédients et laissez infuser 8 minutes. Filtrez puis remuez. Buvez à petites gorgées une demi-tasse de ce tonifiant, chaud ou froid, 4 fois par jour.",
+                "Thanks to its relaxing effects, this toner helps you to have a good night's sleep.",
+                "3.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "1 Lavender, 1 Valerian, 1 Honey",
+                "Easy",
+                "None",
+                1,
+                "recipe");
 
-        Item o1 = new Item("Water", "ic_water", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
-        Item o2 = new Item("Milk", "ic_milk", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
-        Item o3 = new Item("Rhum", "ic_rhum", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
-        Item o4 = new Item("Sugar", "ic_sugar", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "other");
+        Item o1 = new Item(
+                "Water",
+                "ic_water",
+                "Water is a chemical substance made up of H2O molecules. This compound is very stable and nevertheless very reactive. In many contexts the term water is used in the restricted sense of water in the liquid state, and it is also used to designate a dilute aqueous solution (fresh water, drinking water, sea water, lime water, etc.). . Liquid water is an excellent solvent.\n" +
+                        "\n" +
+                        "Water is ubiquitous on Earth and in the atmosphere, in its three states, solid (ice), liquid and gaseous (water vapor). Extraterrestrial water is also abundant, in the form of water vapor in space and in condensed form (solid or liquid) on the surface, near the surface or inside a large number of celestial objects. .\n" +
+                        "\n" +
+                        "Water is an important biological constituent, and liquid water is essential for all known living organisms. Given its vital nature, its importance in the economy and its unequal distribution on Earth, water is a natural resource whose management is subject to strong geopolitical issues.",
+                "The human body needs about 2.5 liters of water per day (1.5 liters in liquid form and 1 liter in absorbed food), more in case of physical exercise or heat; it is not necessary to wait until you are thirsty to absorb it, especially for pregnant women and for the elderly in whom the feeling of thirst is delayed. Without water, death occurs after 2 to 5 days, without any effort (40 days without food at rest).",
+                "0.10",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "",
+                "",
+                "",
+                1,
+                "other");
+        Item o2 = new Item(
+                "Milk",
+                "ic_milk",
+                "Milk is a generally whitish, edible biological fluid produced by the mammary glands of female mammals. Rich in lactose, it is the main source of nutrients for young mammals before they can digest other types of foods. Milk in early lactation contains colostrum, which carries the mother's antibodies to reduce the risk of many diseases in the newborn. It also contains many other nutrients.\n" +
+                        "\n" +
+                        "The man uses the milk produced by some domestic mammals, mainly that of the cow, as a food. Around the world, dairy farms produced around 730 million tonnes of milk in 2011, consumed in India, Europe, Australia, the United States, China and Russia.",
+                "The milk contains calcium which is present in a form allowing an intestinal absorption of the order of 30%. Calcium helps to ensure bone strength and protect against osteoporosis provided you do not run out of vitamin D that absorbs the calcium ingested. Calcium is also present in many common foods such as cabbage or dried fruits. For a balanced diet, dairy products are not essential. The recommended daily intakes (RDA) of calcium are 800 mg in the European Union. However, according to the nutrition department of the Harvard School of Public Health, the right amount of calcium in our diet has yet to be determined. The WHO notes that 500 mg values \u200B\u200Bdo not always lead to deficiency, especially in developing countries.\n" +
+                        "\n" +
+                        "Milk provides protein, vitamins and trace elements, including zinc and selenium, and omega-3s.\n" +
+                        "\n" +
+                        "In 2011, a meta-analysis found no association between milk consumption and protection against hip fractures in adults and the elderly.",
+                "0.30",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "",
+                "",
+                "",
+                1,
+                "other");
+        Item o3 = new Item(
+                "Rhum",
+                "ic_rhum",
+                "Rum (English: rum, Spanish: ron) is a brandy originating in the Americas, processed from sugar cane or by-products of the sugar industry. It is consumed white, aged in barrel (old rum) or spicy. It then takes an amber color more or less dark. Depending on the products used during its preparation, it can be called agricultural or industrial.",
+                "Rum, like any other alcohol, gives us a feeling of warmth and well-being. In addition, it would help fight infection and reduce inflammation through its energy intake. However, its action is decried by some because its effects do not last long, and the alcohol does not have that good sides: it will end up cooling and tired the body.",
+                "1.00",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "Protocol",
+                "",
+                "",
+                1,
+                "other");
+        Item o4 = new Item(
+                "Sugar",
+                "ic_sugar",
+                "Sugar is a sweet-flavored substance extracted mainly from sugar cane and sugar beet. Sugar is a molecule of sucrose (glucose + fructose).\n" +
+                        "\n" +
+                        "The term \"sugar\" comes from the Italian term \"zucchero\", itself borrowed from the Arabic \"sukkar\" (سكر), a word of Indian origin, in Sanskrit \"çârkara\".\n" +
+                        "\n" +
+                        "It is also possible to obtain sugar from other plants.\n" +
+                        "\n" +
+                        "However, other compounds from the same family of saccharides also have a mild flavor: glucose, fructose ... which are increasingly used by the agri-food industry and in other sectors. On a nutrition label, the term \"sugars\" (with an S) refers to all \"sweet\" carbohydrates with a sweetening power, mainly fructose, sucrose, glucose, maltose and lactose. The other carbohydrates with a sweetening power are \"polyols\" (sorbitol, maltitol, mannitol) but they are now labeled separately, as \"polyalcohols\", which are carbohydrates but not sugars.",
+                "Glucose: It is a sugar consisting of a single molecule. It is in the form of a white powder. Glucose has a low sweetening power, from 70 to 75. It is therefore much less used in the food industry. Instead, it is used as a bulking agent (= food product that weighs a food or a preparation without changing its energy value) (in the form of concentrated syrup, for example). Glucose is ubiquitous in our blood. It comes mainly from ingested carbohydrates or sugar in food.\n" +
+                        "\n" +
+                        "Fructose: It is an ose (simple non-hydrolysable sugar). It is used as a sweetener in biscuits and industrial pastries. By its high sweetening power (130 to 150), fructose allows, for a given sweet level, to reduce the total amount of carbohydrates and reduce energy intake. But its excessive consumption is associated with an increased risk of cardiovascular disease.",
+                "0.10",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "",
+                "",
+                "",
+                1,
+                "other");
+        Item o5 = new Item(
+                "Honey",
+                "ic_honey",
+                "Honey is a sweet substance made by honey bees from nectar or honeydew. They store it in the hive and feed on it throughout the year, especially during bad weather. It is also consumed by other animal species, including the human species that organizes its production by raising honey bees.",
+                "The consumption of honey and brood (bee larvae naturally contained in unfiltered honey) may have been useful to the evolution of man, especially the development of his brain, honey containing a significant amount of protein and of fats. Rock paintings show that the first men \"hunted\" bee hives. Today, the Hadza people have kept this tradition and enjoy mutualism with a local wild bird to help them find hives. The Hadzas thus spend, during the rainy season, 4 to 5 hours a day to look for honey.",
+                "0.95",
+                "Recruit",
+                "",
+                "",
+                "",
+                "",
+                "",
+                1,
+                "",
+                "",
+                "",
+                1,
+                "other");
 
-        db.itemDAO().insertItem(h1);
-        db.itemDAO().insertItem(h2);
-        db.itemDAO().insertItem(h3);
-        db.itemDAO().insertItem(h4);
-        db.itemDAO().insertItem(h5);
-        db.itemDAO().insertItem(h6);
-        db.itemDAO().insertItem(h7);
+        //db.itemDAO().insertItem(h1);
+        //db.itemDAO().insertItem(h2);
+        //db.itemDAO().insertItem(h3);
+        //db.itemDAO().insertItem(h4);
+        //db.itemDAO().insertItem(h5);
+        //db.itemDAO().insertItem(h6);
+        //db.itemDAO().insertItem(h7);
         db.itemDAO().insertItem(h8);
-        db.itemDAO().insertItem(h9);
-        db.itemDAO().insertItem(h10);
-        db.itemDAO().insertItem(h11);
-        db.itemDAO().insertItem(h12);
-        db.itemDAO().insertItem(h13);
-        db.itemDAO().insertItem(h14);
-        db.itemDAO().insertItem(h15);
-        db.itemDAO().insertItem(h16);
-        db.itemDAO().insertItem(h17);
-        db.itemDAO().insertItem(h18);
-        db.itemDAO().insertItem(h19);
+        //db.itemDAO().insertItem(h9);
+        //db.itemDAO().insertItem(h10);
+        //db.itemDAO().insertItem(h11);
+        //db.itemDAO().insertItem(h12);
+        //db.itemDAO().insertItem(h13);
+        //db.itemDAO().insertItem(h14);
+        //db.itemDAO().insertItem(h15);
+        //db.itemDAO().insertItem(h16);
+        //db.itemDAO().insertItem(h17);
+        //db.itemDAO().insertItem(h18);
+        //db.itemDAO().insertItem(h19);
         db.itemDAO().insertItem(h20);
-        db.itemDAO().insertItem(h21);
+        //db.itemDAO().insertItem(h21);
         db.itemDAO().insertItem(h22);
-        db.itemDAO().insertItem(h23);
-        db.itemDAO().insertItem(h24);
-        db.itemDAO().insertItem(h25);
-        db.itemDAO().insertItem(h26);
-        db.itemDAO().insertItem(h27);
-        db.itemDAO().insertItem(h28);
-        db.itemDAO().insertItem(h29);
-        db.itemDAO().insertItem(h30);
+        //db.itemDAO().insertItem(h23);
+        //db.itemDAO().insertItem(h24);
+        //db.itemDAO().insertItem(h25);
+        //db.itemDAO().insertItem(h26);
+        //db.itemDAO().insertItem(h27);
+        //db.itemDAO().insertItem(h28);
+        //db.itemDAO().insertItem(h29);
+        //db.itemDAO().insertItem(h30);
         db.itemDAO().insertItem(h31);
-        db.itemDAO().insertItem(h32);
-        db.itemDAO().insertItem(h33);
+        //db.itemDAO().insertItem(h32);
+        //db.itemDAO().insertItem(h33);
         db.itemDAO().insertItem(h34);
-        db.itemDAO().insertItem(h35);
-        db.itemDAO().insertItem(h36);
-        db.itemDAO().insertItem(h37);
-        db.itemDAO().insertItem(h38);
-        db.itemDAO().insertItem(h39);
+        //db.itemDAO().insertItem(h35);
+        //db.itemDAO().insertItem(h36);
+        //db.itemDAO().insertItem(h37);
+        //db.itemDAO().insertItem(h38);
+        //db.itemDAO().insertItem(h39);
         db.itemDAO().insertItem(h40);
-        db.itemDAO().insertItem(h41);
-        db.itemDAO().insertItem(h42);
-        db.itemDAO().insertItem(h43);
-        db.itemDAO().insertItem(h44);
-        db.itemDAO().insertItem(h45);
+        //db.itemDAO().insertItem(h41);
+        //db.itemDAO().insertItem(h42);
+        //db.itemDAO().insertItem(h43);
+        //db.itemDAO().insertItem(h44);
+        //db.itemDAO().insertItem(h45);
         db.itemDAO().insertItem(h46);
-        db.itemDAO().insertItem(h47);
-        db.itemDAO().insertItem(h48);
+        //db.itemDAO().insertItem(h47);
+        //db.itemDAO().insertItem(h48);
         db.itemDAO().insertItem(h49);
-        db.itemDAO().insertItem(h50);
-        db.itemDAO().insertItem(h51);
+        //db.itemDAO().insertItem(h50);
+        //db.itemDAO().insertItem(h51);
         db.itemDAO().insertItem(h52);
         db.itemDAO().insertItem(h53);
+        db.itemDAO().insertItem(h54);
+        db.itemDAO().insertItem(h55);
+        db.itemDAO().insertItem(h56);
 
         db.itemDAO().insertItem(r1);
         db.itemDAO().insertItem(r2);
         db.itemDAO().insertItem(r3);
         db.itemDAO().insertItem(r4);
+        db.itemDAO().insertItem(r5);
 
         db.itemDAO().insertItem(o1);
         db.itemDAO().insertItem(o2);
         db.itemDAO().insertItem(o3);
         db.itemDAO().insertItem(o4);
+        db.itemDAO().insertItem(o5);
+
     }
 
     public void initVillager(DAOBase db){

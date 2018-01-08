@@ -17,7 +17,9 @@ public enum Symptoms {
     RUNNYNOSE("Runny nose", "Nez encombré"),
     COUGH("Cough", "Toux"),
     WATERYEYES("Watery Eyes", "Yeux larmoyants"),
-    SORETHROAT("Sore throat", "Mal de gorge");
+    SORETHROAT("Sore throat", "Mal de gorge"),
+    WEAK("Weak", "Faible"),
+    NONE("None", "Aucun");
 
     private String en = "";
     private String fr = "";
