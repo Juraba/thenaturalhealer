@@ -689,7 +689,7 @@ public class DatabaseLoad implements Runnable {
         Item h52 = new Item("Mint", "ic_mint", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
         Item h53 = new Item("Lemon", "ic_lemon", "Description", "Properties", "0.55","Recruit", "Race", "History", "Combination", "Common", "Aromatic", 0, "", "", "", 0, "herb");
 
-        Item r1 = new Item("Herbal Brew", "ic_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1, "Protocol", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
+        Item r1 = new Item("Herbal Brew", "ic_herbal_brew", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 1,  "1 Lemon, 3 Thyme, 1 Sage, 1 Water, 2 Rhum", "Easy", "Nervous, Muscle Pain, Stressed, Tensed, Tired", 1, "recipe");
         Item r2 = new Item("Ointment", "ic_ointment", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
         Item r3 = new Item("Soup", "ic_soup", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
         Item r4= new Item("Cake", "ic_cake", "Description", "Properties", "10.00","Recruit", "", "", "", "", "", 0, "Protocol", "Easy", "Cough, Headache, Runny nose", 1, "recipe");
