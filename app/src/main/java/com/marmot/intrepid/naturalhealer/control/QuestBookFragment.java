@@ -84,7 +84,7 @@ public class QuestBookFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quest_book, container, false);
 
@@ -117,7 +117,7 @@ public class QuestBookFragment extends Fragment {
 
             for (int j = 0; j < villagerQuests.size(); j++) {
                 if (villagerQuests.get(j).getType() == QuestType.MAIN) {
-                    if (mainQuestList != null) {
+                    if (mainQuestList.size() != 0) {
                         boolean check = false;
                         int k=0;
                         while (!check && (k < mainQuestList.size())) {
@@ -204,7 +204,7 @@ public class QuestBookFragment extends Fragment {
                 for (int i = 0; i < villagers.size(); i++) {
                     ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
                     for (int j = 0; j < villagerQuests.size(); j++) {
-                        if (value == villagerQuests.get(j).getName()) {
+                        if (villagerQuests.get(j).getName().equals(value)) {
                             intent.putExtra("quest", villagerQuests.get(j).getName());
                         }
                     }
@@ -246,7 +246,7 @@ public class QuestBookFragment extends Fragment {
                 for (int i = 0; i < villagers.size(); i++) {
                     ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
                     for (int j = 0; j < villagerQuests.size(); j++) {
-                        if (value == villagerQuests.get(j).getName()) {
+                        if (villagerQuests.get(j).getName().equals(value)) {
                             intent.putExtra("quest", villagerQuests.get(j).getName());
                         }
                     }
@@ -288,7 +288,7 @@ public class QuestBookFragment extends Fragment {
                 for (int i = 0; i < villagers.size(); i++) {
                     ArrayList<Quest> villagerQuests = villagers.get(i).getQuests();
                     for (int j = 0; j < villagerQuests.size(); j++) {
-                        if (value == villagerQuests.get(j).getName()) {
+                        if (villagerQuests.get(j).getName().equals(value)) {
                             intent.putExtra("quest", villagerQuests.get(j).getName());
                         }
                     }

@@ -146,7 +146,7 @@ public class ShopFragment extends Fragment {
         }
 
         //Taille de référence
-        BitmapDrawable bd=(BitmapDrawable) this.getResources().getDrawable(R.mipmap.ic_water);
+        BitmapDrawable bd =(BitmapDrawable) this.getResources().getDrawable(R.mipmap.ic_water);
         float density = getContext().getResources().getDisplayMetrics().density;
 
         int imageWidth = bd.getBitmap().getWidth();
