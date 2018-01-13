@@ -50,21 +50,27 @@ public class DatabaseSave implements Runnable{
         HashMap<String, Quest> questbook = player.getQuests();
         for(HashMap.Entry<String, Quest> entry : questbook.entrySet()){
             QuestBook q = new QuestBook(0, player.getNickname(), entry.getKey(), entry.getValue().getName());
+            /*
             System.out.println(player.getNickname());
             System.out.println(entry.getKey());
             System.out.println(entry.getValue().getName());
+            */
             db.questBookDAO().insertOrUpdate(q);
         }
     }
 
     public void saveVillager(DAOBase db, ArrayList<Villager> villagers){
+        System.out.println("======== SAVE VILLAGER FROM DATABASESAVE ========");
         for(Villager v : villagers){
             db.villagerDAO().insertOrUpdate(v);
+            System.out.println(v.getName());
             ArrayList<Quest> vQuests = v.getQuests();
             for(Quest q : vQuests){
                 QuestList ql = new QuestList(0,v.getName(), q.getName());
                 db.questListDAO().insertOrUpdate(ql);
                 db.questDAO().insertOrUpdate(q);
+
+                System.out.println("q : " + q.getName());
 
                 HashMap<Item, Integer> requirements = q.getRequirements();
                 for(HashMap.Entry<Item, Integer> r : requirements.entrySet()){

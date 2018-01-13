@@ -212,7 +212,6 @@ public class DatabaseLoad implements Runnable {
                     while(!found && k < quests.size()){ //Adding each item in player's inventory
                         if(questlists.get(j).getQuestName().equals(quests.get(k).getName())){
                             villagers.get(i).addQuest(quests.get(k));
-                            System.out.println(k + " : " + quests.get(k).getName());
                             found = true;
                         }
                         k++;
