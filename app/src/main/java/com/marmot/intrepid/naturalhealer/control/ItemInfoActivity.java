@@ -136,12 +136,7 @@ public class ItemInfoActivity extends AppCompatActivity {
 
                 String item = bundle.get("item").toString();
 
-                System.out.println("ITEM VALUE AFTER : " + item);
-
                 final ArrayList<Item> items = game.getItems();
-
-                final HashMap<Item, Integer> inventory = game.getPlayer().getInventory();
-
                 String itemName = "";
 
                 for (int i = 0; i < items.size(); i++) {

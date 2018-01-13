@@ -63,6 +63,7 @@ public class DatabaseLoad implements Runnable {
         //Loading game data from database
         ArrayList<com.marmot.intrepid.naturalhealer.model.Item> items = loadItems(db);
         ArrayList<Quest> quests = loadQuests(db, items);
+        System.out.println(" ====== RUN ====== ");
         ArrayList<Villager> villagers = loadVillagers(db, quests);
         ArrayList<Player> players = loadPlayers(db, items, quests);
 
@@ -198,24 +199,28 @@ public class DatabaseLoad implements Runnable {
             villager = new Villager(it.getName(), it.getPicName());
             villagers.add(villager);
         }
+
         //--Loading villagers questlist--
+
         List<QuestList> questlists = db.questListDAO().getAll();
-        for(int i=0; i < villagers.size(); i++){ //Loop on all players
-            for(int j=0; j < questlists.size(); j++){ //Loop on all questbooks
+
+        for(int i = 0; i < villagers.size(); i++){ //Loop on all players
+            for (int j = 0; j < questlists.size(); j++) {
                 if(villagers.get(i).getName().equals(questlists.get(j).getVillagerName())){
                     int k = 0;
                     boolean found = false;
                     while(!found && k < quests.size()){ //Adding each item in player's inventory
                         if(questlists.get(j).getQuestName().equals(quests.get(k).getName())){
                             villagers.get(i).addQuest(quests.get(k));
+                            System.out.println(k + " : " + quests.get(k).getName());
                             found = true;
                         }
                         k++;
                     }
-
                 }
             }
         }
+
         return villagers;
     }
 
@@ -1200,15 +1205,14 @@ public class DatabaseLoad implements Runnable {
         db.itemDAO().insertItem(o3);
         db.itemDAO().insertItem(o4);
         db.itemDAO().insertItem(o5);
-
     }
 
     public void initVillager(DAOBase db){
-        Villager v1 = new Villager("Mme.SEGUIN", "seguin.png");
-        Villager v2 = new Villager("M.LE MAIRE", "lemaire.png");
-        Villager v3 = new Villager("Mme.ROSSIGNOL", "rossignol.png");
-        Villager v4 = new Villager("M.BROSSARD", "brossard.png");
-        Villager v5 = new Villager("M.RABAULT", "rabault.png");
+        Villager v1 = new Villager("Mrs.ROWLAND", "ic_rowland");
+        Villager v2 = new Villager("Mr.HOOVER", "ic_hoover");
+        Villager v3 = new Villager("Mr.HARRIS", "ic_harris");
+        Villager v4 = new Villager("Mrs.HAYNES", "ic_haynes");
+        Villager v5 = new Villager("Mr.FERGUSON", "ic_ferguson");
 
         db.villagerDAO().insertVillager(v1);
         db.villagerDAO().insertVillager(v2);
@@ -1218,10 +1222,39 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initQuest(DAOBase db){
-        Quest q1 = new Quest("Douleurs musculaires", "Madame SEGUIN a des douleurs musculaires dues à sa vieillesse, trouvez de quoi la soulager !", "Main",500, 10, "true", "");
-        Quest q2 = new Quest("Stress intense", "Monsieur LE MAIRE est très stressé à cause de son travail, aidez-le à retrouver sa sérénité", "Daily", 500, 10, "true", "Daily");
-        Quest q3 = new Quest("Sommeil fuyard", "Monsieur LE MAIRE a du mal à trouver le sommeil ces derniers temps, auriez-vous de quoi l'apaiser ?", "Main",500,10,"true", "Main");
-        Quest q4 = new Quest("Mal de tête", "Madame ROSSIGNOL subit un affreux mal de tête au travail depuis quelques temps, essayez de stopper cet enfer !", "Main", 500, 10, "true", "Main");
+
+        Quest q1 = new Quest(
+                "Stress & Muscle Tension",
+                "Mrs.HAYNES is a young medical student. It's been a few months since she began her first year and the steady pace of this training as well as the endless hours of hard work have gradually created stress in her. Today, she complains of muscle tension due to stress. Find a way to calm those tensions and lower your stress level.",
+                "Main",
+                500,
+                10,
+                "true",
+                "");
+        Quest q2 = new Quest(
+                "Sleeping Problem",
+                "Mrs.HAYNES needs you again! Her stress has dropped since you last met and she continues to follow your directions. However, the training requires so much work that she sacrificed many hours of sleep and completely disrupted her sleep pattern. Give him a treatment to facilitate falling asleep to make him gradually regain a normal rhythm.",
+                "Daily",
+                500,
+                10,
+                "true",
+                "Daily");
+        Quest q3 = new Quest(
+                "Bad Dreams",
+                "Mr FERGUSON is a former soldier. He returned to the country following a war injury. But for some time, he's haunted by what happened. He keeps on having nightmares and his sleep becomes really disturbed. Tired, Mr FERGUSON is struggling to live his everyday life and to heal from his wounds. Find a way to appease him so that he can finally take advantage of his early retirement.",
+                "Main",
+                500,
+                10,
+                "true",
+                "Main");
+        Quest q4 = new Quest(
+                "Headhache & Back Pain",
+                "Mrs.ROWLAND is an office clerk in finance. She sits in front of a screen from 8 am to 7 pm and has only 2 hours break in the day. This lack of activity and hours spent in front of a computer create a malaise that she can not get rid of. She complains of headaches and back pain that have a very negative impact on her morale. Can you help her deal with these issues so she can feel better every day?",
+                "Main",
+                500,
+                10,
+                "true",
+                "Main");
 
         db.questDAO().insertQuest(q1);
         db.questDAO().insertQuest(q2);
@@ -1230,18 +1263,18 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initQuestBook(DAOBase db){
-        QuestBook q1 = new QuestBook(0, "Jean-Michel Druide", "M.LE MAIRE", "Mal de tête");
-        QuestBook q2 = new QuestBook(0, "Jean-Michel Druide", "Mme.ROSSIGNOL", "Stress intense");
+        QuestBook q1 = new QuestBook(0, "Jean-Michel Druide", "Mrs.HAYNES", "Stress & Muscle Tension");
+        QuestBook q2 = new QuestBook(0, "Jean-Michel Druide", "Mr.FERGUSON", "Bad Dreams");
 
         db.questBookDAO().insertQuestBook(q1);
         db.questBookDAO().insertQuestBook(q2);
     }
 
     public void initQuestList(DAOBase db){
-        QuestList q1 = new QuestList(0, "M.LE MAIRE", "Stress intense");
-        QuestList q2 = new QuestList(0, "Mme.ROSSIGNOL", "Mal de tête");
-        QuestList q3 = new QuestList(0, "M.LE MAIRE", "Sommeil fuyard");
-        QuestList q4 = new QuestList(0, "M.BROSSARD", "Douleurs musculaires");
+        QuestList q1 = new QuestList(0, "Mrs.HAYNES", "Stress & Muscle Tension");
+        QuestList q2 = new QuestList(0, "Mr.FERGUSON", "Bad Dreams");
+        QuestList q3 = new QuestList(0, "Mrs.HAYNES", "Sleeping Problem");
+        QuestList q4 = new QuestList(0, "Mrs.ROWLAND", "Headhache & Back Pain");
 
         db.questListDAO().insertQuestList(q1);
         db.questListDAO().insertQuestList(q2);
@@ -1260,9 +1293,9 @@ public class DatabaseLoad implements Runnable {
     }
 
     public void initRequirements(DAOBase db){
-        Requirements r1 = new Requirements(0, "Douleurs musculaires","Honey", 15);
-        Requirements r2 = new Requirements(0, "Douleurs musculaires","Rosemary", 4);
-        Requirements r3 = new Requirements(0, "Mal de tête","Soothing Tea", 2);
+        Requirements r1 = new Requirements(0, "Stress & Muscle Tension","Honey", 15);
+        Requirements r2 = new Requirements(0, "Stress & Muscle Tension","Rosemary", 4);
+        Requirements r3 = new Requirements(0, "Headhache & Back Pain","Soothing Tea", 2);
 
         db.requirementsDAO().insertRequirements(r1);
         db.requirementsDAO().insertRequirements(r2);

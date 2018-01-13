@@ -105,9 +105,9 @@ public class Player {
         this.quests.put(villagerName, quest);
     }
 
-    public void cancelQuest(Quest quest){
+    public void cancelQuest(String villager, Quest quest){
         if (quest.isCancelable()) {
-            this.quests.remove(quest);
+            this.quests.remove(villager);
         } else {
             //Mettre un mécanisme qui ne retire pas la quête mais sort un toast qui dit qu'on peut pas supprimer la quête
         }
