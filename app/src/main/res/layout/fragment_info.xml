@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="172dp"
             android:layout_gravity="top"
+            android:scaleType="centerCrop"
             android:src="@drawable/banniere" />
 
         <ScrollView
@@ -35,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:text="\nGAME INFORMATIONS" />
+                    android:text="\n\n\n\nGAME INFORMATIONS" />
 
                 <TextView
                     android:id="@+id/infoText"
