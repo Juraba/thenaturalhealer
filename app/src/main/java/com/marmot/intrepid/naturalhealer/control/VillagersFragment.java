@@ -137,13 +137,6 @@ public class VillagersFragment extends Fragment {
         MainActivity.quickLoad();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        System.out.println("==== On Stop ====");
-        MainActivity.quickSave();
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
