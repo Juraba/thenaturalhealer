@@ -105,19 +105,16 @@ public class Player {
         this.quests.put(villagerName, quest);
     }
 
-    public void cancelQuest(String villager, Quest quest){
+    public void cancelQuest(Quest quest){
         if (quest.isCancelable()) {
-            this.quests.remove(villager);
-        } else {
-            //Mettre un mécanisme qui ne retire pas la quête mais sort un toast qui dit qu'on peut pas supprimer la quête
-        }
-    }
+            for (Map.Entry<String, Quest> i : this.quests.entrySet()) {
+                String key = i.getKey();
+                Quest val = i.getValue();
 
-    public void removeQuest(Quest quest) {
-        if (quest.isDone()) {
-            this.quests.remove(quest);
-        } else {
-            //Ne remove pas la quête, pas de toast
+                if (quest.getName().equals(val.getName())) {
+                    this.quests.remove(i);
+                }
+            }
         }
     }
 

@@ -122,9 +122,9 @@ public class QuestInfoActivity extends AppCompatActivity {
                 if (bundle.get("surrender") != null) {
                     acceptOrGiveUp.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View view) {
-                            player.cancelQuest(v.getName(), q);
+                            player.cancelQuest(q);
                             Toast.makeText(view.getContext(), "Quest surrendered !", Toast.LENGTH_SHORT).show();
-                            //MainActivity.quickSave();
+                            MainActivity.quickSave();
 
                             for (Map.Entry<String, Quest> quest : player.getQuests().entrySet()) {
                                 String key = quest.getKey();
@@ -153,7 +153,7 @@ public class QuestInfoActivity extends AppCompatActivity {
                             if (!check) {
                                 player.acceptQuest(q, v.getName());
                                 Toast.makeText(view.getContext(), "Quest accepted !", Toast.LENGTH_SHORT).show();
-                                //MainActivity.quickSave();
+                                MainActivity.quickSave();
                             } else {
                                 Toast.makeText(view.getContext(), "You already have accepted a quest from this villager !", Toast.LENGTH_SHORT).show();
                             }
