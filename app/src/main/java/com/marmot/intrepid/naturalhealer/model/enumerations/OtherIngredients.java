@@ -8,7 +8,7 @@ public enum OtherIngredients {
     HONEY("Honey", "Miel"),
     MILK("Milk", "Lait"),
     RHUM("Rhum", "Rhum"),
-    LEMON("Lemon", "Citron");
+    SUGAR("Sugar", "Sucre");
 
     private String en = "";
     private String fr = "";

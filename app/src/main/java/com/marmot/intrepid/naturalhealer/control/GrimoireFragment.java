@@ -1,12 +1,14 @@
 package com.marmot.intrepid.naturalhealer.control;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,6 +16,8 @@ import android.widget.ListView;
 import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.Grimoire;
 import com.marmot.intrepid.naturalhealer.model.Herb;
+import com.marmot.intrepid.naturalhealer.model.Item;
+import com.marmot.intrepid.naturalhealer.model.OtherIngredients;
 import com.marmot.intrepid.naturalhealer.model.Recipe;
 import com.marmot.intrepid.naturalhealer.service.GameService;
 
@@ -39,9 +43,12 @@ public class GrimoireFragment extends Fragment {
     private String mParam2;
     private GameService game;
     private Grimoire grimoire = null;
+    private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<String> herbList = new ArrayList<String>();
     private ArrayList<String> recipeList = new ArrayList<String>();
     private ArrayList<String> otherList = new ArrayList<String>();
+
+    //HerbDAO herbs;
 
     private OnFragmentInteractionListener mListener;
 
@@ -95,88 +102,139 @@ public class GrimoireFragment extends Fragment {
 
         grimoire = game.getGrimoire();
 
-        for (int i = 0; i < grimoire.getHerbs().size(); i++) {
-            Herb r = grimoire.getHerbs().get(i);
-            boolean check = false;
-            int j = 0;
-            while (!check && (j < herbList.size())) {
-                if (r.getType().getEn() == herbList.get(j)) {
-                    check = true;
-                }
-                j++;
-            }
-            if (check == false) {
-                herbList.add(r.getType().getEn());
-            }
-        }
-        for (int i = 0; i < grimoire.getRecipes().size(); i++) {
-            Recipe r = grimoire.getRecipes().get(i);
-            for (int j = 0; j < r.getSymptoms().length; j++) {
+        if (grimoire != null) {
+            for (int i = 0; i < grimoire.getHerbs().size(); i++) {
+                Herb r = grimoire.getHerbs().get(i);
                 boolean check = false;
-                int k=0;
-                while (!check && (k < recipeList.size())) {
-                    if (r.getSymptoms()[j].getEn() == recipeList.get(k)) {
+                int j = 0;
+                while (!check && (j < herbList.size())) {
+                    if (r.getType().getEn() == herbList.get(j)) {
                         check = true;
                     }
-                    k++;
+                    j++;
                 }
                 if (check == false) {
-                    recipeList.add(r.getSymptoms()[j].getEn());
+                    herbList.add(r.getType().getEn());
                 }
             }
+            for (int i = 0; i < grimoire.getRecipes().size(); i++) {
+                Recipe r = grimoire.getRecipes().get(i);
+                for (int j = 0; j < r.getSymptoms().length; j++) {
+                    boolean check = false;
+                    int k=0;
+                    while (!check && (k < recipeList.size())) {
+                        if (r.getSymptoms()[j].getEn() == recipeList.get(k)) {
+                            check = true;
+                        }
+                        k++;
+                    }
+                    if (check == false) {
+                        recipeList.add(r.getSymptoms()[j].getEn());
+                    }
+                }
+            }
+            for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
+                otherList.add(grimoire.getOtherIngredients().get(i).getName());
+            }
+
+            final ListView list = (ListView) view.findViewById(R.id.listCategories);
+
+            list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
+
+            final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
+            final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
+            final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
+
+            herbs.setPressed(true);
+
+            herbs.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View v, MotionEvent event){
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        recipies.setPressed(false);
+                        other.setPressed(false);
+                        herbs.setPressed(true);
+                        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
+                    }
+                    return true;//Return true, so there will be no onClick-event
+                }
+            });
+
+            recipies.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View v, MotionEvent event){
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        herbs.setPressed(false);
+                        other.setPressed(false);
+                        recipies.setPressed(true);
+                        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, recipeList));
+                    }
+                    return true;//Return true, so there will be no onClick-event
+                }
+            });
+
+            other.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View v, MotionEvent event){
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        herbs.setPressed(false);
+                        recipies.setPressed(false);
+                        other.setPressed(true);
+                        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, otherList));
+                    }
+                    return true;//Return true, so there will be no onClick-event
+                }
+            });
+
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Object obj = list.getAdapter().getItem(position);
+                    String value = obj.toString();
+                    grimoire = game.getGrimoire();
+
+                    //Vérification du type d'item qui est inséré dans la liste
+                    //Et création du render
+                    String render = "";
+                    for (int i = 0; i < grimoire.getHerbs().size(); i++) {
+                        ArrayList<Herb> herbs = grimoire.getHerbs();
+                        if (value.equals(herbs.get(i).getType().getEn())) {
+                            render = "herb";
+                        }
+                    }
+                    for (int i = 0; i < grimoire.getRecipes().size(); i++) {
+                        ArrayList<Recipe> recipes = grimoire.getRecipes();
+                        for (int j = 0; j < recipes.get(i).getSymptoms().length; j++) {
+                            String str = recipes.get(i).getSymptoms()[j].getEn();
+                            if (value.equals(str)) {
+                                render = "recipe";
+                            }
+                        }
+                    }
+                    for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
+                        ArrayList<OtherIngredients> others = grimoire.getOtherIngredients();
+                        if (value.equals(others.get(i).getName())) {
+                            render = "other";
+                        }
+                    }
+
+                    if (render == "herb") {
+                        Intent intentList = new Intent(getActivity(), GrimoireItemsActivity.class);
+                        intentList.putExtra("herb", value);
+                        startActivity(intentList);
+                    }
+                    else if (render == "recipe") {
+                        Intent intentList = new Intent(getActivity(), GrimoireItemsActivity.class);
+                        intentList.putExtra("recipe", value);
+                        startActivity(intentList);
+                    }
+                    else if (render == "other") {
+                        Intent intentItemInfo = new Intent(getActivity(), ItemInfoActivity.class);
+                        intentItemInfo.putExtra("other", value);
+                        startActivity(intentItemInfo);
+                    }
+                }
+            });
         }
-        for (int i = 0; i < grimoire.getOtherIngredients().size(); i++) {
-            otherList.add(grimoire.getOtherIngredients().get(i).getName());
-        }
-
-        final ListView list = (ListView) view.findViewById(R.id.listCategories);
-
-        list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
-
-        final Button herbs = (Button) view.findViewById(R.id.buttonHerbs);
-        final Button recipies = (Button) view.findViewById(R.id.buttonRecipies);
-        final Button other = (Button) view.findViewById(R.id.buttonOtherIngredients);
-
-        herbs.setPressed(true);
-
-        herbs.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    recipies.setPressed(false);
-                    other.setPressed(false);
-                    herbs.setPressed(true);
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, herbList));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
-
-        recipies.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    herbs.setPressed(false);
-                    other.setPressed(false);
-                    recipies.setPressed(true);
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, recipeList));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
-
-        other.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    herbs.setPressed(false);
-                    recipies.setPressed(false);
-                    other.setPressed(true);
-                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, otherList));
-                }
-                return true;//Return true, so there will be no onClick-event
-            }
-        });
 
         return view;
     }
@@ -203,6 +261,13 @@ public class GrimoireFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("==== On Start ====");
+        MainActivity.quickLoad();
     }
 
     /**

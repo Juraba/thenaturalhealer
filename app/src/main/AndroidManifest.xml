@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -20,7 +20,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".control.QuestInfoActivity" />
-        <activity android:name=".control.ItemInfoActivity"></activity>
+        <activity android:name=".control.ItemInfoActivity" />
+        <activity android:name=".control.GrimoireItemsActivity" />
+        <!-- android:theme="@style/Theme.AppCompat.Dialog.Alert" -->
+        <activity android:name=".control.VillagerQuestsActivity" />
+        <activity android:name=".control.ItemTransactionActivity"></activity>
     </application>
 
 </manifest>

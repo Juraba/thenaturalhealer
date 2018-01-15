@@ -17,7 +17,9 @@ public enum Symptoms {
     RUNNYNOSE("Runny nose", "Nez encombré"),
     COUGH("Cough", "Toux"),
     WATERYEYES("Watery Eyes", "Yeux larmoyants"),
-    SORETHROAT("Sore throat", "Mal de gorge");
+    SORETHROAT("Sore throat", "Mal de gorge"),
+    WEAK("Weak", "Faible"),
+    NONE("None", "Aucun");
 
     private String en = "";
     private String fr = "";
@@ -33,5 +35,25 @@ public enum Symptoms {
 
     public String getFr() {
         return this.fr;
+    }
+
+    public static Symptoms findEn(String symptoms){
+        Symptoms ret = null;
+        for(Symptoms s : values()){
+            if( s.getEn().equals(symptoms)){
+                ret = s;
+            }
+        }
+        return ret;
+    }
+
+    public static Symptoms findFr(String symptoms){
+        Symptoms ret = null;
+        for(Symptoms s : values()){
+            if( s.getFr().equals(symptoms)){
+                ret = s;
+            }
+        }
+        return ret;
     }
 }
