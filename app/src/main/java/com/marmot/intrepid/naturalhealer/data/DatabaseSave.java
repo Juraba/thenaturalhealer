@@ -10,6 +10,7 @@ import com.marmot.intrepid.naturalhealer.service.GameService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DatabaseSave implements Runnable{
 
@@ -61,12 +62,23 @@ public class DatabaseSave implements Runnable{
 
     public void saveVillager(DAOBase db, ArrayList<Villager> villagers){
         System.out.println("======== SAVE VILLAGER FROM DATABASESAVE ========");
+        System.out.println("======== OLD QUESTs ========");
+        List<QuestList> oldList = db.questListDAO().getAll();
+        for(Quest q : db.questDAO().getAll()){
+            System.out.println("ID: "+q.getName());
+        }
+
         for(Villager v : villagers){
             db.villagerDAO().insertOrUpdate(v);
             System.out.println(v.getName());
             ArrayList<Quest> vQuests = v.getQuests();
             for(Quest q : vQuests){
-                QuestList ql = new QuestList(0,v.getName(), q.getName());
+                QuestList ql = ql = new QuestList(0,v.getName(), q.getName());;
+                for(QuestList oldQ : oldList){
+                    //System.out.println("ID: "+q.getId());
+                    ql.setId(oldQ.getId());
+
+                }
                 db.questListDAO().insertOrUpdate(ql);
                 db.questDAO().insertOrUpdate(q);
 
@@ -78,6 +90,11 @@ public class DatabaseSave implements Runnable{
                     db.requirementsDAO().insertOrUpdate(requirement);
                 }
             }
+        }
+
+        System.out.println("======== NEW QUESTs ========");
+        for(Quest q : db.questDAO().getAll()){
+            System.out.println("ID: "+q.getName());
         }
     }
 
