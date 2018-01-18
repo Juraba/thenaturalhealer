@@ -110,9 +110,9 @@ public class Player {
             for (Map.Entry<String, Quest> i : this.quests.entrySet()) {
                 String key = i.getKey();
                 Quest val = i.getValue();
-
                 if (quest.getName().equals(val.getName())) {
-                    this.quests.remove(i);
+                    //this.quests.remove(i);
+                    this.quests.remove(key);
                 }
             }
         }

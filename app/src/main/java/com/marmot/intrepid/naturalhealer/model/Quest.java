@@ -41,8 +41,19 @@ public class Quest {
         this.rewardMoney = rewardMoney;
         this.rewardXp = rewardXp;
         this.cancelableString = cancelableString;
+        if(this.cancelableString.equals("true")){
+            this.cancelable = true;
+        }
+        else {
+            this.cancelable = false;
+        }
         this.doneString = doneString;
-
+        if(this.doneString.equals("true")){
+            this.done = true;
+        }
+        else {
+            this.done = false;
+        }
         this.questType = questType;
         this.type = QuestType.findEn(questType);
     }
@@ -55,7 +66,19 @@ public class Quest {
         this.rewardMoney = rewardMoney;
         this.rewardXp = rewardXp;
         this.cancelable = cancelable;
+        if(cancelable){
+            this.cancelableString = "true";
+        }
+        else {
+            this.cancelableString = "false";
+        }
         this.done = false;
+        if(done){
+            this.doneString = "true";
+        }
+        else {
+            this.doneString = "false";
+        }
         this.type = type;
         this.questType = type.getEn();
     }

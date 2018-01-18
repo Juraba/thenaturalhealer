@@ -124,7 +124,6 @@ public class QuestInfoActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             player.cancelQuest(q);
                             Toast.makeText(view.getContext(), "Quest surrendered !", Toast.LENGTH_SHORT).show();
-                            MainActivity.quickSave();
 
                             for (Map.Entry<String, Quest> quest : player.getQuests().entrySet()) {
                                 String key = quest.getKey();
@@ -132,6 +131,8 @@ public class QuestInfoActivity extends AppCompatActivity {
 
                                 System.out.println(key + "'s Quest : " + val.getName());
                             }
+
+                            MainActivity.quickSave();
                         }
                     });
                 }
