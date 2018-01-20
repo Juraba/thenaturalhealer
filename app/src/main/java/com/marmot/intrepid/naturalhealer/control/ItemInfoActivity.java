@@ -212,7 +212,7 @@ public class ItemInfoActivity extends AppCompatActivity {
                 // WINDOW POPUP
                 /*
                 final LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                @SuppressLint("ResourceType") final View windowView = inflater.inflate(R.layout.popup_layout, (ViewGroup) findViewById(R.layout.activity_item_info));
+                @SuppressLint("ResourceType") final View windowView = inflater.inflate(R.layout.popup_transaction_layout, (ViewGroup) findViewById(R.layout.activity_item_info));
                 final PopupWindow window = new PopupWindow(windowView, 0, 0, true);
                 window.setAnimationStyle(android.R.anim.fade_in);
 

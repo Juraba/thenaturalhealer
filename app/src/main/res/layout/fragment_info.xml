@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="
-    This game has been created by a team of 3 developers : Julien RABAULT, Justine FERRON and Camille KESSAB.\n\n\
+    This game has been created by a team of 2 developers : Julien RABAULT and Justine FERRON.\n\n\
     A huge 'Thank you !' to Sarah FERRON for designing the menu icons for free and having finished it on time !
 " />
 

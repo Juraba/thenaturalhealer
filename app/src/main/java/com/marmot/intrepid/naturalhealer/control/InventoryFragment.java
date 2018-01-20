@@ -240,16 +240,24 @@ public class InventoryFragment extends Fragment {
         brew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //VERSION 1
+                Intent intent = new Intent(getActivity(), BrewActivity.class);
+                startActivity(intent);
+
+                //VERSION 2
+                //Making list of recipes
+                /**for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
+                 if(entry.getKey().getClass() == Recipe.class){
+                 recipeList.add((Recipe) entry.getKey());
+                 System.out.println("Recipe : "+entry.getKey().getName());
+                 }
+                 }*/
+                /*
                 System.out.println("=== PASSAGE ONCLICK BREW ===");
                 Item item = null;
                 ArrayList<Recipe> recipeList = new ArrayList<>();
-                //Making list of recipes
-                /**for(HashMap.Entry<Item, Integer> entry : inventory.entrySet()){
-                    if(entry.getKey().getClass() == Recipe.class){
-                        recipeList.add((Recipe) entry.getKey());
-                        System.out.println("Recipe : "+entry.getKey().getName());
-                    }
-                }*/
+
                 for(int i=0; i < game.getItems().size(); i++){
                     if(game.getItems().get(i).getClass() == Recipe.class){
                         recipeList.add((Recipe) game.getItems().get(i));
@@ -309,6 +317,7 @@ public class InventoryFragment extends Fragment {
                     }
                     MainActivity.quickSave();
                 }
+                */
                 //System.out.println("");
             }
         });

@@ -53,7 +53,7 @@ public class ItemTransactionActivity extends AppCompatActivity {
             // WINDOW POPUP
             /*
             final LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            @SuppressLint("ResourceType") final View windowView = inflater.inflate(R.layout.popup_layout, (ViewGroup) findViewById(R.layout.activity_item_info));
+            @SuppressLint("ResourceType") final View windowView = inflater.inflate(R.layout.popup_transaction_layout, (ViewGroup) findViewById(R.layout.activity_item_info));
             final View view = inflater.inflate(R.layout.activity_window, null);
             final PopupWindow window = new PopupWindow(windowView, 0, 0, true);
             window.setAnimationStyle(android.R.anim.fade_in);
@@ -66,8 +66,11 @@ public class ItemTransactionActivity extends AppCompatActivity {
             */
 
             Button confirm = (Button) findViewById(R.id.confirm);
+            confirm.setVisibility(View.VISIBLE);
             ImageView itemPicture = (ImageView) findViewById(R.id.itemPicture);
+            itemPicture.setVisibility(View.VISIBLE);
             final TextView itemName = (TextView) findViewById(R.id.itemName);
+            itemName.setVisibility(View.VISIBLE);
             final NumberPicker number = (NumberPicker) findViewById(R.id.number);
 
             number.setMaxValue(100);
@@ -157,10 +160,12 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                                 double price = numberSold * finalItemPrice;
 
                                                 snackRender[0] = game.getPlayer().sellItems(finalItemSold ,numberSold);
-                                                MainActivity.quickSave();
 
-                                                if (snackRender[0] != "") {
+                                                if (snackRender[0].equals("")) {
                                                     snackRender[0] = snackRender[0] + "You sold " + numberSold + " " + itemName.getText() + " for " + price + "$";
+                                                    Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         }
@@ -168,12 +173,17 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             snackRender[0] = "You canceled the item selling";
+                                            Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                         }
                                     })
                                     .show();
 
+                            MainActivity.quickSave();
+
+                            /*
                             Snackbar.make(v, snackRender[0], Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
+                                    */
                         }
                     });
                 }
@@ -226,9 +236,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                         }
                     }
 
-                    System.out.println("FINAL ITEM PRICE AVANT AVEC ITEM PRICE VAL : " + itemPrice);
-                    System.out.println("FINAL ITEM SOLD AVANT AVEC ITEM SOLD VAL : " + itemSold.getName());
-
                     final double finalItemPrice = itemPrice;
                     final Item finalItemSold = itemSold;
 
@@ -261,10 +268,12 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                                 double price = numberSold * finalItemPrice;
 
                                                 snackRender[0] = game.getPlayer().buyItems(finalItemSold ,numberSold);
-                                                MainActivity.quickSave();
 
-                                                if (snackRender[0] != "") {
+                                                if (snackRender[0].equals("")) {
                                                     snackRender[0] = snackRender[0] + "You bought " + numberSold + " " + itemName.getText() + " for " + price + "$";
+                                                    Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         }
@@ -272,12 +281,17 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             snackRender[0] = "You canceled the item buying";
+                                            Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                         }
                                     })
                                     .show();
 
+                            MainActivity.quickSave();
+
+                            /*
                             Snackbar.make(v, snackRender[0], Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
+                                    */
                         }
                     });
                 }

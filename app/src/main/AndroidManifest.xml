@@ -24,7 +24,9 @@
         <activity android:name=".control.GrimoireItemsActivity" />
         <!-- android:theme="@style/Theme.AppCompat.Dialog.Alert" -->
         <activity android:name=".control.VillagerQuestsActivity" />
-        <activity android:name=".control.ItemTransactionActivity"></activity>
+        <activity android:name=".control.ItemTransactionActivity" />
+        <activity android:name=".control.BrewActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 
 </manifest>

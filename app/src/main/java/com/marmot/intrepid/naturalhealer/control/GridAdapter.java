@@ -4,12 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.marmot.intrepid.naturalhealer.R;
+
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.net.wifi.WifiConfiguration.Status.strings;
 
 public class GridAdapter extends BaseAdapter{
     private Context mContext;
@@ -65,4 +72,5 @@ public class GridAdapter extends BaseAdapter{
 
         return convertView;
     }
+
 }
