@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.marmot.intrepid.naturalhealer.R;
 import com.marmot.intrepid.naturalhealer.model.Item;
@@ -49,8 +50,6 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
         final ArrayList<String> names = new ArrayList<String>();
         final ArrayList<String> numbers = new ArrayList<String>();
         final ArrayList<String> pictures = new ArrayList<String>();
-
-        final BrewListAdapter[] arrayAdapter = {new BrewListAdapter(getApplicationContext(), names, numbers, pictures)};
 
         final ArrayList<String> itemNames = new ArrayList<String>();
 
@@ -215,6 +214,94 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
                         builderInner.show();
                     }
                 });
+            }
+        });
+
+        brew.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                System.out.println("=== PASSAGE ONCLICK BREW ===");
+                //Item item = null;
+                //GETTING ALL RECIPES
+                ArrayList<Recipe> recipeList = new ArrayList<>();
+
+                for(int i=0; i < game.getItems().size(); i++){
+                    if(game.getItems().get(i).getClass() == Recipe.class){
+                        recipeList.add((Recipe) game.getItems().get(i));
+                        System.out.println("Recipe : "+game.getItems().get(i).getName());
+                    }
+                }
+
+                //Are components ok ?
+                boolean ok = false;
+                HashMap<Integer, String> protocol, protocolSave;
+                protocolSave = new HashMap<>();
+                System.out.println("RecipeList : "+recipeList.size());
+                int i=0;
+                while(!ok && i < recipeList.size()){
+                    //Getting protocol
+                    protocol = new HashMap<>();
+                    String[] components = recipeList.get(i).getProtocol().split(", ");
+                    for(int j=0; j < components.length; j++){
+                        String[] component = components[j].split(" ");
+                        //System.out.println(components[j]);
+                        //System.out.println("QUANTITE : "+component[0]);
+                        //System.out.println("NAME ITEM : "+component[1]);
+                        if(component.length == 2){
+                            protocol.put(Integer.parseInt(component[0]), component[1]);
+                            protocolSave.put(Integer.parseInt(component[0]), component[1]);
+                        }
+                        else if(component.length == 3){
+                            protocol.put(Integer.parseInt(component[0]),component[1]+" "+component[2]);
+                            protocolSave.put(Integer.parseInt(component[0]),component[1]+" "+component[2]);
+                        }
+                        System.out.println("== Boucle - Itération : "+j+" ==");
+                        System.out.println("== protocolSave.size : "+protocolSave.size()+" ==");
+                    }
+                    //System.out.println("Protocol : "+protocol.toString());
+                    if(names.size() == protocol.size()){ //Number of selected items = number of items in protocol
+                        int j=0;
+                        boolean recipeOk = true;
+                        for(HashMap.Entry<Integer, String> entry : protocol.entrySet()){
+                            if(!recipeOk){
+                                if(names.get(j).equals(entry.getValue())){
+                                    if(entry.getKey() > Integer.parseInt(numbers.get(j))){
+                                        recipeOk = false;
+                                    }
+                                    else {
+                                        recipeOk = true;
+                                    }
+                                }
+                                j++;
+                            }
+                        }
+                        if(recipeOk){
+                            ok = true;
+                        }
+                    }
+                    i++;
+                }
+
+                if(ok){
+                    i=0;
+                    System.out.println("== names.size in if(ok) : "+names.size()+" ==");
+                    System.out.println("== protocolSave.size in if(ok) : "+protocolSave.size()+" ==");
+                    for(HashMap.Entry<Integer, String> entry : protocolSave.entrySet()){
+                        if(names.get(i).equals(entry.getValue())){
+                            for(HashMap.Entry<Item, Integer> entryInv : inventory.entrySet()){
+                                if(entry.getKey() <= entryInv.getValue()){
+                                    entryInv.setValue(entryInv.getValue()-entry.getKey());
+                                }
+                            }
+                        }
+                        i++;
+                    }
+                    MainActivity.quickSave();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Wrong recipe !", Toast.LENGTH_SHORT).show();
+                }
+
+                //System.out.println("");
             }
         });
     }
