@@ -86,7 +86,6 @@ public class BrewListAdapter extends BaseAdapter{
                 itemName.setText(names.get(position));
             }
             itemIcon.setImageResource(img);
-            System.out.println(pictures.get(position));
         }
 
         return convertView;

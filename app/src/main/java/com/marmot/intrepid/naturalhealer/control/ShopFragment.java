@@ -115,7 +115,7 @@ public class ShopFragment extends Fragment {
         final GridView itemList = (GridView) view.findViewById(R.id.inventory);
 
         TextView money = (TextView) view.findViewById(R.id.money);
-        money.setText(game.getPlayer().getPurse() + "$");
+        money.setText(player.getPurse() + "$");
 
         final ArrayList<Herb> herbList = shop.getHerbs();
         ArrayList<Recipe> recipeList = shop.getRecipes();
@@ -124,14 +124,6 @@ public class ShopFragment extends Fragment {
         final String[] herbPics = new String[herbList.size()];
         final String[] recipePics = new String[herbList.size()];
         final String[] otherPics = new String[herbList.size()];
-
-        /**System.out.println("HerbPics.length : "+herbPics.length);
-        System.out.println("HerbPics.length : "+recipePics.length);
-        System.out.println("HerbPics.length : "+otherPics.length);
-        System.out.println("HerbPics.length : "+herbList.size());
-        System.out.println("HerbPics.length : "+recipeList.size());
-        System.out.println("HerbPics.length : "+otherList.size());*/
-
 
         for (int i = 0; i < herbList.size(); i++) {
             herbPics[i] = herbList.get(i).getPicName();
@@ -166,9 +158,6 @@ public class ShopFragment extends Fragment {
                     other.setPressed(false);
                     herbs.setPressed(true);
 
-                    for (int i = 0; i < herbPics.length; i++) {
-                        System.out.println(herbPics[i]);
-                    }
                     GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, herbPics);
                     itemList.setAdapter(adapter);
                 }
@@ -184,9 +173,6 @@ public class ShopFragment extends Fragment {
                     other.setPressed(false);
                     recipes.setPressed(true);
 
-                    for (int i = 0; i < recipePics.length; i++) {
-                        System.out.println(recipePics[i]);
-                    }
                     GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, recipePics);
                     itemList.setAdapter(adapter);
                 }
@@ -202,9 +188,6 @@ public class ShopFragment extends Fragment {
                     recipes.setPressed(false);
                     other.setPressed(true);
 
-                    for (int i = 0; i < otherPics.length; i++) {
-                        System.out.println(otherPics[i]);
-                    }
                     GridAdapter adapter = new GridAdapter(getActivity(), new String[]{}, otherPics);
                     itemList.setAdapter(adapter);
                 }

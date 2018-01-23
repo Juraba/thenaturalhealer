@@ -80,12 +80,8 @@ public class ItemTransactionActivity extends AppCompatActivity {
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 if (bundle.get("sell") != null) {
-
                     final String item = bundle.get("sell").toString();
-
                     confirm.setText("SELL");
-
-                    System.out.println("BUNDLE GET SELL : " + item);
 
                     int img = 0;
                     double itemPrice = 0;
@@ -94,9 +90,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                     for (int i = 0; i < items.size(); i++) {
                         if (items.get(i).getName().equals(item)) {
                             if (items.get(i).getClass() == Herb.class) {
-
-                                Toast.makeText(getApplicationContext(), "HERB", Toast.LENGTH_LONG).show();
-
                                 Herb h = (Herb) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(h.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -105,9 +98,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                 itemSold = h;
                                 itemPrice = h.getPrice();
                             } else if (items.get(i).getClass() == Recipe.class) {
-
-                                Toast.makeText(getApplicationContext(), "RECIPE", Toast.LENGTH_LONG).show();
-
                                 Recipe r = (Recipe) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(r.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -116,9 +106,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                 itemSold = r;
                                 itemPrice = r.getPrice();
                             } else if (items.get(i).getClass() == OtherIngredients.class) {
-
-                                Toast.makeText(getApplicationContext(), "OTHER", Toast.LENGTH_LONG).show();
-
                                 OtherIngredients o = (OtherIngredients) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(o.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -134,13 +121,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                     final Item finalItemSold = itemSold;
 
                     itemPicture.setImageResource(img);
-
-                /*
-                windowView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.AT_MOST), View.MeasureSpec.UNSPECIFIED);
-                window.setWidth(windowView.getMeasuredWidth()*2);
-                window.setHeight(windowView.getMeasuredHeight());
-                window.showAtLocation(view, Gravity.CENTER, 0, 0);
-                */
 
                     confirm.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
@@ -167,6 +147,8 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                                 } else {
                                                     Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                                 }
+
+                                                MainActivity.quickSave();
                                             }
                                         }
                                     })
@@ -177,8 +159,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                         }
                                     })
                                     .show();
-
-                            MainActivity.quickSave();
 
                             /*
                             Snackbar.make(v, snackRender[0], Snackbar.LENGTH_LONG)
@@ -200,9 +180,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                     for (int i = 0; i < items.size(); i++) {
                         if (items.get(i).getName().equals(item)) {
                             if (items.get(i).getClass() == Herb.class) {
-
-                                Toast.makeText(getApplicationContext(), "HERB", Toast.LENGTH_LONG).show();
-
                                 Herb h = (Herb) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(h.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -211,9 +188,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                 itemSold = h;
                                 itemPrice = h.getPrice();
                             } else if (items.get(i).getClass() == Recipe.class) {
-
-                                Toast.makeText(getApplicationContext(), "RECIPE", Toast.LENGTH_LONG).show();
-
                                 Recipe r = (Recipe) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(r.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -222,9 +196,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                 itemSold = r;
                                 itemPrice = r.getPrice();
                             } else if (items.get(i).getClass() == OtherIngredients.class) {
-
-                                Toast.makeText(getApplicationContext(), "OTHER", Toast.LENGTH_LONG).show();
-
                                 OtherIngredients o = (OtherIngredients) items.get(i);
 
                                 img = getApplicationContext().getResources().getIdentifier(o.getPicName(), "mipmap", getLayoutInflater().getContext().getPackageName());
@@ -241,20 +212,10 @@ public class ItemTransactionActivity extends AppCompatActivity {
 
                     itemPicture.setImageResource(img);
 
-                    /*
-                    windowView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.AT_MOST), View.MeasureSpec.UNSPECIFIED);
-                    window.setWidth(windowView.getMeasuredWidth());
-                    window.setHeight(windowView.getMeasuredHeight());
-                    window.showAtLocation(view, Gravity.CENTER, 0, 0);
-                    */
-
                     confirm.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             final String[] snackRender = {""};
-
                             final int numberSold = number.getValue();
-
-                            System.out.println("NUMBER BUOUGHT : " + numberSold + " // FINAL ITEM BOUGHT : " + finalItemSold);
 
                             new AlertDialog.Builder(v.getContext())
                                     .setMessage("Are you sure you want to buy this item ?")
@@ -275,6 +236,8 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                                 } else {
                                                     Toast.makeText(getApplicationContext(), snackRender[0], Toast.LENGTH_SHORT).show();
                                                 }
+
+                                                MainActivity.quickSave();
                                             }
                                         }
                                     })
@@ -285,8 +248,6 @@ public class ItemTransactionActivity extends AppCompatActivity {
                                         }
                                     })
                                     .show();
-
-                            MainActivity.quickSave();
 
                             /*
                             Snackbar.make(v, snackRender[0], Snackbar.LENGTH_LONG)

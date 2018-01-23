@@ -144,6 +144,10 @@ public class Player {
         String render = "";
 
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            System.out.println("BEFORE :" + i.getKey().getName());
+        }
+
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
             value = i.getValue();
 
@@ -168,6 +172,10 @@ public class Player {
             }
         }
 
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            System.out.println("AFTER :" + i.getKey().getName());
+        }
+
         return render;
     }
 
@@ -177,28 +185,33 @@ public class Player {
         String render = "";
 
         for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            System.out.println("BEFORE :" + i.getKey().getName());
+        }
+
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
             Item key = i.getKey();
             value = i.getValue();
 
             if (key.getName().equals(item.getName())) {
-                if ((this.getPurse()-(number*item.getPrice())) >= 0) {
-                    if ((value-number) < 0) {
-                        render = "You don't have enough of this item to sell it ! ";
-                    } else if ((value-number) > 0) {
-                        //value -= number;
-                        i.setValue(value-number);
-                        this.setPurse(this.getPurse()-(number*item.getPrice()));
-                    } else if ((value-number) == 0){
-                        check = true;
-                        this.setPurse(this.getPurse()-(number*item.getPrice()));
-                    }
-                } else {
-                    render = "You don't have enough money ! ";
+                if ((value-number) < 0) {
+                    render = "You don't have enough of this item to sell it ! ";
+                } else if ((value-number) > 0) {
+                    //value -= number;
+                    i.setValue(value-number);
+                    this.setPurse(this.getPurse()-(number*item.getPrice()));
+                } else if ((value-number) == 0){
+                    check = true;
+                    this.setPurse(this.getPurse()-(number*item.getPrice()));
                 }
             }
         }
+
         if (check) {
-            this.inventory.remove(item);
+            this.removeItem(item);
+        }
+
+        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+            System.out.println("AFTER :" + i.getKey().getName());
         }
 
         return render;

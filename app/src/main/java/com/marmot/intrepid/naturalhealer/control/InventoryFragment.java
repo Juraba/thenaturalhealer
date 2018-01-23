@@ -124,7 +124,7 @@ public class InventoryFragment extends Fragment {
         TextView money = (TextView) view.findViewById(R.id.money);
 
         capacity.setText(player.getInventory().size() + " item(s)");
-        money.setText(game.getPlayer().getPurse() + "$");
+        money.setText(player.getPurse() + "$");
 
         final String[] pictures = new String[inventory.size()];
         String[] numbers = new  String[inventory.size()];
@@ -163,8 +163,6 @@ public class InventoryFragment extends Fragment {
                     }
                 }
 
-                System.out.println("ITEM VALUE : " + render);
-
                 Intent intentList = new Intent(getActivity(), ItemInfoActivity.class);
                 intentList.putExtra("item", render);
                 intentList.putExtra("inventory", 1);
@@ -172,6 +170,7 @@ public class InventoryFragment extends Fragment {
             }
         });
 
+        /**
         itemList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
                     public boolean onItemLongClick(AdapterView<?> parent, View arg1, int position, long arg3) {
                         Item item = null;
@@ -189,6 +188,7 @@ public class InventoryFragment extends Fragment {
                         return true;
                     }
         });
+        */
 
         /**itemList.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View arg1, int position, long arg3) {

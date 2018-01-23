@@ -107,21 +107,13 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
                             public void onClick(DialogInterface dialog, int id) {
                                 int nbChosen = number.getValue();
 
-                                System.out.println("VALEUR DE NBCHOSE, LE NUMBERPICKER : " + nbChosen);
-
                                 if (nbChosen <= numberMax) {
                                     itemNumber[0] = String.valueOf(nbChosen);
-                                    System.out.println("VALEUR DE ITEMNUMBER APRES VERIF AVEC NBCHOSE : " + itemNumber[0]);
                                 } else {
                                     itemNumber[0] = "0";
                                 }
 
                                 if (!itemNumber[0].equals("0")) {
-
-                                    System.out.println("===== AFFICHAGE AVANT AJOUT DANS BREW LIST =====");
-                                    System.out.println("Name : " + finalItemName);
-                                    System.out.println("Nombre : " + itemNumber[0]);
-                                    System.out.println("Picture : " + finalItemPicture);
 
                                     boolean check = false;
                                     int index = 0;
@@ -140,7 +132,6 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
                                         if (index > 0) {
                                             int tmp = Integer.parseInt(numbers.get(index)) + Integer.parseInt(itemNumber[0]);
                                             if (tmp <= numberMax) {
-                                                System.out.println("VALEUR A RAJOUTER DANS NUMBERS : " + tmp);
                                                 numbers.add(index, String.valueOf(tmp));
                                             }
                                         }
@@ -159,34 +150,16 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
 
         brewList.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
-
-                for (int i = 0; i < names.size(); i++) {
-                    System.out.println("BEFORE : " + names.get(i));
-                }
-                for (int i = 0; i < numbers.size(); i++) {
-                    System.out.println("BEFORE : " + numbers.get(i));
-                }
-                for (int i = 0; i < pictures.size(); i++) {
-                    System.out.println("BEFORE : " + pictures.get(i));
-                }
-
                 final BrewListAdapter adapter = new BrewListAdapter(getApplicationContext(), names, numbers, pictures);
 
                 final String[] snackRender = {""};
 
                 final Dialog dialog = new Dialog(BrewActivity.this);
                 dialog.setContentView(R.layout.brew_list_layout);
-                dialog.setTitle("Here is a view of your current item list");
+                dialog.setTitle("Here are items to brew");
 
                 final ListView brewList = (ListView) dialog.findViewById(R.id.brewList);
                 brewList.setAdapter(adapter);
-
-                Button hide = (Button) dialog.findViewById(R.id.hide);
-                hide.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
 
                 dialog.show();
 
@@ -195,8 +168,15 @@ public class BrewActivity extends AppCompatActivity implements SearchView.OnQuer
                         Object obj = brewList.getAdapter().getItem(position);
                         String value = obj.toString();
 
+                        String name = "";
+                        for (Map.Entry<Item, Integer> i : inventory.entrySet()) {
+                            if (i.getKey().getPicName().equals(value)) {
+                                name = i.getKey().getName();
+                            }
+                        }
+
                         AlertDialog.Builder builderInner = new AlertDialog.Builder(BrewActivity.this);
-                        builderInner.setTitle("Selected item : " + value);
+                        builderInner.setTitle("Selected item : " + name);
                         builderInner.setMessage("Do you want to keep it in the list\nor do you want to delete it ?");
                         builderInner.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
